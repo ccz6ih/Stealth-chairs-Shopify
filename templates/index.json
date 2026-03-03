@@ -138,6 +138,58 @@
         "color_scheme": ""
       }
     },
+    "stealth_as_seen_in_gJmr67": {
+      "type": "stealth-as-seen-in",
+      "blocks": {
+        "logo_wRtLNa": {
+          "type": "logo",
+          "settings": {
+            "name": "Sweetwater",
+            "link": ""
+          }
+        },
+        "logo_r3Fkpa": {
+          "type": "logo",
+          "settings": {
+            "name": "Sound on Sound",
+            "link": ""
+          }
+        },
+        "logo_FLHLQA": {
+          "type": "logo",
+          "settings": {
+            "name": "MusicRadar",
+            "link": ""
+          }
+        },
+        "logo_dqC7mD": {
+          "type": "logo",
+          "settings": {
+            "name": "Music Industry How To",
+            "link": ""
+          }
+        },
+        "logo_ge9WUn": {
+          "type": "logo",
+          "settings": {
+            "name": "Pro Audio Design",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_wRtLNa",
+        "logo_r3Fkpa",
+        "logo_FLHLQA",
+        "logo_dqC7mD",
+        "logo_ge9WUn"
+      ],
+      "name": "Stealth As Seen In",
+      "settings": {
+        "heading": "As Featured In",
+        "color_scheme": ""
+      }
+    },
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
@@ -524,6 +576,7 @@
     "stealth_hero_video_CqaT3F",
     "stealth_stats_bar_78tgXc",
     "stealth_industry_cards_fXeB94",
+    "stealth_as_seen_in_gJmr67",
     "image-with-text",
     "image-with-text-1",
     "featured_collection",
