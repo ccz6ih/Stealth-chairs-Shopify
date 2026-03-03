@@ -138,6 +138,20 @@
         "color_scheme": ""
       }
     },
+    "stealth_testimonial_spotlight_EMJxKL": {
+      "type": "stealth-testimonial-spotlight",
+      "name": "Stealth Testimonial",
+      "settings": {
+        "image": "shopify://shop_images/envato-labs-image-edit_-_2025-11-08T224936.081.png",
+        "quote": "<p>The Stealth Chair completely changed my studio sessions. I used to deal with constant back pain after long mixes — now I can work 12+ hours and feel great. It's the most important piece of gear in my room.</p>",
+        "name": "Andy Viegot",
+        "title": "Recording & Mix Engineer",
+        "credits": "Grammy-nominated | 500+ sessions",
+        "button_label": "Read More Stories",
+        "button_link": "",
+        "color_scheme": ""
+      }
+    },
     "stealth_as_seen_in_gJmr67": {
       "type": "stealth-as-seen-in",
       "blocks": {
@@ -576,6 +590,7 @@
     "stealth_hero_video_CqaT3F",
     "stealth_stats_bar_78tgXc",
     "stealth_industry_cards_fXeB94",
+    "stealth_testimonial_spotlight_EMJxKL",
     "stealth_as_seen_in_gJmr67",
     "image-with-text",
     "image-with-text-1",
