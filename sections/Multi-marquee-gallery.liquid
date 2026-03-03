@@ -1,0 +1,239 @@
+{% schema %}
+{
+  "name": "Multi-Marquee Gallery",
+  "tag": "section",
+  "class": "multi-marquee-gallery",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Gallery Settings"
+    },
+    {
+      "type": "range",
+      "id": "marquee_count",
+      "label": "Number of Marquee Rows",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Animation Speed (seconds)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "alternate_directions",
+      "label": "Alternate Directions",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Style Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Image Height (px)",
+      "min": 100,
+      "max": 400,
+      "step": 10,
+      "default": 200
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Image Link (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi-Marquee Gallery",
+      "blocks": [
+        {"type": "image"},
+        {"type": "image"},
+        {"type": "image"}
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div
+  class="gallery-container"
+  style="
+    --background-color: {{ section.settings.background_color }};
+    --image-height: {{ section.settings.image_height }}px;
+    --speed: {{ section.settings.speed }}s;
+  "
+>
+  {% assign images_per_row = section.blocks.size | divided_by: section.settings.marquee_count %}
+  {% assign remainder = section.blocks.size | modulo: section.settings.marquee_count %}
+
+  {% for i in (1..section.settings.marquee_count) %}
+    {% assign is_odd = forloop.index0 | modulo: 2 %}
+    <div class="marquee-row {% if section.settings.alternate_directions and is_odd == 1 %}reverse{% endif %}">
+      <div class="marquee-inner">
+        {% assign start_index = forloop.index0 | times: images_per_row %}
+        {% assign end_index = start_index | plus: images_per_row | minus: 1 %}
+        {% if forloop.last and remainder > 0 %}
+          {% assign end_index = end_index | plus: remainder %}
+        {% endif %}
+
+        {% for block in section.blocks offset: start_index limit: images_per_row %}
+          <div class="marquee-item" {{ block.shopify_attributes }}>
+            {% if block.settings.link != blank %}
+              <a href="{{ block.settings.link }}">
+            {% endif %}
+            {% if block.settings.image %}
+              <img src="{{ block.settings.image | img_url: 'master' }}" alt="Gallery Image" loading="lazy">
+            {% else %}
+              <div class="placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+            {% endif %}
+            {% if block.settings.link != blank %}
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+
+        {% comment %} Duplicate items for seamless scrolling {% endcomment %}
+        {% for block in section.blocks offset: start_index limit: images_per_row %}
+          <div class="marquee-item" {{ block.shopify_attributes }}>
+            {% if block.settings.link != blank %}
+              <a href="{{ block.settings.link }}">
+            {% endif %}
+            {% if block.settings.image %}
+              <img src="{{ block.settings.image | img_url: 'master' }}" alt="Gallery Image" loading="lazy">
+            {% else %}
+              <div class="placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+            {% endif %}
+            {% if block.settings.link != blank %}
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+  .gallery-container {
+    background: var(--background-color);
+    overflow: hidden;
+    padding: 20px 0;
+  }
+
+  .marquee-row {
+    width: 100%;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+
+  .marquee-inner {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--speed) linear infinite;
+  }
+
+  .marquee-row.reverse .marquee-inner {
+    animation-direction: reverse;
+  }
+
+  .marquee-item {
+    flex: 0 0 auto;
+    margin: 0 10px;
+    height: var(--image-height);
+  }
+
+  .marquee-item img {
+    height: 100%;
+    width: auto;
+    max-width: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .marquee-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .marquee-item a {
+    display: block;
+    height: 100%;
+  }
+
+  .placeholder {
+    height: 100%;
+    width: 300px;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 768px) {
+    .marquee-item {
+      margin: 0 5px;
+    }
+
+    .marquee-item img {
+      max-width: 200px;
+    }
+
+    .placeholder {
+      width: 200px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.gallery-container');
+    if (!container) return;
+
+    // Pause animation on hover
+    const marquees = container.querySelectorAll('.marquee-inner');
+    container.addEventListener('mouseenter', () => {
+      marquees.forEach(marquee => {
+        marquee.style.animationPlayState = 'paused';
+      });
+    });
+
+    container.addEventListener('mouseleave', () => {
+      marquees.forEach(marquee => {
+        marquee.style.animationPlayState = 'running';
+      });
+    });
+  });
+</script>

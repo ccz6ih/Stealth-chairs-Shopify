@@ -1,0 +1,171 @@
+{% comment %}
+  Stealth Trust Badges
+  Renders a row of trust/credibility badges for product pages and key landing areas.
+
+  Usage:
+  {% render 'stealth-trust-badges' %}
+  {% render 'stealth-trust-badges', layout: 'compact' %}
+{% endcomment %}
+
+{%- liquid
+  assign badge_layout = layout | default: 'full'
+-%}
+
+<div class="stealth-trust-badges stealth-trust-badges--{{ badge_layout }}">
+  <div class="stealth-trust-badges__grid">
+    <div class="stealth-trust-badge">
+      <div class="stealth-trust-badge__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="m9 12 2 2 4-4"/>
+        </svg>
+      </div>
+      <div class="stealth-trust-badge__text">
+        <span class="stealth-trust-badge__title">5-Year Warranty</span>
+        <span class="stealth-trust-badge__subtitle">Comprehensive coverage</span>
+      </div>
+    </div>
+
+    <div class="stealth-trust-badge">
+      <div class="stealth-trust-badge__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="5"/>
+          <path d="M12 13v8"/>
+          <path d="m9 18 3 3 3-3"/>
+          <path d="M7.5 4.2C9 3 10.5 2.5 12 3c1.5-.5 3 0 4.5 1.2"/>
+        </svg>
+      </div>
+      <div class="stealth-trust-badge__text">
+        <span class="stealth-trust-badge__title">Made in USA</span>
+        <span class="stealth-trust-badge__subtitle">Centennial, Colorado</span>
+      </div>
+    </div>
+
+    <div class="stealth-trust-badge">
+      <div class="stealth-trust-badge__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+          <line x1="4" y1="22" x2="4" y2="15"/>
+          <text x="10" y="10" font-size="6" fill="currentColor" stroke="none" font-weight="bold">P</text>
+        </svg>
+      </div>
+      <div class="stealth-trust-badge__text">
+        <span class="stealth-trust-badge__title">Patented Technology</span>
+        <span class="stealth-trust-badge__subtitle">ZenWave &amp; Free-Float</span>
+      </div>
+    </div>
+
+    <div class="stealth-trust-badge">
+      <div class="stealth-trust-badge__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="stealth-trust-badge__text">
+        <span class="stealth-trust-badge__title">Trusted by Pros</span>
+        <span class="stealth-trust-badge__subtitle">500+ engineers worldwide</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .stealth-trust-badges {
+    padding: 2rem 0;
+    width: 100%;
+  }
+
+  .stealth-trust-badges__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .stealth-trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+  }
+
+  .stealth-trust-badge:hover {
+    border-color: var(--color-button);
+  }
+
+  .stealth-trust-badge__icon {
+    flex-shrink: 0;
+    color: var(--color-button);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stealth-trust-badge__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .stealth-trust-badge__title {
+    font-family: var(--font-heading-family);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+  }
+
+  .stealth-trust-badge__subtitle {
+    font-size: 0.75rem;
+    opacity: 0.65;
+    line-height: 1.2;
+  }
+
+  /* Compact layout for product pages */
+  .stealth-trust-badges--compact .stealth-trust-badges__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .stealth-trust-badges--compact .stealth-trust-badge {
+    padding: 0.75rem;
+  }
+
+  .stealth-trust-badges--compact .stealth-trust-badge__icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .stealth-trust-badges__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .stealth-trust-badge {
+      padding: 0.75rem;
+    }
+
+    .stealth-trust-badge__icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .stealth-trust-badge__title {
+      font-size: 0.75rem;
+    }
+
+    .stealth-trust-badge__subtitle {
+      font-size: 0.65rem;
+    }
+  }
+</style>

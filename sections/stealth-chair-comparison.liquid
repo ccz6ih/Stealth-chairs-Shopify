@@ -1,0 +1,630 @@
+{% comment %}
+  Stealth Chair Comparison Section
+  Dynamic comparison section for Standard vs Pro chairs
+  Fully customizable through Shopify theme editor
+{% endcomment %}
+
+<style>
+  .stealth-comparison-section {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stealth-comparison-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, {{ section.settings.accent_color }}, transparent);
+  }
+
+  .stealth-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .stealth-header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInDown 0.8s ease-out;
+  }
+
+  .stealth-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stealth-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: {{ section.settings.accent_color }};
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .stealth-comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  .stealth-chair-card {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid #2a2a2a;
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .stealth-chair-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: {{ section.settings.accent_color }};
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .stealth-chair-card:hover {
+    transform: translateY(-8px);
+    border-color: {{ section.settings.accent_color }};
+    box-shadow: 0 20px 40px rgba(255, 0, 0, 0.15);
+  }
+
+  .stealth-chair-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .stealth-card-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: {{ section.settings.accent_color }};
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .stealth-card-image {
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    transition: transform 0.4s ease;
+  }
+
+  .stealth-chair-card:hover .stealth-card-image {
+    transform: scale(1.05);
+  }
+
+  .stealth-card-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+
+  .stealth-card-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #b0b0b0;
+    margin-bottom: 30px;
+  }
+
+  .stealth-specs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+  }
+
+  .stealth-spec-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #2a2a2a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    transition: padding-left 0.3s ease;
+  }
+
+  .stealth-spec-item:hover {
+    padding-left: 10px;
+  }
+
+  .stealth-spec-label {
+    color: #888;
+    font-weight: 500;
+  }
+
+  .stealth-spec-value {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .stealth-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .stealth-feature-item {
+    text-align: center;
+    padding: 20px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    transition: all 0.3s ease;
+  }
+
+  .stealth-feature-item:hover {
+    border-color: {{ section.settings.accent_color }};
+    transform: translateY(-4px);
+  }
+
+  .stealth-feature-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  .stealth-feature-text {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    line-height: 1.4;
+  }
+
+  .stealth-cta-button {
+    display: inline-block;
+    padding: 16px 40px;
+    background: {{ section.settings.accent_color }};
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 2px solid {{ section.settings.accent_color }};
+    font-size: 0.95rem;
+  }
+
+  .stealth-cta-button:hover {
+    background: transparent;
+    color: {{ section.settings.accent_color }};
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .stealth-comparison-section {
+      padding: 60px 20px;
+    }
+
+    .stealth-comparison-grid {
+      gap: 30px;
+    }
+
+    .stealth-chair-card {
+      padding: 30px 20px;
+    }
+
+    .stealth-card-image {
+      height: 280px;
+    }
+
+    .stealth-features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="stealth-comparison-section">
+  <div class="stealth-container">
+    
+    {% if section.settings.show_header %}
+    <div class="stealth-header">
+      <h2 class="stealth-title">{{ section.settings.section_title }}</h2>
+      <p class="stealth-subtitle">{{ section.settings.section_subtitle }}</p>
+    </div>
+    {% endif %}
+
+    <div class="stealth-comparison-grid">
+      
+      {% for block in section.blocks %}
+        <div class="stealth-chair-card" {{ block.shopify_attributes }}>
+          
+          {% if block.settings.badge_text != blank %}
+          <span class="stealth-card-badge">{{ block.settings.badge_text }}</span>
+          {% endif %}
+
+          {% if block.settings.chair_image != blank %}
+          <img 
+            src="{{ block.settings.chair_image | img_url: '800x' }}" 
+            alt="{{ block.settings.chair_name }}"
+            class="stealth-card-image"
+            loading="lazy"
+          >
+          {% else %}
+          <div class="stealth-card-image" style="background: #2a2a2a; display: flex; align-items: center; justify-content: center;">
+            <span style="color: #666;">Add Image</span>
+          </div>
+          {% endif %}
+
+          <h3 class="stealth-card-title">{{ block.settings.chair_name }}</h3>
+          <p class="stealth-card-description">{{ block.settings.chair_description }}</p>
+
+          {% if block.settings.show_specs %}
+          <ul class="stealth-specs-list">
+            {% if block.settings.spec_1_label != blank %}
+            <li class="stealth-spec-item">
+              <span class="stealth-spec-label">{{ block.settings.spec_1_label }}</span>
+              <span class="stealth-spec-value">{{ block.settings.spec_1_value }}</span>
+            </li>
+            {% endif %}
+            
+            {% if block.settings.spec_2_label != blank %}
+            <li class="stealth-spec-item">
+              <span class="stealth-spec-label">{{ block.settings.spec_2_label }}</span>
+              <span class="stealth-spec-value">{{ block.settings.spec_2_value }}</span>
+            </li>
+            {% endif %}
+            
+            {% if block.settings.spec_3_label != blank %}
+            <li class="stealth-spec-item">
+              <span class="stealth-spec-label">{{ block.settings.spec_3_label }}</span>
+              <span class="stealth-spec-value">{{ block.settings.spec_3_value }}</span>
+            </li>
+            {% endif %}
+            
+            {% if block.settings.spec_4_label != blank %}
+            <li class="stealth-spec-item">
+              <span class="stealth-spec-label">{{ block.settings.spec_4_label }}</span>
+              <span class="stealth-spec-value">{{ block.settings.spec_4_value }}</span>
+            </li>
+            {% endif %}
+
+            {% if block.settings.spec_5_label != blank %}
+            <li class="stealth-spec-item">
+              <span class="stealth-spec-label">{{ block.settings.spec_5_label }}</span>
+              <span class="stealth-spec-value">{{ block.settings.spec_5_value }}</span>
+            </li>
+            {% endif %}
+          </ul>
+          {% endif %}
+
+          {% if block.settings.show_features %}
+          <div class="stealth-features-grid">
+            {% if block.settings.feature_1 != blank %}
+            <div class="stealth-feature-item">
+              <div class="stealth-feature-icon">{{ block.settings.feature_1_icon }}</div>
+              <p class="stealth-feature-text">{{ block.settings.feature_1 }}</p>
+            </div>
+            {% endif %}
+
+            {% if block.settings.feature_2 != blank %}
+            <div class="stealth-feature-item">
+              <div class="stealth-feature-icon">{{ block.settings.feature_2_icon }}</div>
+              <p class="stealth-feature-text">{{ block.settings.feature_2 }}</p>
+            </div>
+            {% endif %}
+
+            {% if block.settings.feature_3 != blank %}
+            <div class="stealth-feature-item">
+              <div class="stealth-feature-icon">{{ block.settings.feature_3_icon }}</div>
+              <p class="stealth-feature-text">{{ block.settings.feature_3 }}</p>
+            </div>
+            {% endif %}
+          </div>
+          {% endif %}
+
+          {% if block.settings.cta_text != blank and block.settings.cta_url != blank %}
+          <div style="margin-top: 30px; text-align: center;">
+            <a href="{{ block.settings.cta_url }}" class="stealth-cta-button">
+              {{ block.settings.cta_text }}
+            </a>
+          </div>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Stealth Chair Comparison",
+  "class": "stealth-comparison",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Show Section Header",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Choose Your Perfect Chair"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Standard vs Pro"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Red)",
+      "default": "#ff0000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "chair",
+      "name": "Chair Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "info": "Optional badge (e.g., 'Best Seller', 'Popular')"
+        },
+        {
+          "type": "image_picker",
+          "id": "chair_image",
+          "label": "Chair Image"
+        },
+        {
+          "type": "text",
+          "id": "chair_name",
+          "label": "Chair Name",
+          "default": "Stealth Chair"
+        },
+        {
+          "type": "textarea",
+          "id": "chair_description",
+          "label": "Chair Description",
+          "default": "Experience ultimate comfort and support"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_specs",
+          "label": "Show Specifications",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Specifications"
+        },
+        {
+          "type": "text",
+          "id": "spec_1_label",
+          "label": "Spec 1 Label",
+          "default": "User Height"
+        },
+        {
+          "type": "text",
+          "id": "spec_1_value",
+          "label": "Spec 1 Value",
+          "default": "Under 6'"
+        },
+        {
+          "type": "text",
+          "id": "spec_2_label",
+          "label": "Spec 2 Label",
+          "default": "Weight Capacity"
+        },
+        {
+          "type": "text",
+          "id": "spec_2_value",
+          "label": "Spec 2 Value",
+          "default": "Up to 350 lbs"
+        },
+        {
+          "type": "text",
+          "id": "spec_3_label",
+          "label": "Spec 3 Label",
+          "default": "Seat Width"
+        },
+        {
+          "type": "text",
+          "id": "spec_3_value",
+          "label": "Spec 3 Value",
+          "default": "18.5\""
+        },
+        {
+          "type": "text",
+          "id": "spec_4_label",
+          "label": "Spec 4 Label",
+          "default": "Weight"
+        },
+        {
+          "type": "text",
+          "id": "spec_4_value",
+          "label": "Spec 4 Value",
+          "default": "57 lbs"
+        },
+        {
+          "type": "text",
+          "id": "spec_5_label",
+          "label": "Spec 5 Label",
+          "default": "Color"
+        },
+        {
+          "type": "text",
+          "id": "spec_5_value",
+          "label": "Spec 5 Value",
+          "default": "Midnight Black"
+        },
+        {
+          "type": "header",
+          "content": "Key Features"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_features",
+          "label": "Show Features",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "feature_1_icon",
+          "label": "Feature 1 Icon",
+          "default": "🌊",
+          "info": "Use emoji or symbol"
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature 1",
+          "default": "ZenWave™ Technology"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_icon",
+          "label": "Feature 2 Icon",
+          "default": "💨",
+          "info": "Use emoji or symbol"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature 2",
+          "default": "Breathable Mesh"
+        },
+        {
+          "type": "text",
+          "id": "feature_3_icon",
+          "label": "Feature 3 Icon",
+          "default": "⚙️",
+          "info": "Use emoji or symbol"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature 3",
+          "default": "3 Lever Adjustments"
+        },
+        {
+          "type": "header",
+          "content": "Call to Action"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stealth Chair Comparison",
+      "category": "Product",
+      "blocks": [
+        {
+          "type": "chair",
+          "settings": {
+            "badge_text": "Compact Design",
+            "chair_name": "Stealth Standard",
+            "chair_description": "Designed for users under 6' or under 200 lbs. Features a standard-sized backrest and smaller seat for optimal comfort.",
+            "spec_1_label": "User Height",
+            "spec_1_value": "Under 6'",
+            "spec_2_label": "User Weight",
+            "spec_2_value": "Under 200 lbs",
+            "spec_3_label": "Seat Size",
+            "spec_3_value": "18.5\" x 16.75\"",
+            "spec_4_label": "Weight",
+            "spec_4_value": "57 lbs",
+            "spec_5_label": "Height Range",
+            "spec_5_value": "19-25\"",
+            "feature_1": "ZenWave™ Motion",
+            "feature_2": "Breathable Mesh",
+            "feature_3": "Active Tilt™",
+            "cta_text": "Shop Standard",
+            "cta_url": "/products/stealth-standard"
+          }
+        },
+        {
+          "type": "chair",
+          "settings": {
+            "badge_text": "Pro Size",
+            "chair_name": "Stealth Pro",
+            "chair_description": "Designed for users over 6' or over 200 lbs. Features a larger seat for enhanced comfort and TourMax casters.",
+            "spec_1_label": "User Height",
+            "spec_1_value": "Over 6'",
+            "spec_2_label": "User Weight",
+            "spec_2_value": "Over 200 lbs",
+            "spec_3_label": "Seat Size",
+            "spec_3_value": "20.25\" x 19.5\"",
+            "spec_4_label": "Weight",
+            "spec_4_value": "59 lbs",
+            "spec_5_label": "Height Range",
+            "spec_5_value": "22-32\"",
+            "feature_1": "ZenWave™ Motion",
+            "feature_2": "TourMax Casters",
+            "feature_3": "Larger Seat",
+            "cta_text": "Shop Pro",
+            "cta_url": "/products/stealth-pro"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1240 @@
+{% comment %}
+  IGNITON ADVISORS & MEDICAL TEAM - ENHANCED
+  Dynamic team showcase with rich bios, credentials, and achievements
+  Full modal system with extended information and social links
+  100% Shopify-compliant with no hardcoded fonts
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Advisors & Medical Team",
+  "tag": "section",
+  "class": "igniton-advisors-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "Our Medical Advisory Board"
+    },
+    {
+      "type": "richtext",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "<p>World-class expertise behind every Igniton formula. Meet the physicians, researchers, and scientists who guide our innovation.</p>"
+    },
+    {
+      "type": "select",
+      "id": "grid_layout",
+      "label": "Grid Layout",
+      "options": [
+        {
+          "value": "2-column",
+          "label": "2 Columns"
+        },
+        {
+          "value": "3-column",
+          "label": "3 Columns"
+        },
+        {
+          "value": "4-column",
+          "label": "4 Columns"
+        }
+      ],
+      "default": "3-column"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card Style",
+      "options": [
+        {
+          "value": "modern",
+          "label": "Modern (Clean & Minimal)"
+        },
+        {
+          "value": "premium",
+          "label": "Premium (With Background Letter)"
+        },
+        {
+          "value": "classic",
+          "label": "Classic (Centered Layout)"
+        }
+      ],
+      "default": "premium"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary Color",
+      "default": "#191880"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#D3A23C"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FAF6F2"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_credentials_on_card",
+      "label": "Show Credentials on Card",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_specialties_on_card",
+      "label": "Show Specialties on Card Preview",
+      "default": false,
+      "info": "Shows first specialty below name on card"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_hover_effects",
+      "label": "Enable Advanced Hover Effects",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "team_member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "header",
+          "content": "BASIC INFORMATION"
+        },
+        {
+          "type": "text",
+          "id": "full_name",
+          "label": "Full Name",
+          "default": "Dr. Jane Smith"
+        },
+        {
+          "type": "text",
+          "id": "credentials",
+          "label": "Credentials",
+          "default": "M.D., PhD, FAARM",
+          "info": "Professional credentials and degrees"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Professional Title",
+          "default": "Board-Certified Physician",
+          "info": "Current position or primary title"
+        },
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Professional Photo"
+        },
+        {
+          "type": "text",
+          "id": "name_initial",
+          "label": "Name Initial",
+          "default": "J",
+          "info": "Single letter for premium card background (only used in Premium card style)"
+        },
+        {
+          "type": "header",
+          "content": "SHORT BIO (Shown on Card)"
+        },
+        {
+          "type": "textarea",
+          "id": "short_bio",
+          "label": "Short Biography",
+          "default": "Specializing in integrative medicine and longevity science.",
+          "info": "Brief description shown below name on card (2-3 lines max)"
+        },
+        {
+          "type": "header",
+          "content": "MODAL CONTENT (Detailed Information)"
+        },
+        {
+          "type": "page",
+          "id": "bio_page",
+          "label": "Biography Page",
+          "info": "Select a Shopify page (e.g., /pages/dr-john-smith) - the page content will be dynamically pulled into the modal"
+        },
+        {
+          "type": "url",
+          "id": "full_profile_url",
+          "label": "Full Profile Page URL (Optional)",
+          "info": "Link to complete profile page if you want a 'View Full Profile' button in modal"
+        },
+        {
+          "type": "textarea",
+          "id": "specialties",
+          "label": "Areas of Expertise (one per line)",
+          "default": "Integrative Medicine\nFunctional Medicine\nLongevity Science\nHormone Optimization",
+          "info": "List specialties, one per line"
+        },
+        {
+          "type": "textarea",
+          "id": "achievements",
+          "label": "Key Achievements (one per line)",
+          "default": "Board-certified in Internal Medicine\n20+ years clinical experience\nPublished researcher in longevity science\nFaculty at major medical institutions",
+          "info": "Notable accomplishments, one per line"
+        },
+        {
+          "type": "richtext",
+          "id": "education",
+          "label": "Education & Training",
+          "default": "<p><strong>Medical Degree:</strong> Harvard Medical School</p><p><strong>Residency:</strong> Johns Hopkins Hospital</p><p><strong>Fellowship:</strong> Anti-Aging & Regenerative Medicine</p>",
+          "info": "Educational background and training"
+        },
+        {
+          "type": "richtext",
+          "id": "publications_research",
+          "label": "Publications & Research",
+          "default": "<p>Author of 50+ peer-reviewed publications in longevity and integrative medicine. Research focuses on mitochondrial health and cellular aging.</p>",
+          "info": "Research contributions and publications"
+        },
+        {
+          "type": "textarea",
+          "id": "board_certifications",
+          "label": "Board Certifications (one per line)",
+          "default": "American Board of Internal Medicine\nAmerican Academy of Anti-Aging Medicine (A4M)\nFunctional Medicine Certification",
+          "info": "Professional certifications, one per line"
+        },
+        {
+          "type": "header",
+          "content": "SOCIAL & PROFESSIONAL LINKS"
+        },
+        {
+          "type": "url",
+          "id": "linkedin_url",
+          "label": "LinkedIn Profile"
+        },
+        {
+          "type": "url",
+          "id": "website_url",
+          "label": "Personal/Professional Website"
+        },
+        {
+          "type": "url",
+          "id": "research_url",
+          "label": "Research Profile (Google Scholar, ResearchGate, etc.)"
+        },
+        {
+          "type": "header",
+          "content": "STYLING"
+        },
+        {
+          "type": "color",
+          "id": "card_accent_color",
+          "label": "Card Accent Color",
+          "default": "#191880",
+          "info": "Unique accent color for this team member's card"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advisors & Medical Team",
+      "blocks": [
+        {
+          "type": "team_member",
+          "settings": {
+            "full_name": "Dr. Gail King",
+            "credentials": "M.D., FACOG, FAARM",
+            "title": "Board-Certified Physician in Obstetrics & Gynecology",
+            "name_initial": "G",
+            "short_bio": "Over three decades of clinical excellence in integrative medicine, specializing in hormone optimization and personalized wellness strategies.",
+            "bio_page": "",
+            "specialties": "Integrative Medicine\nAnti-Aging Medicine\nFunctional Medicine\nHormone Optimization\nWomen's Health",
+            "achievements": "30+ years of clinical practice\nFellowship-trained in Anti-Aging Medicine (FAARM)\nPublished researcher in hormone optimization\nMedical faculty at multiple institutions\nMedical Advisory Board Member, Igniton™",
+            "education": "<p><strong>Medical Degree:</strong> Doctor of Medicine (M.D.)</p><p><strong>Board Certification:</strong> Obstetrics & Gynecology (FACOG)</p><p><strong>Fellowship:</strong> Anti-Aging, Regenerative & Functional Medicine</p>",
+            "publications_research": "<p>Dr. King has authored peer-reviewed research on hormone optimization, longevity interventions, and integrative approaches to age-related conditions. Her work bridges conventional medicine with cutting-edge functional and regenerative therapies.</p>",
+            "board_certifications": "American Board of Obstetrics & Gynecology (FACOG)\nFellow, American Academy of Anti-Aging Medicine (FAARM)\nIntegrative Medicine Certification",
+            "card_accent_color": "#191880"
+          }
+        },
+        {
+          "type": "team_member",
+          "settings": {
+            "full_name": "Dr. Konstantin Korotkov",
+            "credentials": "PhD",
+            "title": "Professor of Physics & Bioelectrography Pioneer",
+            "name_initial": "K",
+            "short_bio": "Internationally acclaimed scientist and inventor of Gas Discharge Visualization (GDV) technology, revolutionizing the study of human energy fields.",
+            "bio_page": "",
+            "specialties": "Bioelectrography\nQuantum Biology\nEnergy Medicine\nHuman Energy Fields\nBiophysics",
+            "achievements": "200+ published scientific papers\n15+ international patents\nProfessor of Physics, St. Petersburg University\nConsultant to NASA and Russian Olympic Committee\nPioneer of GDV/EPI technology\nMedical Advisory Board Member, Igniton™",
+            "education": "<p><strong>PhD in Physics:</strong> St. Petersburg University</p><p><strong>Post-Doctoral Research:</strong> Biophysics and Bioelectrography</p><p><strong>Academic Position:</strong> Professor of Physics, St. Petersburg University</p>",
+            "publications_research": "<p>Dr. Korotkov has published over 200 papers in peer-reviewed journals on bioelectrography, consciousness, and energy medicine. His work on Gas Discharge Visualization has been cited in thousands of studies worldwide and forms the foundation of modern bioenergetic research.</p>",
+            "board_certifications": "International Society for Bioelectrography\nInternational Association for Energy Medicine\nRussian Academy of Natural Sciences",
+            "card_accent_color": "#D3A23C"
+          }
+        },
+        {
+          "type": "team_member",
+          "settings": {
+            "full_name": "Dr. Raul Valverde",
+            "credentials": "PhD",
+            "title": "Teaching Professor & AI/Analytics Specialist",
+            "name_initial": "R",
+            "short_bio": "Specializing in the intersection of AI, cognitive health, and human performance optimization through advanced neurofeedback and analytics.",
+            "bio_page": "",
+            "specialties": "AI & Machine Learning\nCognitive Health Analytics\nNeurofeedback\nBrainwave Optimization\nNeurofinance",
+            "achievements": "Teaching Professor at Concordia University\nPhD in AI and Analytics for Mental Health\nDeveloped AI-driven cognitive assessment tools\nExtensive publications on neurofeedback\nBackground in electrical engineering and finance\nMedical Advisory Board Member, Igniton™",
+            "education": "<p><strong>PhD:</strong> Post-Professional Doctor of Psychology (AI & Analytics for Mental Health)</p><p><strong>Background:</strong> Electrical Engineering, Finance, Neurofinance</p><p><strong>Current Position:</strong> Teaching Professor, Concordia University</p>",
+            "publications_research": "<p>Dr. Valverde has published extensively on the intersection of AI, neurofeedback, and cognitive optimization. His research explores how machine learning can identify patterns in brainwave activity and predict cognitive performance, informing precision interventions for mental health and performance enhancement.</p>",
+            "board_certifications": "AI and Analytics Specialization (Psychology)\nNeurofeedback Certification\nAdvanced Cognitive Assessment Training",
+            "card_accent_color": "#FC694C"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section class="advisors-section" style="background-color: {{ section.settings.background_color }};">
+  <div class="advisors-container">
+    
+    {% if section.settings.section_heading != blank or section.settings.section_description != blank %}
+      <div class="advisors-header">
+        {% if section.settings.section_heading != blank %}
+          <h2 class="advisors-heading" style="color: {{ section.settings.primary_color }};">
+            {{ section.settings.section_heading }}
+          </h2>
+        {% endif %}
+        {% if section.settings.section_description != blank %}
+          <div class="advisors-description" style="color: #1B1B57;">
+            {{ section.settings.section_description }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="advisors-grid" data-layout="{{ section.settings.grid_layout }}" data-style="{{ section.settings.card_style }}">
+      {% for block in section.blocks %}
+        {% if block.type == 'team_member' %}
+          <div class="advisor-card {{ section.settings.card_style }}-style" {{ block.shopify_attributes }}>
+            
+            {% if section.settings.card_style == 'premium' and block.settings.name_initial != blank %}
+              <div class="advisor-initial" style="color: {{ block.settings.card_accent_color }}20;">
+                {{ block.settings.name_initial | upcase }}
+              </div>
+            {% endif %}
+
+            <div class="advisor-inner" style="background: {{ section.settings.card_background }}; --accent: {{ block.settings.card_accent_color }};">
+              
+              <div class="advisor-photo-wrapper">
+                {% if block.settings.photo %}
+                  <img
+                    src="{{ block.settings.photo | image_url: width: 400 }}"
+                    alt="{{ block.settings.full_name | escape }}"
+                    loading="lazy"
+                    class="advisor-photo"
+                  >
+                {% else %}
+                  <div class="advisor-photo-placeholder" style="background: linear-gradient(135deg, {{ section.settings.accent_color }}30 0%, {{ section.settings.primary_color }}30 100%);">
+                    <span>{{ block.settings.name_initial | default: 'I' }}</span>
+                  </div>
+                {% endif %}
+                <div class="advisor-hover-overlay" style="background: {{ block.settings.card_accent_color }}15;"></div>
+              </div>
+
+              <div class="advisor-content">
+                <h3 class="advisor-name" style="color: {{ section.settings.primary_color }};">
+                  {{ block.settings.full_name }}
+                </h3>
+
+                {% if section.settings.show_credentials_on_card and block.settings.credentials != blank %}
+                  <div class="advisor-credentials" style="color: {{ block.settings.card_accent_color }};">
+                    {{ block.settings.credentials }}
+                  </div>
+                {% endif %}
+
+                {% if block.settings.title != blank %}
+                  <div class="advisor-title" style="color: #555;">
+                    {{ block.settings.title }}
+                  </div>
+                {% endif %}
+
+                {% if block.settings.short_bio != blank %}
+                  <p class="advisor-short-bio">
+                    {{ block.settings.short_bio }}
+                  </p>
+                {% endif %}
+
+                {% if section.settings.show_specialties_on_card and block.settings.specialties != blank %}
+                  {% assign first_specialty = block.settings.specialties | newline_to_br | split: '<br />' | first %}
+                  {% if first_specialty != blank %}
+                    <div class="advisor-specialty-badge" style="background: {{ block.settings.card_accent_color }}10; color: {{ block.settings.card_accent_color }};">
+                      {{ first_specialty | strip }}
+                    </div>
+                  {% endif %}
+                {% endif %}
+
+                <button 
+                  class="advisor-read-more" 
+                  data-modal-open="{{ block.id }}"
+                  style="color: {{ block.settings.card_accent_color }};"
+                  aria-label="Read full bio for {{ block.settings.full_name }}"
+                >
+                  <span>Read Full Bio</span>
+                  <svg class="arrow-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal for this team member -->
+          <div class="advisor-modal" id="modal-{{ block.id }}" data-modal="{{ block.id }}" role="dialog" aria-modal="true" aria-labelledby="modal-title-{{ block.id }}">
+            <div class="modal-backdrop" data-modal-close="{{ block.id }}"></div>
+            <div class="modal-wrapper">
+              <div class="modal-container">
+                <button class="modal-close-btn" data-modal-close="{{ block.id }}" aria-label="Close modal">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+
+                <div class="modal-header">
+                  {% if block.settings.photo %}
+                    <div class="modal-photo">
+                      <img
+                        src="{{ block.settings.photo | image_url: width: 200 }}"
+                        alt="{{ block.settings.full_name | escape }}"
+                      >
+                    </div>
+                  {% endif %}
+                  <div class="modal-header-text">
+                    <h2 id="modal-title-{{ block.id }}" class="modal-name" style="color: {{ section.settings.primary_color }};">
+                      {{ block.settings.full_name }}
+                    </h2>
+                    {% if block.settings.credentials != blank %}
+                      <div class="modal-credentials" style="color: {{ block.settings.accent_color }};">
+                        {{ block.settings.credentials }}
+                      </div>
+                    {% endif %}
+                    {% if block.settings.title != blank %}
+                      <div class="modal-title-text">
+                        {{ block.settings.title }}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="modal-body">
+                  {% if block.settings.bio_page != blank %}
+                    {% assign bio_page = pages[block.settings.bio_page] %}
+                    {% if bio_page %}
+                      <div class="modal-section">
+                        <h3 class="modal-section-title" style="color: {{ section.settings.primary_color }};">Biography</h3>
+                        <div class="modal-section-content">
+                          {{ bio_page.content }}
+                        </div>
+                        {% if block.settings.full_profile_url != blank %}
+                          <a href="{{ block.settings.full_profile_url }}" class="view-full-profile" style="color: {{ section.settings.primary_color }}; border-color: {{ section.settings.primary_color }};">
+                            <span>View Complete Profile</span>
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </a>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  {% endif %}
+
+                  {% if block.settings.specialties != blank %}
+                    {% assign specialties_list = block.settings.specialties | newline_to_br | split: '<br />' %}
+                    <div class="modal-section">
+                      <h3 class="modal-section-title" style="color: {{ section.settings.primary_color }};">Areas of Expertise</h3>
+                      <div class="modal-tags">
+                        {% for specialty in specialties_list %}
+                          {% if specialty != blank %}
+                            <span class="modal-tag" style="background: {{ section.settings.accent_color }}15; color: {{ section.settings.primary_color }};">
+                              {{ specialty | strip }}
+                            </span>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.achievements != blank %}
+                    {% assign achievements_list = block.settings.achievements | newline_to_br | split: '<br />' %}
+                    <div class="modal-section">
+                      <h3 class="modal-section-title" style="color: {{ section.settings.primary_color }};">Key Achievements</h3>
+                      <ul class="modal-list">
+                        {% for achievement in achievements_list %}
+                          {% if achievement != blank %}
+                            <li>
+                              <svg class="check-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM8 15L3 10L4.41 8.59L8 12.17L15.59 4.58L17 6L8 15Z" fill="{{ section.settings.accent_color }}"/>
+                              </svg>
+                              {{ achievement | strip }}
+                            </li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.education != blank %}
+                    <div class="modal-section">
+                      <h3 class="modal-section-title" style="color: {{ section.settings.primary_color }};">Education & Training</h3>
+                      <div class="modal-section-content">
+                        {{ block.settings.education }}
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.publications_research != blank %}
+                    <div class="modal-section">
+                      <h3 class="modal-section-title" style="color: {{ section.settings.primary_color }};">Publications & Research</h3>
+                      <div class="modal-section-content">
+                        {{ block.settings.publications_research }}
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.board_certifications != blank %}
+                    {% assign certs_list = block.settings.board_certifications | newline_to_br | split: '<br />' %}
+                    <div class="modal-section">
+                      <h3 class="modal-section-title" style="color: {{ section.settings.primary_color }};">Board Certifications</h3>
+                      <ul class="modal-list modal-list-compact">
+                        {% for cert in certs_list %}
+                          {% if cert != blank %}
+                            <li>
+                              <svg class="badge-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 0L12.5 5L17.5 5.5L13.5 9.5L14.5 15L10 12L5.5 15L6.5 9.5L2.5 5.5L7.5 5L10 0Z" fill="{{ section.settings.accent_color }}"/>
+                              </svg>
+                              {{ cert | strip }}
+                            </li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.linkedin_url != blank or block.settings.website_url != blank or block.settings.research_url != blank %}
+                    <div class="modal-section modal-links-section">
+                      <h3 class="modal-section-title" style="color: {{ section.settings.primary_color }};">Professional Links</h3>
+                      <div class="modal-social-links">
+                        {% if block.settings.linkedin_url != blank %}
+                          <a href="{{ block.settings.linkedin_url }}" target="_blank" rel="noopener noreferrer" class="social-link" style="color: {{ section.settings.primary_color }}; border-color: {{ section.settings.primary_color }}30;">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            LinkedIn Profile
+                          </a>
+                        {% endif %}
+                        {% if block.settings.website_url != blank %}
+                          <a href="{{ block.settings.website_url }}" target="_blank" rel="noopener noreferrer" class="social-link" style="color: {{ section.settings.primary_color }}; border-color: {{ section.settings.primary_color }}30;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke-width="2"/>
+                            </svg>
+                            Professional Website
+                          </a>
+                        {% endif %}
+                        {% if block.settings.research_url != blank %}
+                          <a href="{{ block.settings.research_url }}" target="_blank" rel="noopener noreferrer" class="social-link" style="color: {{ section.settings.primary_color }}; border-color: {{ section.settings.primary_color }}30;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke-width="2"/>
+                            </svg>
+                            Research Publications
+                          </a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* SECTION WRAPPER */
+  .advisors-section {
+    padding: 100px 20px;
+  }
+
+  .advisors-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .advisors-header {
+    text-align: center;
+    margin-bottom: 70px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .advisors-heading {
+    font-size: 48px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .advisors-heading::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #D3A23C 0%, #191880 100%);
+    margin: 25px auto 0;
+  }
+
+  .advisors-description {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-top: 20px;
+  }
+
+  /* GRID LAYOUTS */
+  .advisors-grid {
+    display: grid;
+    gap: 40px;
+  }
+
+  .advisors-grid[data-layout="2-column"] {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  }
+
+  .advisors-grid[data-layout="3-column"] {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+
+  .advisors-grid[data-layout="4-column"] {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* CARD STYLES */
+  .advisor-card {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .advisor-card:nth-child(1) { animation-delay: 0.1s; }
+  .advisor-card:nth-child(2) { animation-delay: 0.2s; }
+  .advisor-card:nth-child(3) { animation-delay: 0.3s; }
+  .advisor-card:nth-child(4) { animation-delay: 0.4s; }
+  .advisor-card:nth-child(5) { animation-delay: 0.5s; }
+  .advisor-card:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Premium Style - With Background Letter */
+  .advisor-card.premium-style {
+    position: relative;
+    overflow: visible;
+  }
+
+  .advisor-initial {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 180px;
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.12;
+  }
+
+  .advisor-inner {
+    position: relative;
+    z-index: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .advisor-card:hover .advisor-inner {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Photo */
+  .advisor-photo-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+  }
+
+  .advisor-photo,
+  .advisor-photo-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .advisor-photo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+    color: #555;
+  }
+
+  .advisor-hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .advisor-card:hover .advisor-hover-overlay {
+    opacity: 1;
+  }
+
+  /* Content */
+  .advisor-content {
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .advisor-name {
+    font-size: 28px;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+  }
+
+  .advisor-credentials {
+    font-size: 14px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .advisor-title {
+    font-size: 15px;
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+
+  .advisor-short-bio {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .advisor-specialty-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .advisor-read-more {
+    margin-top: auto;
+    padding: 14px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .advisor-read-more:hover {
+    gap: 12px;
+  }
+
+  .arrow-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .advisor-read-more:hover .arrow-icon {
+    transform: translateX(4px);
+  }
+
+  /* Modern Style */
+  .advisor-card.modern-style .advisor-inner {
+    border: 2px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .advisor-card.modern-style .advisor-photo-wrapper {
+    padding-top: 75%;
+  }
+
+  /* Classic Style */
+  .advisor-card.classic-style .advisor-content {
+    text-align: center;
+    align-items: center;
+  }
+
+  .advisor-card.classic-style .advisor-photo-wrapper {
+    padding-top: 100%;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    margin: 30px auto 0;
+    padding: 0;
+  }
+
+  .advisor-card.classic-style .advisor-read-more {
+    justify-content: center;
+  }
+
+  /* MODAL STYLES */
+  .advisor-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .advisor-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+  }
+
+  .modal-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+  }
+
+  .advisor-modal.active .modal-wrapper {
+    transform: scale(1);
+  }
+
+  .modal-container {
+    background: white;
+    border-radius: 20px;
+    overflow-y: auto;
+    max-height: 90vh;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+    position: relative;
+  }
+
+  .modal-close-btn {
+    position: sticky;
+    top: 20px;
+    right: 20px;
+    float: right;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    margin: 20px 20px 0 0;
+  }
+
+  .modal-close-btn:hover {
+    background: rgba(0, 0, 0, 0.2);
+    transform: rotate(90deg);
+  }
+
+  .modal-close-btn svg {
+    width: 20px;
+    height: 20px;
+    color: #333;
+  }
+
+  .modal-header {
+    padding: 60px 50px 30px;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+
+  .modal-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .modal-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .modal-header-text {
+    flex: 1;
+  }
+
+  .modal-name {
+    font-size: 36px;
+    margin: 0 0 12px 0;
+    line-height: 1.2;
+  }
+
+  .modal-credentials {
+    font-size: 16px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .modal-title-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .modal-body {
+    padding: 40px 50px 50px;
+  }
+
+  .modal-section {
+    margin-bottom: 35px;
+  }
+
+  .modal-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .modal-section-title {
+    font-size: 22px;
+    margin: 0 0 18px 0;
+  }
+
+  .modal-section-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  .modal-section-content p {
+    margin: 0 0 15px 0;
+  }
+
+  .modal-section-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .modal-section-content strong {
+    color: #191880;
+  }
+
+  .view-full-profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    margin-top: 20px;
+    border: 2px solid;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .view-full-profile:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .view-full-profile svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  .view-full-profile:hover svg {
+    transform: translateX(4px);
+  }
+
+  .modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .modal-tag {
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .modal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .modal-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    color: #333;
+  }
+
+  .modal-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .check-icon,
+  .badge-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .modal-list-compact li {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .modal-links-section {
+    margin-top: 40px;
+    padding-top: 35px;
+    border-top: 2px solid #f0f0f0;
+  }
+
+  .modal-social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .social-link svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  /* Prevent body scroll when modal open */
+  body.modal-open {
+    overflow: hidden;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1200px) {
+    .advisors-grid[data-layout="2-column"],
+    .advisors-grid[data-layout="3-column"],
+    .advisors-grid[data-layout="4-column"] {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+  }
+
+  @media (max-width: 768px) {
+    .advisors-section {
+      padding: 60px 15px;
+    }
+
+    .advisors-heading {
+      font-size: 36px;
+    }
+
+    .advisors-description {
+      font-size: 16px;
+    }
+
+    .advisors-grid {
+      grid-template-columns: 1fr !important;
+      gap: 30px;
+    }
+
+    .advisor-initial {
+      font-size: 120px;
+    }
+
+    .advisor-content {
+      padding: 25px;
+    }
+
+    .advisor-name {
+      font-size: 24px;
+    }
+
+    .modal-header {
+      flex-direction: column;
+      padding: 40px 30px 25px;
+    }
+
+    .modal-photo {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto;
+    }
+
+    .modal-header-text {
+      text-align: center;
+    }
+
+    .modal-name {
+      font-size: 28px;
+    }
+
+    .modal-body {
+      padding: 30px 25px;
+    }
+
+    .modal-section-title {
+      font-size: 20px;
+    }
+
+    .modal-close-btn {
+      top: 15px;
+      right: 15px;
+      margin: 15px 15px 0 0;
+    }
+
+    .advisor-card.classic-style .advisor-photo-wrapper {
+      width: 150px;
+      height: 150px;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    // Modal functionality
+    const modals = document.querySelectorAll('.advisor-modal');
+    const openButtons = document.querySelectorAll('[data-modal-open]');
+    const closeButtons = document.querySelectorAll('[data-modal-close]');
+    
+    // Open modal
+    openButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const modalId = button.getAttribute('data-modal-open');
+        const modal = document.querySelector(`[data-modal="${modalId}"]`);
+        
+        if (modal) {
+          modal.classList.add('active');
+          document.body.classList.add('modal-open');
+        }
+      });
+    });
+    
+    // Close modal
+    closeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const modalId = button.getAttribute('data-modal-close');
+        const modal = document.querySelector(`[data-modal="${modalId}"]`);
+        
+        if (modal) {
+          modal.classList.remove('active');
+          document.body.classList.remove('modal-open');
+        }
+      });
+    });
+    
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const activeModal = document.querySelector('.advisor-modal.active');
+        if (activeModal) {
+          activeModal.classList.remove('active');
+          document.body.classList.remove('modal-open');
+        }
+      }
+    });
+    
+    // Make entire card clickable
+    document.querySelectorAll('.advisor-card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function(e) {
+        // Don't trigger if clicking the read more button directly
+        if (e.target.closest('.advisor-read-more')) return;
+        
+        const button = this.querySelector('[data-modal-open]');
+        if (button) button.click();
+      });
+    });
+  })();
+</script>

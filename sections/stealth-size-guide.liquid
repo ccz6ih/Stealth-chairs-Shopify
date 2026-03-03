@@ -1,0 +1,877 @@
+{% comment %}
+  Stealth Chair Size Guide Section
+  Interactive decision helper for choosing Standard vs Pro
+  Emphasizes seat size, casters, and "when in doubt, go larger" principle
+{% endcomment %}
+
+<style>
+  .stealth-size-guide {
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stealth-size-guide::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .size-guide-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .size-guide-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .size-guide-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff 0%, #ff0000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+  }
+
+  .size-guide-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: #b0b0b0;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+  }
+
+  .size-up-banner {
+    background: linear-gradient(135deg, {{ section.settings.accent_color }} 0%, #cc0000 100%);
+    color: #000;
+    padding: 20px 40px;
+    border-radius: 50px;
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .decision-grid {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 40px;
+    margin: 60px 0;
+    align-items: start;
+  }
+
+  .vs-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .vs-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: {{ section.settings.accent_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #000;
+    position: sticky;
+    top: 100px;
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.5);
+  }
+
+  .vs-line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, {{ section.settings.accent_color }}, transparent);
+    top: 0;
+  }
+
+  .size-option-card {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 2px solid #2a2a2a;
+    border-radius: 24px;
+    padding: 50px 40px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .size-option-card:hover {
+    border-color: {{ section.settings.accent_color }};
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(255, 0, 0, 0.2);
+  }
+
+  .size-option-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .size-option-label {
+    display: inline-block;
+    padding: 8px 24px;
+    background: {{ section.settings.accent_color }};
+    color: #000;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .size-option-name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+
+  .size-option-tagline {
+    font-size: 1.1rem;
+    color: #888;
+    font-weight: 500;
+  }
+
+  .ideal-for-section {
+    background: #111;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-left: 4px solid {{ section.settings.accent_color }};
+  }
+
+  .ideal-for-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: {{ section.settings.accent_color }};
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .user-metrics {
+    display: grid;
+    gap: 15px;
+  }
+
+  .metric-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .metric-item:hover {
+    background: #222;
+    transform: translateX(5px);
+  }
+
+  .metric-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .metric-content {
+    flex: 1;
+  }
+
+  .metric-label {
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 5px;
+  }
+
+  .metric-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .key-differences {
+    margin-top: 30px;
+  }
+
+  .difference-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .difference-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .difference-item {
+    padding: 20px;
+    background: #111;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border-left: 3px solid {{ section.settings.accent_color }};
+    transition: all 0.3s ease;
+  }
+
+  .difference-item:hover {
+    background: #1a1a1a;
+    transform: translateX(5px);
+  }
+
+  .difference-highlight {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: {{ section.settings.accent_color }};
+    margin-bottom: 8px;
+  }
+
+  .difference-description {
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    line-height: 1.5;
+  }
+
+  .use-case-section {
+    background: #0d0d0d;
+    border-radius: 16px;
+    padding: 30px;
+    margin-top: 30px;
+    border: 1px solid #2a2a2a;
+  }
+
+  .use-case-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .use-case-icon {
+    font-size: 1.5rem;
+  }
+
+  .use-case-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .use-case-tag {
+    padding: 10px 20px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    transition: all 0.3s ease;
+  }
+
+  .use-case-tag:hover {
+    border-color: {{ section.settings.accent_color }};
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .cta-section {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .size-cta-button {
+    display: inline-block;
+    padding: 18px 50px;
+    background: {{ section.settings.accent_color }};
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 2px solid {{ section.settings.accent_color }};
+    font-size: 1rem;
+  }
+
+  .size-cta-button:hover {
+    background: transparent;
+    color: {{ section.settings.accent_color }};
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(255, 0, 0, 0.3);
+  }
+
+  .sizing-tip-box {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 2px solid {{ section.settings.accent_color }};
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sizing-tip-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .tip-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tip-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: {{ section.settings.accent_color }};
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+  }
+
+  .tip-description {
+    font-size: 1.2rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 968px) {
+    .decision-grid {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+
+    .vs-divider {
+      display: none;
+    }
+
+    .size-option-card {
+      padding: 40px 30px;
+    }
+
+    .sizing-tip-box {
+      padding: 30px 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .stealth-size-guide {
+      padding: 60px 15px;
+    }
+
+    .size-up-banner {
+      padding: 15px 30px;
+      font-size: 0.9rem;
+    }
+
+    .metric-item {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+
+<section class="stealth-size-guide">
+  <div class="size-guide-container">
+    
+    <div class="size-guide-header">
+      <h2 class="size-guide-title">{{ section.settings.section_title }}</h2>
+      <p class="size-guide-subtitle">{{ section.settings.section_description }}</p>
+      
+      {% if section.settings.show_size_up_banner %}
+      <div style="margin-top: 30px;">
+        <span class="size-up-banner">
+          {{ section.settings.size_up_text }}
+        </span>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="decision-grid">
+      
+      {% comment %} Standard Chair {% endcomment %}
+      <div class="size-option-card">
+        <div class="size-option-header">
+          <span class="size-option-label">{{ section.settings.standard_label }}</span>
+          <h3 class="size-option-name">{{ section.settings.standard_name }}</h3>
+          <p class="size-option-tagline">{{ section.settings.standard_tagline }}</p>
+        </div>
+
+        {% if section.settings.show_ideal_for %}
+        <div class="ideal-for-section">
+          <h4 class="ideal-for-title">Ideal For</h4>
+          <div class="user-metrics">
+            <div class="metric-item">
+              <div class="metric-icon">📏</div>
+              <div class="metric-content">
+                <div class="metric-label">Height</div>
+                <div class="metric-value">{{ section.settings.standard_height }}</div>
+              </div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-icon">⚖️</div>
+              <div class="metric-content">
+                <div class="metric-label">Weight</div>
+                <div class="metric-value">{{ section.settings.standard_weight }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="key-differences">
+          <h4 class="difference-title">Key Features</h4>
+          <ul class="difference-list">
+            <li class="difference-item">
+              <div class="difference-highlight">{{ section.settings.standard_diff_1_title }}</div>
+              <div class="difference-description">{{ section.settings.standard_diff_1_desc }}</div>
+            </li>
+            <li class="difference-item">
+              <div class="difference-highlight">{{ section.settings.standard_diff_2_title }}</div>
+              <div class="difference-description">{{ section.settings.standard_diff_2_desc }}</div>
+            </li>
+            <li class="difference-item">
+              <div class="difference-highlight">{{ section.settings.standard_diff_3_title }}</div>
+              <div class="difference-description">{{ section.settings.standard_diff_3_desc }}</div>
+            </li>
+          </ul>
+        </div>
+
+        {% if section.settings.show_use_cases %}
+        <div class="use-case-section">
+          <h4 class="use-case-title">
+            <span class="use-case-icon">💼</span>
+            Perfect For
+          </h4>
+          <div class="use-case-tags">
+            {% assign standard_uses = section.settings.standard_use_cases | split: ',' %}
+            {% for use in standard_uses %}
+              <span class="use-case-tag">{{ use | strip }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="cta-section">
+          <a href="{{ section.settings.standard_cta_url }}" class="size-cta-button">
+            {{ section.settings.standard_cta_text }}
+          </a>
+        </div>
+      </div>
+
+      {% comment %} VS Divider {% endcomment %}
+      <div class="vs-divider">
+        <div class="vs-line"></div>
+        <div class="vs-circle">VS</div>
+      </div>
+
+      {% comment %} Pro Chair {% endcomment %}
+      <div class="size-option-card">
+        <div class="size-option-header">
+          <span class="size-option-label">{{ section.settings.pro_label }}</span>
+          <h3 class="size-option-name">{{ section.settings.pro_name }}</h3>
+          <p class="size-option-tagline">{{ section.settings.pro_tagline }}</p>
+        </div>
+
+        {% if section.settings.show_ideal_for %}
+        <div class="ideal-for-section">
+          <h4 class="ideal-for-title">Ideal For</h4>
+          <div class="user-metrics">
+            <div class="metric-item">
+              <div class="metric-icon">📏</div>
+              <div class="metric-content">
+                <div class="metric-label">Height</div>
+                <div class="metric-value">{{ section.settings.pro_height }}</div>
+              </div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-icon">⚖️</div>
+              <div class="metric-content">
+                <div class="metric-label">Weight</div>
+                <div class="metric-value">{{ section.settings.pro_weight }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="key-differences">
+          <h4 class="difference-title">Key Features</h4>
+          <ul class="difference-list">
+            <li class="difference-item">
+              <div class="difference-highlight">{{ section.settings.pro_diff_1_title }}</div>
+              <div class="difference-description">{{ section.settings.pro_diff_1_desc }}</div>
+            </li>
+            <li class="difference-item">
+              <div class="difference-highlight">{{ section.settings.pro_diff_2_title }}</div>
+              <div class="difference-description">{{ section.settings.pro_diff_2_desc }}</div>
+            </li>
+            <li class="difference-item">
+              <div class="difference-highlight">{{ section.settings.pro_diff_3_title }}</div>
+              <div class="difference-description">{{ section.settings.pro_diff_3_desc }}</div>
+            </li>
+          </ul>
+        </div>
+
+        {% if section.settings.show_use_cases %}
+        <div class="use-case-section">
+          <h4 class="use-case-title">
+            <span class="use-case-icon">🎵</span>
+            Perfect For
+          </h4>
+          <div class="use-case-tags">
+            {% assign pro_uses = section.settings.pro_use_cases | split: ',' %}
+            {% for use in pro_uses %}
+              <span class="use-case-tag">{{ use | strip }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="cta-section">
+          <a href="{{ section.settings.pro_cta_url }}" class="size-cta-button">
+            {{ section.settings.pro_cta_text }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    {% if section.settings.show_sizing_tip %}
+    <div class="sizing-tip-box">
+      <div class="tip-icon">💡</div>
+      <h3 class="tip-title">{{ section.settings.tip_title }}</h3>
+      <p class="tip-description">{{ section.settings.tip_description }}</p>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Stealth Size Guide",
+  "class": "stealth-size-guide-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Find Your Perfect Fit"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "Choose the right Stealth Chair based on your height, weight, and professional needs. Every detail matters for optimal comfort."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_size_up_banner",
+      "label": "Show 'Size Up' Banner",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "size_up_text",
+      "label": "'Size Up' Banner Text",
+      "default": "⚠️ When in Doubt, Go Larger Not Smaller"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#ff0000"
+    },
+    {
+      "type": "header",
+      "content": "Standard Chair Settings"
+    },
+    {
+      "type": "text",
+      "id": "standard_label",
+      "label": "Label",
+      "default": "Compact Design"
+    },
+    {
+      "type": "text",
+      "id": "standard_name",
+      "label": "Chair Name",
+      "default": "Stealth Standard"
+    },
+    {
+      "type": "text",
+      "id": "standard_tagline",
+      "label": "Tagline",
+      "default": "Perfect for smaller frames and compact spaces"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ideal_for",
+      "label": "Show 'Ideal For' Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "standard_height",
+      "label": "Ideal Height",
+      "default": "Under 6 feet"
+    },
+    {
+      "type": "text",
+      "id": "standard_weight",
+      "label": "Ideal Weight",
+      "default": "Under 200 lbs"
+    },
+    {
+      "type": "text",
+      "id": "standard_diff_1_title",
+      "label": "Feature 1 Title",
+      "default": "Compact Seat Design"
+    },
+    {
+      "type": "textarea",
+      "id": "standard_diff_1_desc",
+      "label": "Feature 1 Description",
+      "default": "18.5\" x 16.75\" seat provides snug, supportive fit for smaller users"
+    },
+    {
+      "type": "text",
+      "id": "standard_diff_2_title",
+      "label": "Feature 2 Title",
+      "default": "Standard Office Casters"
+    },
+    {
+      "type": "textarea",
+      "id": "standard_diff_2_desc",
+      "label": "Feature 2 Description",
+      "default": "Smooth-rolling office-style casters perfect for studio floors"
+    },
+    {
+      "type": "text",
+      "id": "standard_diff_3_title",
+      "label": "Feature 3 Title",
+      "default": "Height Range: 19-25\""
+    },
+    {
+      "type": "textarea",
+      "id": "standard_diff_3_desc",
+      "label": "Feature 3 Description",
+      "default": "Includes short and tall cylinders for versatile height adjustment"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_use_cases",
+      "label": "Show Use Cases",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "standard_use_cases",
+      "label": "Use Cases (comma separated)",
+      "default": "Audio Engineers, Home Studios, Office Work, Editing Suites, Smaller Workspaces"
+    },
+    {
+      "type": "text",
+      "id": "standard_cta_text",
+      "label": "Button Text",
+      "default": "Choose Standard"
+    },
+    {
+      "type": "url",
+      "id": "standard_cta_url",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Pro Chair Settings"
+    },
+    {
+      "type": "text",
+      "id": "pro_label",
+      "label": "Label",
+      "default": "Professional Grade"
+    },
+    {
+      "type": "text",
+      "id": "pro_name",
+      "label": "Chair Name",
+      "default": "Stealth Pro"
+    },
+    {
+      "type": "text",
+      "id": "pro_tagline",
+      "label": "Tagline",
+      "default": "Built for professionals and larger frames"
+    },
+    {
+      "type": "text",
+      "id": "pro_height",
+      "label": "Ideal Height",
+      "default": "Over 6 feet"
+    },
+    {
+      "type": "text",
+      "id": "pro_weight",
+      "label": "Ideal Weight",
+      "default": "Over 200 lbs"
+    },
+    {
+      "type": "text",
+      "id": "pro_diff_1_title",
+      "label": "Feature 1 Title",
+      "default": "Larger Seat Size"
+    },
+    {
+      "type": "textarea",
+      "id": "pro_diff_1_desc",
+      "label": "Feature 1 Description",
+      "default": "20.25\" x 19.5\" seat provides extra room in both width and depth for enhanced comfort"
+    },
+    {
+      "type": "text",
+      "id": "pro_diff_2_title",
+      "label": "Feature 2 Title",
+      "default": "TourMax Heavy-Duty Casters"
+    },
+    {
+      "type": "textarea",
+      "id": "pro_diff_2_desc",
+      "label": "Feature 2 Description",
+      "default": "4\" professional-grade casters built for stage, lighting, and demanding environments"
+    },
+    {
+      "type": "text",
+      "id": "pro_diff_3_title",
+      "label": "Feature 3 Title",
+      "default": "Height Range: 22-32\""
+    },
+    {
+      "type": "textarea",
+      "id": "pro_diff_3_desc",
+      "label": "Feature 3 Description",
+      "default": "Higher range perfect for standing desks and stage work"
+    },
+    {
+      "type": "textarea",
+      "id": "pro_use_cases",
+      "label": "Use Cases (comma separated)",
+      "default": "Stage Sound, Lighting Design, Live Events, FOH Engineers, Video Production, Touring Professionals"
+    },
+    {
+      "type": "text",
+      "id": "pro_cta_text",
+      "label": "Button Text",
+      "default": "Choose Pro"
+    },
+    {
+      "type": "url",
+      "id": "pro_cta_url",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Sizing Tip Box"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sizing_tip",
+      "label": "Show Sizing Tip",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tip_title",
+      "label": "Tip Title",
+      "default": "Pro Tip: Size Up for Maximum Comfort"
+    },
+    {
+      "type": "textarea",
+      "id": "tip_description",
+      "label": "Tip Description",
+      "default": "If you're between sizes or unsure which to choose, we always recommend going with the larger Pro model. The extra seat space and heavy-duty casters provide superior comfort and durability. Both chairs support up to 350 lbs, so you'll enjoy the same exceptional ZenWave™ technology either way."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stealth Size Guide",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

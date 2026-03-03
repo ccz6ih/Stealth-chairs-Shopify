@@ -1,0 +1,36 @@
+{{ 'component-stealth-trust-badges.css' | asset_url | stylesheet_tag }}
+
+<div class="stealth-trust-badges-section color-{{ section.settings.color_scheme }} gradient">
+  {% render 'stealth-trust-badges', layout: section.settings.layout %}
+</div>
+
+{% schema %}
+{
+  "name": "Stealth Trust Badges",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "full", "label": "Full Width (4 columns)" },
+        { "value": "compact", "label": "Compact (2 columns)" }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stealth Trust Badges"
+    }
+  ]
+}
+{% endschema %}

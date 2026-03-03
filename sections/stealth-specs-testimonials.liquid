@@ -1,0 +1,945 @@
+{% comment %}
+  Stealth Chair Specs & Testimonials Section
+  Combines detailed comparison table with customer success stories
+  Features interactive specs table and before/after testimonials
+{% endcomment %}
+
+<style>
+  .stealth-specs-testimonials {
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding: 100px 20px;
+    position: relative;
+  }
+
+  .specs-testimonials-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ==================== SPECS TABLE SECTION ==================== */
+  
+  .specs-section {
+    margin-bottom: 120px;
+  }
+
+  .specs-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .specs-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 0%, {{ section.settings.accent_color }} 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .specs-subtitle {
+    font-size: 1.2rem;
+    color: #888;
+  }
+
+  .comparison-table-wrapper {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 2px solid #2a2a2a;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .comparison-table thead {
+    background: {{ section.settings.accent_color }};
+    color: #000;
+  }
+
+  .comparison-table th {
+    padding: 25px 20px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: left;
+  }
+
+  .comparison-table th:first-child {
+    width: 40%;
+  }
+
+  .comparison-table tbody tr {
+    border-bottom: 1px solid #2a2a2a;
+    transition: all 0.3s ease;
+  }
+
+  .comparison-table tbody tr:hover {
+    background: #1a1a1a;
+    transform: scale(1.01);
+  }
+
+  .comparison-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .comparison-table td {
+    padding: 25px 20px;
+    font-size: 1rem;
+    vertical-align: top;
+  }
+
+  .spec-category {
+    font-weight: 700;
+    color: {{ section.settings.accent_color }};
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .spec-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .spec-value {
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  .spec-detail {
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    line-height: 1.5;
+  }
+
+  .spec-highlight {
+    display: inline-block;
+    padding: 4px 12px;
+    background: {{ section.settings.accent_color }};
+    color: #000;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 8px;
+  }
+
+  .checkmark {
+    color: {{ section.settings.accent_color }};
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  /* ==================== TESTIMONIALS SECTION ==================== */
+
+  .testimonials-section {
+    position: relative;
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .testimonials-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, {{ section.settings.accent_color }} 0%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .testimonials-subtitle {
+    font-size: 1.2rem;
+    color: #888;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
+    gap: 40px;
+  }
+
+  .testimonial-card {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 2px solid #2a2a2a;
+    border-radius: 24px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, {{ section.settings.accent_color }}, #cc0000);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .testimonial-card:hover {
+    border-color: {{ section.settings.accent_color }};
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(255, 0, 0, 0.2);
+  }
+
+  .testimonial-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+  }
+
+  .testimonial-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid {{ section.settings.accent_color }};
+    flex-shrink: 0;
+  }
+
+  .testimonial-avatar-placeholder {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, {{ section.settings.accent_color }} 0%, #cc0000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    flex-shrink: 0;
+  }
+
+  .testimonial-info {
+    flex: 1;
+  }
+
+  .testimonial-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 5px;
+  }
+
+  .testimonial-role {
+    font-size: 0.95rem;
+    color: {{ section.settings.accent_color }};
+    font-weight: 500;
+  }
+
+  .testimonial-chair-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: #1a1a1a;
+    border: 1px solid {{ section.settings.accent_color }};
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: {{ section.settings.accent_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+  }
+
+  .testimonial-rating {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 25px;
+  }
+
+  .star {
+    color: {{ section.settings.accent_color }};
+    font-size: 1.2rem;
+  }
+
+  .star.empty {
+    color: #333;
+  }
+
+  .before-after-container {
+    margin-bottom: 25px;
+  }
+
+  .before-after-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: {{ section.settings.accent_color }};
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .timeline-connector {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, {{ section.settings.accent_color }}, transparent);
+  }
+
+  .story-section {
+    background: #111;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border-left: 3px solid #333;
+    transition: all 0.3s ease;
+  }
+
+  .story-section:hover {
+    border-left-color: {{ section.settings.accent_color }};
+    background: #1a1a1a;
+  }
+
+  .story-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .story-text {
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .testimonial-quote {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #fff;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 25px;
+  }
+
+  .testimonial-quote::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -10px;
+    font-size: 4rem;
+    color: {{ section.settings.accent_color }};
+    opacity: 0.3;
+    font-family: Georgia, serif;
+  }
+
+  .testimonial-result {
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(255, 0, 0, 0.05) 100%);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+  }
+
+  .result-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: {{ section.settings.accent_color }};
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .result-text {
+    font-size: 1rem;
+    color: #fff;
+    line-height: 1.6;
+    font-weight: 600;
+  }
+
+  .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #0f0;
+    font-weight: 600;
+    margin-top: 20px;
+  }
+
+  /* Mobile Responsive */
+
+  @media (max-width: 968px) {
+    .comparison-table-wrapper {
+      overflow-x: auto;
+    }
+
+    .comparison-table {
+      min-width: 600px;
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .stealth-specs-testimonials {
+      padding: 60px 15px;
+    }
+
+    .specs-section,
+    .testimonials-section {
+      margin-bottom: 60px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 15px 12px;
+      font-size: 0.9rem;
+    }
+
+    .testimonial-card {
+      padding: 25px 20px;
+    }
+
+    .testimonial-header {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+
+<section class="stealth-specs-testimonials">
+  <div class="specs-testimonials-container">
+
+    {% comment %} ==================== SPECS COMPARISON TABLE ==================== {% endcomment %}
+    
+    {% if section.settings.show_specs_table %}
+    <div class="specs-section">
+      <div class="specs-header">
+        <h2 class="specs-title">{{ section.settings.specs_title }}</h2>
+        <p class="specs-subtitle">{{ section.settings.specs_subtitle }}</p>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Specification</th>
+              <th>Stealth Standard</th>
+              <th>Stealth Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for block in section.blocks %}
+              {% if block.type == 'spec_row' %}
+              <tr {{ block.shopify_attributes }}>
+                <td>
+                  <div class="spec-category">
+                    {% if block.settings.spec_icon != blank %}
+                    <span class="spec-icon">{{ block.settings.spec_icon }}</span>
+                    {% endif %}
+                    {{ block.settings.spec_name }}
+                  </div>
+                </td>
+                <td>
+                  <div class="spec-value">{{ block.settings.standard_value }}</div>
+                  {% if block.settings.standard_detail != blank %}
+                  <div class="spec-detail">{{ block.settings.standard_detail }}</div>
+                  {% endif %}
+                  {% if block.settings.standard_highlight != blank %}
+                  <span class="spec-highlight">{{ block.settings.standard_highlight }}</span>
+                  {% endif %}
+                </td>
+                <td>
+                  <div class="spec-value">{{ block.settings.pro_value }}</div>
+                  {% if block.settings.pro_detail != blank %}
+                  <div class="spec-detail">{{ block.settings.pro_detail }}</div>
+                  {% endif %}
+                  {% if block.settings.pro_highlight != blank %}
+                  <span class="spec-highlight">{{ block.settings.pro_highlight }}</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+
+    {% comment %} ==================== TESTIMONIALS SECTION ==================== {% endcomment %}
+    
+    {% if section.settings.show_testimonials %}
+    <div class="testimonials-section">
+      <div class="testimonials-header">
+        <h2 class="testimonials-title">{{ section.settings.testimonials_title }}</h2>
+        <p class="testimonials-subtitle">{{ section.settings.testimonials_subtitle }}</p>
+      </div>
+
+      <div class="testimonials-grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'testimonial' %}
+          <div class="testimonial-card" {{ block.shopify_attributes }}>
+            
+            <div class="testimonial-header">
+              {% if block.settings.customer_image != blank %}
+              <img 
+                src="{{ block.settings.customer_image | img_url: '150x' }}" 
+                alt="{{ block.settings.customer_name }}"
+                class="testimonial-avatar"
+              >
+              {% else %}
+              <div class="testimonial-avatar-placeholder">
+                {{ block.settings.customer_name | slice: 0 }}
+              </div>
+              {% endif %}
+
+              <div class="testimonial-info">
+                <div class="testimonial-name">{{ block.settings.customer_name }}</div>
+                <div class="testimonial-role">{{ block.settings.customer_role }}</div>
+                {% if block.settings.chair_chosen != blank %}
+                <div class="testimonial-chair-badge">{{ block.settings.chair_chosen }}</div>
+                {% endif %}
+              </div>
+            </div>
+
+            {% if block.settings.show_rating %}
+            <div class="testimonial-rating">
+              {% assign rating = block.settings.rating | plus: 0 %}
+              {% for i in (1..5) %}
+                {% if i <= rating %}
+                  <span class="star">★</span>
+                {% else %}
+                  <span class="star empty">★</span>
+                {% endif %}
+              {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if block.settings.show_before_after %}
+            <div class="before-after-container">
+              <div class="before-after-label">
+                Their Journey
+                <div class="timeline-connector"></div>
+              </div>
+
+              {% if block.settings.before_story != blank %}
+              <div class="story-section">
+                <div class="story-label">Before Stealth Chair</div>
+                <div class="story-text">{{ block.settings.before_story }}</div>
+              </div>
+              {% endif %}
+
+              {% if block.settings.after_story != blank %}
+              <div class="story-section">
+                <div class="story-label">After Stealth Chair</div>
+                <div class="story-text">{{ block.settings.after_story }}</div>
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
+
+            {% if block.settings.testimonial_quote != blank %}
+            <div class="testimonial-quote">
+              {{ block.settings.testimonial_quote }}
+            </div>
+            {% endif %}
+
+            {% if block.settings.result_text != blank %}
+            <div class="testimonial-result">
+              <div class="result-label">The Result</div>
+              <div class="result-text">{{ block.settings.result_text }}</div>
+            </div>
+            {% endif %}
+
+            {% if block.settings.verified %}
+            <div class="verified-badge">
+              <span>✓</span> Verified Purchase
+            </div>
+            {% endif %}
+
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Specs & Testimonials",
+  "class": "stealth-specs-testimonials-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#ff0000"
+    },
+    {
+      "type": "header",
+      "content": "Specs Table Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_specs_table",
+      "label": "Show Specs Table",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "specs_title",
+      "label": "Specs Section Title",
+      "default": "Technical Specifications"
+    },
+    {
+      "type": "text",
+      "id": "specs_subtitle",
+      "label": "Specs Section Subtitle",
+      "default": "Compare every detail side-by-side"
+    },
+    {
+      "type": "header",
+      "content": "Testimonials Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_testimonials",
+      "label": "Show Testimonials",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "testimonials_title",
+      "label": "Testimonials Section Title",
+      "default": "Real Stories, Real Results"
+    },
+    {
+      "type": "text",
+      "id": "testimonials_subtitle",
+      "label": "Testimonials Section Subtitle",
+      "default": "See how Stealth Chairs transformed their workdays"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec_row",
+      "name": "Specification Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "spec_icon",
+          "label": "Icon (emoji)",
+          "default": "📏"
+        },
+        {
+          "type": "text",
+          "id": "spec_name",
+          "label": "Specification Name",
+          "default": "Seat Dimensions"
+        },
+        {
+          "type": "text",
+          "id": "standard_value",
+          "label": "Standard Value",
+          "default": "18.5\" × 16.75\""
+        },
+        {
+          "type": "textarea",
+          "id": "standard_detail",
+          "label": "Standard Detail (optional)"
+        },
+        {
+          "type": "text",
+          "id": "standard_highlight",
+          "label": "Standard Highlight Badge (optional)"
+        },
+        {
+          "type": "text",
+          "id": "pro_value",
+          "label": "Pro Value",
+          "default": "20.25\" × 19.5\""
+        },
+        {
+          "type": "textarea",
+          "id": "pro_detail",
+          "label": "Pro Detail (optional)"
+        },
+        {
+          "type": "text",
+          "id": "pro_highlight",
+          "label": "Pro Highlight Badge (optional)"
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Customer Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "customer_image",
+          "label": "Customer Photo (optional)"
+        },
+        {
+          "type": "text",
+          "id": "customer_name",
+          "label": "Customer Name",
+          "default": "John Smith"
+        },
+        {
+          "type": "text",
+          "id": "customer_role",
+          "label": "Customer Role/Title",
+          "default": "Audio Engineer"
+        },
+        {
+          "type": "text",
+          "id": "chair_chosen",
+          "label": "Chair Chosen",
+          "default": "Stealth Pro",
+          "info": "e.g., 'Stealth Standard' or 'Stealth Pro'"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show Star Rating",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Star Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "checkbox",
+          "id": "show_before_after",
+          "label": "Show Before/After Story",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "before_story",
+          "label": "Before Story",
+          "default": "I was dealing with constant back pain from long studio sessions..."
+        },
+        {
+          "type": "textarea",
+          "id": "after_story",
+          "label": "After Story",
+          "default": "Now I can work 12-hour sessions without any discomfort..."
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_quote",
+          "label": "Main Testimonial Quote",
+          "default": "This chair completely changed my workflow. Best investment I've made for my studio."
+        },
+        {
+          "type": "textarea",
+          "id": "result_text",
+          "label": "Result/Outcome",
+          "default": "3 months pain-free and more productive than ever"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Show Verified Badge",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Specs & Testimonials",
+      "category": "Product",
+      "blocks": [
+        {
+          "type": "spec_row",
+          "settings": {
+            "spec_icon": "📏",
+            "spec_name": "Seat Dimensions",
+            "standard_value": "18.5\" × 16.75\"",
+            "standard_detail": "Compact design for smaller frames",
+            "pro_value": "20.25\" × 19.5\"",
+            "pro_detail": "Extra width and depth for larger users",
+            "pro_highlight": "LARGER"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "spec_icon": "👤",
+            "spec_name": "Ideal User",
+            "standard_value": "Under 6' / Under 200 lbs",
+            "standard_detail": "Perfect for compact frames",
+            "pro_value": "Over 6' / Over 200 lbs",
+            "pro_detail": "Built for larger professionals"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "spec_icon": "🎯",
+            "spec_name": "Caster Type",
+            "standard_value": "Standard Office Casters (2\")",
+            "standard_detail": "Smooth rolling for studio floors",
+            "pro_value": "TourMax Heavy-Duty (4\")",
+            "pro_detail": "Professional grade for demanding use",
+            "pro_highlight": "HEAVY-DUTY"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "spec_icon": "↕️",
+            "spec_name": "Height Range",
+            "standard_value": "19\" - 25\"",
+            "standard_detail": "Short & tall cylinders included",
+            "pro_value": "22\" - 32\"",
+            "pro_detail": "Higher range for stage work"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "spec_icon": "⚖️",
+            "spec_name": "Chair Weight",
+            "standard_value": "57 lbs",
+            "pro_value": "59 lbs"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "spec_icon": "💪",
+            "spec_name": "Weight Capacity",
+            "standard_value": "Up to 350 lbs",
+            "pro_value": "Up to 350 lbs"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "spec_icon": "🎨",
+            "spec_name": "Color",
+            "standard_value": "Midnight Black",
+            "standard_detail": "Non-reflective finish",
+            "pro_value": "Midnight Black",
+            "pro_detail": "Non-reflective finish"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "spec_icon": "🌊",
+            "spec_name": "ZenWave™ Technology",
+            "standard_value": "✓ Included",
+            "pro_value": "✓ Included"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "spec_icon": "💨",
+            "spec_name": "Breathable Mesh",
+            "standard_value": "✓ Included",
+            "pro_value": "✓ Included"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "spec_icon": "🛡️",
+            "spec_name": "Warranty",
+            "standard_value": "5 Years",
+            "pro_value": "5 Years"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Marcus Rivera",
+            "customer_role": "FOH Sound Engineer",
+            "chair_chosen": "Stealth Pro",
+            "rating": 5,
+            "before_story": "I was constantly shifting in my old chair during 8-hour shows. My lower back would ache by the third hour, and I'd have to stand up every 30 minutes just to get relief.",
+            "after_story": "Six months with the Stealth Pro and I've worked multiple 12-hour festival days without any back pain. The larger seat and TourMax casters make all the difference on stage.",
+            "testimonial_quote": "I wish I had invested in the Pro model years ago. It's built for the road and my back has never felt better during long shows.",
+            "result_text": "Pain-free through entire festival weekends. Game changer for touring professionals."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Sarah Chen",
+            "customer_role": "Lighting Designer",
+            "chair_chosen": "Stealth Pro",
+            "rating": 5,
+            "before_story": "Working on lighting rigs meant constant movement between different heights. My old chair couldn't keep up, and I was dealing with hip pain from the narrow seat.",
+            "after_story": "The Pro's larger seat gives me room to move, and the heavy-duty casters handle the stage floor perfectly. I can focus on the lights instead of my discomfort.",
+            "testimonial_quote": "The size difference is incredible. I'm 6'2\" and finally have a chair that fits me properly. Worth every penny.",
+            "result_text": "Zero hip pain and complete focus on creative work"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "David Park",
+            "customer_role": "Home Studio Producer",
+            "chair_chosen": "Stealth Standard",
+            "rating": 5,
+            "before_story": "My home studio is compact, and I needed something that wouldn't overwhelm the space but still provided professional-level comfort during long production sessions.",
+            "after_story": "The Standard fits my space perfectly. At 5'9\" and 165 lbs, it's the ideal size. The ZenWave technology is just as amazing as the Pro version.",
+            "testimonial_quote": "Don't let the 'Standard' name fool you - this chair is premium quality. Perfect size for my needs and my studio setup.",
+            "result_text": "Comfortable 10+ hour sessions in a perfectly sized chair"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

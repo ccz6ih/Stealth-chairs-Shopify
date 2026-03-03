@@ -1,0 +1,2899 @@
+{% comment %}
+[[ QQ - Video Gallery ]] [[ Section for Shopify websites to display videos as a slider or grid ]]
+Author: qwiqode.com
+Created: 08.01.2022 Version: 1.36
+Company website: qwiqode.com
+Email: hello@qwiqode.com
+* (c) Copyright by Studio Umbrella Inc. /
+{% endcomment %}
+{% if request.design_mode == true %}
+<p class="QQ-JS-init-msg" style="display:block;padding: 10px 15px;text-align: center;max-width: 450px;background-color: #d5d5d5;color: red;border: 1px solid red;border-radius: 10px;margin: 0 auto;">Please save the Theme Editor before adding content or changing settings in order to initiate functionality.</p>
+{% endif %}
+	{% liquid
+	assign sectionClass = section.settings.section_class
+	assign sectionWidth = section.settings.section_width
+  	assign contentMaxWidth = section.settings.content_max_width
+	assign contentFullwidth = section.settings.content_fullwidth
+	assign sectionBackgroundColor = section.settings.section_background_color
+	assign sectionMarginTop = section.settings.section_margin_top
+	assign sectionMarginTopMobile = section.settings.section_margin_top_mobile
+	assign sectionMarginBottom = section.settings.section_margin_bottom
+	assign sectionMarginBottomMobile = section.settings.section_margin_bottom_mobile
+	assign sectionPaddingHorizontal = section.settings.section_padding_horizontal
+	assign sectionPaddingHorizontalMobile = section.settings.section_padding_horizontal_mobile
+	assign sectionPaddingTop = section.settings.section_padding_top
+	assign sectionPaddingTopMobile = section.settings.section_padding_top_mobile
+	assign sectionPaddingBottom = section.settings.section_padding_bottom
+	assign sectionPaddingBottomMobile = section.settings.section_padding_bottom_mobile
+	assign sectionHeaderMaxWidth = section.settings.section_header_max_width
+	assign sectionHeaderPosition = section.settings.header_position
+	assign sectionTitle = section.settings.section_title 	
+	assign sectionTitleTextAlignment = section.settings.section_title_text_alignment
+	assign sectionTitleTextAlignmentMobile = section.settings.section_title_text_alignment_mobile
+	assign sectionTitleCustomFont = section.settings.section_title_custom_font
+	assign sectionTitleFont = section.settings.section_title_font
+	assign sectionTitleFontName = section.settings.section_title_font_name
+	assign sectionTitleFontWeight = section.settings.section_title_font_weight
+	assign sectionTitleColor = section.settings.section_title_color
+	assign sectionTitleFontSize = section.settings.section_title_font_size
+	assign sectionTitleFontSizeMobile = section.settings.section_title_font_size_mobile
+	assign sectionTitleLineHeight = section.settings.section_title_line_height
+	assign sectionTitleLineHeightMobile = section.settings.section_title_line_height_mobile
+	assign sectionTitleLetterSpacing = section.settings.section_title_letter_spacing
+	assign sectionTitleLetterSpacingMobile = section.settings.section_title_letter_spacing_mobile
+	assign sectionTitleMarginTop = section.settings.section_title_margin_top
+	assign sectionTitleMarginTopMobile = section.settings.section_title_margin_top_mobile
+	assign sectionTitleMarginBottom = section.settings.section_title_margin_bottom
+	assign sectionTitleMarginBottomMobile = section.settings.section_title_margin_bottom_mobile
+	assign sectionTextblock = section.settings.section_textblock 	
+	assign sectionTextblockTextAlignment = section.settings.section_textblock_text_alignment
+	assign sectionTextblockTextAlignmentMobile = section.settings.section_textblock_text_alignment_mobile
+	assign sectionTextblockCustomFont = section.settings.section_textblock_custom_font
+	assign sectionTextblockFont = section.settings.section_textblock_font
+	assign sectionTextblockFontName = section.settings.section_textblock_font_name
+	assign sectionTextblockFontWeight = section.settings.section_textblock_font_weight
+	assign sectionTextblockColor = section.settings.section_textblock_color
+	assign sectionTextblockFontSize = section.settings.section_textblock_font_size
+	assign sectionTextblockFontSizeMobile = section.settings.section_textblock_font_size_mobile
+	assign sectionTextblockLineHeight = section.settings.section_textblock_line_height
+	assign sectionTextblockLineHeightMobile = section.settings.section_textblock_line_height_mobile
+	assign sectionTextblockLetterSpacing = section.settings.section_textblock_letter_spacing
+	assign sectionTextblockLetterSpacingMobile = section.settings.section_textblock_letter_spacing_mobile
+	assign sectionTextblockMarginTop = section.settings.section_textblock_margin_top
+	assign sectionTextblockMarginTopMobile = section.settings.section_textblock_margin_top_mobile
+	assign sectionTextblockMarginBottom = section.settings.section_textblock_margin_bottom
+	assign sectionTextblockMarginBottomMobile = section.settings.section_textblock_margin_bottom_mobile
+	assign blocksSize = section.blocks.size
+	assign slidesToShow = section.settings.carousel_slides_to_show
+	assign carouselSlideAll = section.settings.carousel_slide_all
+	assign carouselAutoplay = section.settings.carousel_autoplay
+	assign carouselOverflow = section.settings.carousel_overflow
+	assign carouselInfinite = section.settings.carousel_infinite
+    assign carouselSpeed = section.settings.carousel_speed
+	assign carouselArrowsLineColor = section.settings.carousel_arrows_color_line
+    assign carouselArrowsBgColor = section.settings.carousel_arrows_color_bg
+	assign carouselArrowsEdgeDistance = section.settings.carousel_arrows_edge_distance
+	assign carouselArrowsEdgePosition = section.settings.carousel_arrows_position
+		if carouselArrowsEdgePosition == 'outside'
+			assign carouselArrowsEdgeDistance = '-' | append: carouselArrowsEdgeDistance
+		endif
+	assign carouselSlidePadding = section.settings.carousel_slide_padding
+    assign carouselSlidePaddingMobile = section.settings.carousel_slide_padding_mobile
+	assign carouselDefaultState = section.settings.carousel_default
+	assign carouselExpand = section.settings.carousel_expand
+	assign carouselCollapse = section.settings.carousel_collapse
+	assign carouselToggleCustomFont = section.settings.carousel_toggle_custom_font
+	assign carouselToggleFont = section.settings.carousel_toggle_font
+	assign carouselToggleFontName = section.settings.carousel_toggle_font_name
+	assign carouselToggleFontWeight = section.settings.carousel_toggle_font_weight
+	assign carouselToggleColor = section.settings.carousel_toggle_color
+	assign carouselToggleColorHover = section.settings.carousel_toggle_color_hover
+	assign carouselTogglePaddingHorizontal = section.settings.carousel_toggle_padding_horizontal
+	assign carouselTogglePaddingHorizontalMobile = section.settings.carousel_toggle_padding_horizontal_mobile
+	assign carouselToggleUnderline = section.settings.carousel_toggle_underline
+	assign carouselToggleFontSize = section.settings.carousel_toggle_font_size
+	assign carouselToggleFontSizeMobile = section.settings.carousel_toggle_font_size_mobile
+	assign carouselToggleLineHeight = section.settings.carousel_toggle_line_height
+	assign carouselToggleLineHeightMobile = section.settings.carousel_toggle_line_height_mobile
+	assign carouselToggleLetterSpacing = section.settings.carousel_toggle_letter_spacing
+	assign carouselToggleLetterSpacingMobile = section.settings.carousel_toggle_letter_spacing_mobile
+	assign carouselToggleTextAlignment = section.settings.carousel_toggle_text_alignment
+	assign carouselToggleTextAlignmentMobile = section.settings.carousel_toggle_text_alignment_mobile
+	assign carouselToggleMarginTop = section.settings.carousel_toggle_margin_top
+	assign carouselToggleMarginTopMobile = section.settings.carousel_toggle_margin_top_mobile
+	assign carouselToggleMarginBottom = section.settings.carousel_toggle_margin_bottom
+	assign carouselToggleMarginHorizontal = section.settings.carousel_toggle_margin_horizontal
+	assign videoImageSize = section.settings.video_image_size
+	assign videoImageRadius = section.settings.video_image_radius
+	assign videoImageCustomHeight = section.settings.video_image_custom_height
+	assign videoImageHeight = section.settings.video_image_height
+	assign videoImageHeightMobile = section.settings.video_image_height_mobile
+	assign videoImageHover = section.settings.video_image_hover
+	assign playIcon = section.settings.video_icon
+	assign playIconColor = section.settings.play_icon_color
+	assign playIconColorBg = section.settings.play_icon_color_bg
+	assign playIconColorBgOpacity = section.settings.play_icon_color_bg_opacity
+	assign playIconSize = section.settings.video_icon_size
+	if playIcon != blank
+			assign playIconUrl = playIcon | img_url: '300x125'
+		assign iconClass = playIconSize
+	else
+		assign iconClass = playIconSize | append: ' qq-default'
+	endif
+	assign videoTextDisplay = section.settings.video_text_display
+	assign videoSubtitleDisplay = section.settings.video_subtitle_text_display
+	assign videoTextAlignment = section.settings.video_text_alignment
+	assign videoTextAlignmentMobile = section.settings.video_text_alignment_mobile
+	assign videoTitleType = section.settings.video_title_type
+	assign videoTitleCustomFont = section.settings.video_title_custom_font
+	assign videoTitleFont = section.settings.video_title_font
+	assign videoTitleFontName = section.settings.video_title_font_name
+	assign videoTitleFontWeight = section.settings.video_title_font_weight
+	assign videoTitleColor = section.settings.video_title_color
+	assign videoTitleFontSize = section.settings.video_title_font_size
+	assign videoTitleFontSizeMobile = section.settings.video_title_font_size_mobile
+	assign videoTitleLineHeight = section.settings.video_title_line_height
+	assign videoTitleLineHeightMobile = section.settings.video_title_line_height_mobile
+	assign videoTitleLetterSpacing = section.settings.video_title_letter_spacing
+	assign videoTitleLetterSpacingMobile = section.settings.video_title_letter_spacing_mobile
+	assign videoTitleMarginTop = section.settings.video_title_margin_top
+	assign videoTitleMarginTopMobile = section.settings.video_title_margin_top_mobile
+	assign videoSubtitleType = section.settings.video_subtitle_type
+	assign videoSubtitleCustomFont = section.settings.video_subtitle_custom_font
+	assign videoSubtitleFont = section.settings.video_subtitle_font
+	assign videoSubtitleFontName = section.settings.video_subtitle_font_name
+	assign videoSubtitleFontWeight = section.settings.video_subtitle_font_weight
+	assign videoSubtitleColor = section.settings.video_subtitle_color
+	assign videoSubtitleFontSize = section.settings.video_subtitle_font_size
+	assign videoSubtitleFontSizeMobile = section.settings.video_subtitle_font_size_mobile
+	assign videoSubtitleLineHeight = section.settings.video_subtitle_line_height
+	assign videoSubtitleLineHeightMobile = section.settings.video_subtitle_line_height_mobile
+	assign videoSubtitleLetterSpacing = section.settings.video_subtitle_letter_spacing
+	assign videoSubtitleLetterSpacingMobile = section.settings.video_subtitle_letter_spacing_mobile
+	assign videoSubtitleMarginTop = section.settings.video_subtitle_margin_top
+	assign videoSubtitleMarginTopMobile = section.settings.video_subtitle_margin_top_mobile
+	assign videoPlaying = section.settings.video_playing
+	assign videoAutoplay = section.settings.video_autoplay
+	assign videoLoop = section.settings.video_loop
+	assign videoControls = section.settings.video_controls
+	if videoPlaying == 'popup'			
+		assign popupPreview = section.settings.popup_preview
+		if popupPreview == true and request.design_mode == true
+			assign popupClass = 'qq-open'
+		else
+			assign popupClass = ''
+		endif
+		assign popupBackgroundColor = section.settings.popup_background_color
+		assign popupBackgroundOpacity = section.settings.popup_background_opacity
+		if popupBackgroundOpacity == 100
+			assign popupBackgroundOpacity = 1
+		elsif popupBackgroundOpacity < 10
+			assign popupBackgroundOpacity = '0.0' | append: popupBackgroundOpacity
+		else
+			assign popupBackgroundOpacity = '0.' | append: popupBackgroundOpacity
+		endif
+		assign popupBackgroundOpacity = popupBackgroundOpacity | plus: 0
+		assign popupBackgroundColor = popupBackgroundColor | color_modify: 'alpha', popupBackgroundOpacity
+		assign popupCloseColor = section.settings.popup_close_color
+		assign popupHolderBackgroundColor = section.settings.popup_holder_background_color
+		assign popupHolderBorderColor = section.settings.popup_holder_border_color
+		assign popupHolderBorderWidth = section.settings.popup_holder_border_width
+		assign popupHolderBorderRadius = section.settings.popup_holder_border_radius
+		assign popupHolderMaxWidth = section.settings.popup_holder_max_width
+		assign popupHolderMaxWidthMobile = section.settings.popup_holder_max_width_mobile
+		assign popupHolderMaxWidthPortrait = section.settings.popup_holder_max_width_portrait
+		assign popupHolderMaxWidthPortraitMobile = section.settings.popup_holder_max_width_portrait_mobile
+		assign popupHolderPadding = section.settings.popup_holder_padding
+		assign popupHolderPaddingMobile = section.settings.popup_holder_padding_mobile
+		assign popupShowArrows = section.settings.popup_show_arrows
+		assign popupVideoTextDisplay = section.settings.popup_video_text_display
+		if popupVideoTextDisplay == false
+			assign popupVideoTextClass = 'qq-hidden'
+		else
+			assign popupVideoTextClass = ''
+		endif
+		assign popupVideoTextAlignment = section.settings.popup_video_text_alignment
+		assign popupVideoTextAlignmentMobile = section.settings.popup_video_text_alignment_mobile
+		assign popupVideoTitleType = section.settings.popup_video_title_type
+		assign popupVideoTitleCustomFont = section.settings.popup_video_title_custom_font
+		assign popupVideoTitleFont = section.settings.popup_video_title_font
+		assign popupVideoTitleFontName = section.settings.popup_video_title_font_name
+		assign popupVideoTitleFontWeight = section.settings.popup_video_title_font_weight
+		assign popupVideoTitleColor = section.settings.popup_video_title_color
+		assign popupVideoTitleFontSize = section.settings.popup_video_title_font_size
+		assign popupVideoTitleFontSizeMobile = section.settings.popup_video_title_font_size_mobile
+		assign popupVideoTitleLineHeight = section.settings.popup_video_title_line_height
+		assign popupVideoTitleLineHeightMobile = section.settings.popup_video_title_line_height_mobile
+		assign popupVideoTitleLetterSpacing = section.settings.popup_video_title_letter_spacing
+		assign popupVideoTitleLetterSpacingMobile = section.settings.popup_video_title_letter_spacing_mobile
+		assign popupVideoTitleMarginTop = section.settings.popup_video_title_margin_top
+		assign popupVideoTitleMarginTopMobile = section.settings.popup_video_title_margin_top_mobile
+		assign popupVideoSubtitleType = section.settings.popup_video_subtitle_type
+		assign popupVideoSubtitleCustomFont = section.settings.popup_video_subtitle_custom_font
+		assign popupVideoSubtitleFont = section.settings.popup_video_subtitle_font
+		assign popupVideoSubtitleFontName = section.settings.popup_video_subtitle_font_name
+		assign popupVideoSubtitleFontWeight = section.settings.popup_video_subtitle_font_weight
+		assign popupVideoSubtitleColor = section.settings.popup_video_subtitle_color
+		assign popupVideoSubtitleFontSize = section.settings.popup_video_subtitle_font_size
+		assign popupVideoSubtitleFontSizeMobile = section.settings.popup_video_subtitle_font_size_mobile
+		assign popupVideoSubtitleLineHeight = section.settings.popup_video_subtitle_line_height
+		assign popupVideoSubtitleLineHeightMobile = section.settings.popup_video_subtitle_line_height_mobile
+		assign popupVideoSubtitleLetterSpacing = section.settings.popup_video_subtitle_letter_spacing
+		assign popupVideoSubtitleLetterSpacingMobile = section.settings.popup_video_subtitle_letter_spacing_mobile
+		assign popupVideoSubtitleMarginTop = section.settings.popup_video_subtitle_margin_top
+		assign popupVideoSubtitleMarginTopMobile = section.settings.popup_video_subtitle_margin_top_mobile
+	else 
+		assign videoDimensions = videoImageSize
+	endif
+	assign gridColumns = section.settings.grid_columns
+	assign gridColumnsMobile = section.settings.grid_columns_mobile
+	assign gridHorizontalGap = section.settings.grid_horizontal_gap
+	assign gridVerticalGap = section.settings.grid_vertical_gap
+	assign gridHorizontalGapMobile = section.settings.grid_horizontal_gap_mobile
+	assign gridVerticalGapMobile = section.settings.grid_vertical_gap_mobile
+	if slidesToShow > blocksSize
+		assign slidesToShow = blocksSize
+	endif
+	if blocksSize > slidesToShow
+		assign makeCarousel = true
+	else
+		assign makeCarousel = false
+	endif
+	if blocksSize <= slidesToShow or blocksSize == 0
+		assign showArrows = false
+		assign carouselOverflow = false
+	else
+		assign showArrows = true
+	endif
+	assign divID = section.id | replace: 'template--', '' | replace: 'shopify-section-', '' | replace: '__', '' | prepend: 'qq'
+%}
+{% capture carouselArrows %}
+    {% liquid
+        assign arrowLeftImage = section.settings.arrow_left
+        assign arrowLeftImageUrl = arrowLeftImage | img_url: '32x32', crop: 'center'
+        if arrowLeftImage.alt != blank
+            assign arrowLeftImageAlt = 'alt="' | append: arrowLeftImage.alt | append: '"'
+        else
+            assign arrowLeftImageAlt = ''
+        endif
+		if arrowLeftImageUrl != blank
+			assign customLeft = 'qq-custom-left'
+		else
+			assign customLeft = ''
+		endif
+        assign arrowRightImage = section.settings.arrow_right
+        assign arrowRightImageUrl = arrowRightImage | img_url: '32x32', crop: 'center'
+        if arrowRightImage.alt != blank
+            assign arrowRightImageAlt = 'alt="' | append: arrowRightImage.alt | append: '"'
+        else
+            assign arrowRightImageAlt = ''
+        endif
+		if arrowRightImageUrl != blank
+			assign customRight = 'qq-custom-right'
+		else
+			assign customRight = ''
+		endif
+    %}
+    <div class="qq-carousel-arrows qq-hidden">
+        <span class="qq-carousel-arrow qq-carousel-prev {{customLeft}}">
+            {% if arrowLeftSvg != blank %}
+                <img src="{{arrowLeftSvg}}" loading="lazy">
+            {% elsif arrowLeftImage != blank %}
+                <img src="{{arrowLeftImageUrl}}" {{arrowLeftImageAlt}} loading="lazy">
+            {% else %}
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><g><circle cx="12" cy="12" r="12" style="fill:#fff;"/><polyline points="14 6.17 8.6 11.57 14 16.97" style="fill:none; stroke:#000; stroke-linecap:round; stroke-miterlimit:8; stroke-width:2px;"/></g></g></svg>
+            {% endif %}
+        </span>
+        <span class="qq-carousel-arrow qq-carousel-next {{customRight}}">
+            {% if arrowRightSvg != blank %}
+                <img src="{{arrowRightSvg}}" loading="lazy">
+            {% elsif arrowRightImage != blank %}
+                <img src="{{arrowRightImageUrl}}" {{arrowRightImageAlt}} loading="lazy">
+            {% else %}
+                <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g id="Layer_1-2"><g><circle cx="12" cy="12" r="12" style="fill:#fff;"/><polyline points="10 17.83 15.4 12.43 10 7.03" style="fill:none; stroke:#000; stroke-linecap:round; stroke-miterlimit:8; stroke-width:2px;"/></g></g></svg>
+            {% endif %}
+        </span>
+    </div>
+{% endcapture %}
+{% capture sectionHeader %}
+	{% if sectionTitle != blank or sectionTextblock != blank %}
+		<div class="qq-video-gallery-header">
+			{% if sectionTitle != blank %}
+				<div class="qq-title">{{sectionTitle}}</div>
+			{% endif %}
+			{% if sectionTextblock != blank %}
+				<div class="qq-textblock">{{sectionTextblock}}</div>
+			{% endif %}
+		</div>
+	{% endif %}
+{% endcapture %}
+{% if sectionHeaderPosition == 'outside' %}
+  {{sectionHeader}}
+{% endif %}
+<div class="qq-section-wrap-{{sectionWidth}} {{sectionClass}}" id="{{divID}}">
+	{% if sectionHeaderPosition == 'inside' %}
+      {{sectionHeader}}
+    {% endif %}
+	{% if blocksSize != 0 %}
+		<div class="qq-videos-toggle">
+			<a class="qq-hidden" data-expand="{{carouselExpand}}" data-collapse="{{carouselCollapse}}">{{carouselExpand}}</a>
+		</div>
+	{% endif %}
+	<div class="qq-videos {% if carouselDefaultState == "grid" %}qq-expanded{% endif %}">
+		<div class="qq-videos-wrapper"
+			data-enableSlider="{{makeCarousel}}"
+			data-numOfSlides="{{blocksSize}}"
+			data-slidesToShow="{{slidesToShow}}"
+			data-carouselSlideAll="{{carouselSlideAll}}"
+			data-carouselAutoplay="{{carouselAutoplay}}"
+			data-carouselSpeed="{{carouselSpeed}}"
+			data-carouselCentermode="{{carouselOverflow}}"
+			data-carouselInfinite="{{carouselInfinite}}"
+			data-imageDimensions="{{videoImageSize}}"
+			data-customImageHeight="{{videoImageCustomHeight}}"
+			data-showArrows="{{showArrows}}"
+			data-default="{{carouselDefaultState}}"
+			data-video-playing="{{videoPlaying}}">
+			{%- for block in section.blocks -%}				
+				{% liquid
+					assign localVideo = block.settings.local_video
+					assign localVideoUrl = localVideo.sources[0].url
+					assign localVideoMime = localVideo.sources[0].mime_type
+					for vid in localVideo.sources
+						if vid.format == 'mp4'
+							assign localVideoUrl = vid.url
+							assign localVideoMime = vid.mime_type
+							break
+						endif
+					endfor					
+					if localVideoUrl == blank
+						assign externalVideoUrl = block.settings.video_url
+						if externalVideoUrl != blank							
+							if externalVideoUrl.type == 'vimeo'
+								assign vimeoID = externalVideoUrl.id
+								assign youtubeID = ''																
+							elsif externalVideoUrl.type == 'youtube'
+								assign vimeoID = ''
+								assign youtubeID = externalVideoUrl.id								
+							endif
+							assign videoType = externalVideoUrl.type
+						else
+							assign vimeoID = ''
+							assign youtubeID = ''
+							assign videoType = ''
+						endif						
+					else 
+						assign videoType = 'local'
+					endif
+					if block.settings.video_getvid_thumb == true and localVideo == blank and block.settings.video_url.type == 'youtube' or block.settings.video_url.type == 'vimeo' 
+						if block.settings.video_url.type == 'youtube' 
+							assign videoImage = "https://img.youtube.com/vi/" | append: block.settings.video_url.id | append: "/maxresdefault.jpg"
+						elsif block.settings.video_url.type == 'vimeo' 
+							assign videoImage = "https://vumbnail.com/" | append: block.settings.video_url.id | append: ".jpg"
+						endif
+						assign videoImageUrl = videoImage
+						assign useYoutubeVimeoThumb = true
+					else
+						if localVideo != blank
+							assign videoImage = localVideo.preview_image
+						else
+							assign videoImage = block.settings.video_image
+						endif
+						assign proportion = videoImage.aspect_ratio
+						assign videoImgW = videoImage.width
+						assign videoImgH = videoImage.height
+						assign maxWidthAllowed = 500
+						assign maxHeightAllowed = 1300
+						if slidesToShow == 2
+								assign maxWidthAllowed = 850
+								assign maxHeightAllowed = 1300
+						elsif slidesToShow == 3
+								assign maxWidthAllowed = 550
+								assign maxHeightAllowed = 850
+						elsif slidesToShow == 4
+								assign maxWidthAllowed = 450
+								assign maxHeightAllowed = 650
+						elsif slidesToShow == 5
+								assign maxWidthAllowed = 350
+								assign maxHeightAllowed = 500
+						elsif slidesToShow == 6
+								assign maxWidthAllowed = 280
+								assign maxHeightAllowed = 450
+						endif
+						if proportion > 1
+							# landscape
+							assign mostW = maxWidthAllowed
+							assign mostH = mostW | times: proportion
+						elsif proportion < 1
+							# portrait
+							assign mostH = maxHeightAllowed
+							assign mostW = mostH | times: proportion
+						else
+							# sqaure
+							assign mostW = maxWidthAllowed
+							assign mostH = mostW
+						endif
+						assign iw = videoImgW | at_most: mostW | round
+						assign ih = videoImgH | at_most: mostH | round
+						if videoImageSize == 'portrait'
+							assign ih = iw | divided_by: 0.6666667 | round
+							if videoImgH < ih
+								assign ih = videoImgH
+								assign iw = ih | divided_by: 1.5 | round
+							endif
+							if videoImgW < iw
+								assign iw = videoImgW
+								assign ih = iw | divided_by: 0.666667 | round
+							endif
+						elsif videoImageSize == 'square'
+							assign ih = iw
+							if iw > videoImgW
+								assign iw = videoImgW
+								assign ih = iw
+							endif
+							if ih > videoImgH
+								assign ih = videoImgH
+								assign iw = ih
+							endif
+						elsif videoImageSize == 'landscape'
+							assign ih = iw | divided_by: 1.5 | round
+							if videoImgH < ih
+								assign ih = videoImgH
+								assign iw = ih | divided_by: 0.666667 | round
+							endif
+							if videoImgW < iw
+								assign iw = videoImgW
+								assign ih = iw | divided_by: 1.5 | round
+							endif
+						elsif videoImageSize == 'original'
+							assign ih = iw | divided_by: proportion | round
+						endif
+						assign size = iw | append: 'x' | append: ih
+						assign videoImageUrl = videoImage | img_url: size, crop: 'center'
+					endif
+					if videoImage.alt != blank
+						assign videoImageAlt = 'alt="' | append: videoImage.alt | append: '"'
+					else
+						assign videoImageAlt = ''
+					endif
+					if videoPlaying == 'popup'
+						assign videoDimensions = block.settings.video_dimensions
+					endif
+					assign videoTitle = block.settings.title 
+					assign videoSubtitle = block.settings.video_subtitle 
+					if videoType != 'local'
+						if loopVideo == true 
+							assign externalLoop = '?loop=1'
+						else 
+					endif
+					endif 
+				%}
+				<div class="qq-single-video"
+				data-slide-id="{{forloop.index0}}">						
+					<a class="qq-video-thumb"										
+					data-slide="{{forloop.index}}"
+					data-autoplay="{{videoAutoplay}}"
+					data-loop-video="{{videoLoop}}"
+					data-show-controls="{{videoControls}}"										
+					data-orientation="qq-{{videoDimensions}}"						
+					data-local-video="{{localVideoUrl}}"
+					data-local-video-mime="{{localVideoMime}}"
+					data-youtube-video="{{youtubeID}}" 
+					data-vimeo-video="{{vimeoID}}">
+						{% if videoImage != blank %}
+							<img src="{{videoImageUrl}}" {{videoImageAlt}} class="qq-video-image {% if useYoutubeVimeoThumb == true %}qq-yt-{{videoImageSize}}{% endif %}"  loading="lazy">
+						{% else %}
+							<svg class="qq-{{videoImageSize}}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 771 771" style="width:100%;height:100%;" preserveAspectRatio="xMidYMid slice"><g style="isolation:isolate"><g  data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1" style="fill:#efefef;"><rect width="771" height="771" style="fill:#efefef;"/><g style="opacity:0.5"><path d="M280.73,441.53V406.12h-.48c-3,6.78-8.91,10.7-17.23,10.7-14.49,0-23-11.77-23-30.42S248.41,356,263.14,356c8.79,0,14.74,4,17.59,11.28h.47l.6-9.86H290v84.13Zm0-53.71V385c0-12.83-6.42-20.44-16-20.44s-15.1,7.72-15.1,21.87,5.47,21.86,15.1,21.86S280.73,400.66,280.73,387.82Z" style="fill:#373833"/><path d="M302.48,357.4h8.91l7.72,44.09h.48l10-44.09h7.49l10,44.09h.47l7.73-44.09h8.55l-10.81,58h-9.87l-9.74-43h-.47l-9.75,43h-9.86Z" style="fill:#373833"/><path d="M376.86,407.19h20V365.6h-20v-8.2h29.23v49.79h20v8.2h-49.2Zm15.21-69.52a8.08,8.08,0,1,1,8.08,8.09A7.87,7.87,0,0,1,392.07,337.67Z" style="fill:#373833"/><path d="M471.45,441.53V406.12H471c-3,6.78-8.92,10.7-17.23,10.7-14.5,0-23.06-11.77-23.06-30.42S439.13,356,453.86,356c8.8,0,14.74,4,17.59,11.28h.48l.59-9.86h8.2v84.13Zm0-53.71V385c0-12.83-6.41-20.44-16-20.44s-15.09,7.72-15.09,21.87,5.47,21.86,15.09,21.86S471.45,400.66,471.45,387.82Z" style="fill:#373833"/><path d="M492.72,386.4c0-19.73,8.8-30.42,25.19-30.42s25.2,10.69,25.2,30.42-8.8,30.42-25.2,30.42S492.72,406.12,492.72,386.4Zm40.76,0c0-14.38-5.35-21.87-15.57-21.87S502.35,372,502.35,386.4s5.35,21.86,15.56,21.86S533.48,400.77,533.48,386.4Z" style="fill:#373833"/><path d="M553.09,386.4c0-18.66,8.55-30.42,23-30.42,8.32,0,14.26,3.92,17.23,10.69h.48V331h9.27v84.37h-8.2l-.6-9.86h-.47c-2.85,7.25-8.8,11.29-17.59,11.29C561.52,416.82,553.09,405.17,553.09,386.4Zm40.76,1.42V385c0-12.83-6.42-20.44-16.05-20.44s-15.09,7.72-15.09,21.87,5.47,21.86,15.09,21.86S593.85,400.66,593.85,387.82Z" style="fill:#373833"/><path d="M615.36,386.28c0-19.61,8.79-30.3,25.31-30.3S666,366.67,666,386.28a18.15,18.15,0,0,1-.12,2.49H625c.59,13,6.06,19.49,16.52,19.49,6.53,0,11-2.61,13.43-7.6h10.34C661.94,411,654,416.82,641.38,416.82,624.39,416.82,615.36,406.24,615.36,386.28Zm40.75-5.35c-1.3-10.81-6.53-16.4-15.44-16.4s-14.15,5.59-15.45,16.4Z" style="fill:#373833"/><polygon points="105.12 429.87 179.13 385.56 105.12 341.26 115.51 324 201.41 375.33 201.41 395.8 115.51 447.13 105.12 429.87" style="fill:#29abe2"/><polygon points="119.25 395.8 119.25 375.33 205.22 323.97 215.55 341.26 141.53 385.56 215.55 429.87 205.16 447.13 119.25 395.8" style="fill:#0071bc;mix-blend-mode:multiply"/></g></g></g></g></svg>
+						{% endif %}
+						<span class="qq-play-icon qq-{{iconClass}}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"><g id="Layer_1-2"><g><circle cx="75" cy="75" r="75" style="fill:#fff;"/><polygon points="120.87 75 49.54 29.78 49.54 120.22 120.87 75"/></g></g></svg></span>
+					</a>	
+					{% if videoPlaying == 'inline' and videoType != blank %}											
+						<div class="qq-responsive-video-container qq-hidden qq-{{videoDimensions}}{% if videoImageCustomHeight == true%} qq-custom-height{% endif%}">
+						</div>
+					{% endif %}					
+					{% if videoTitle != blank or videoSubtitle != blank %}
+						<div class="qq-video-info">
+							{% if videoTitle != blank %}
+								<div class="qq-video-title {%if videoTextDisplay == false%}qq-hidden{%endif%}">{{videoTitle}}</div>
+							{% endif %}
+							{% if videoSubtitle != blank %}
+								<div class="qq-video-subtitle {%if videoSubtitleDisplay == false%}qq-hidden{%endif%}">{{videoSubtitle}}</div>
+							{% endif %}
+						</div>
+					{% endif %}					
+				</div>			
+			{% endfor %}
+		</div>		
+		{{carouselArrows}}		
+	</div>
+	{% if videoPlaying == 'popup' %}
+		<div id="qq-popup" class="{{popupClass}}">
+			<a class="qq-close"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g stroke="" stroke-width="3" fill="none" fill-rule="evenodd" stroke-linecap="square"><path d="m3.242 3.242 30.589 30.589M33 3 3 33"/></g></svg></a>
+			<div class="qq-holder">
+				<div class="qq-popup-video">
+					<div class="qq-responsive-video-container">
+						{% comment %} <iframe class="youtube" src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&amp;showinfo=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe> {% endcomment %}
+					</div>
+					<div class="qq-popup-video-info {{popupVideoTextClass}}">
+						<{{popupVideoTitleType}} class="qq-popup-video-title">Popup Video Title</{{popupVideoTitleType}}>
+						<{{popupVideoSubtitleType}} class="qq-popup-video-subtitle">Popup Video Subtitle</{{popupVideoSubtitleType}}>
+					</div>
+				</div>
+			</div>
+			{% if popupShowArrows == true %}
+				{{carouselArrows}}
+			{% endif %}
+		</div>
+	{% endif %}
+</div>
+<style data='../VideoGallery.css.liquid'>section.qq-video-gallery{width:100%;margin-left:auto;margin-right:auto;position:relative}section.qq-video-gallery *{box-sizing:border-box}section.qq-video-gallery>div{width:100%;margin-left:auto;margin-right:auto;position:relative}@media(max-width:798px){section.qq-video-gallery>div{display:flex;flex-direction:column}section.qq-video-gallery>div .qq-video-toggle{display:inline-block}}section.qq-video-gallery>div .qq-video-gallery-header{width:100%;margin-left:auto;margin-right:auto}section.qq-video-gallery>div .qq-popup-video-subtitle :not(ul):not(ol):not(li),section.qq-video-gallery>div .qq-popup-video-title :not(ul):not(ol):not(li),section.qq-video-gallery>div .qq-textblock :not(ul):not(ol):not(li),section.qq-video-gallery>div .qq-title :not(ul):not(ol):not(li),section.qq-video-gallery>div .qq-video-subtitle :not(ul):not(ol):not(li),section.qq-video-gallery>div .qq-video-title :not(ul):not(ol):not(li){margin-top:0;margin-bottom:0}section.qq-video-gallery>div a{cursor:pointer}section.qq-video-gallery .qq-videos-toggle a{display:inline-block;text-align:center}@media(min-width:799px){section.qq-video-gallery .qq-videos-toggle a{text-align:right}}@media(max-width:798px){section.qq-video-gallery .qq-videos-toggle{order:3}}section.qq-video-gallery .qq-videos{position:relative;display:flex;flex-direction:column}section.qq-video-gallery .qq-videos .qq-videos-wrapper{position:relative;height:auto}section.qq-video-gallery .qq-videos .qq-videos-wrapper[data-customImageHeight=true] img{width:100%;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;object-repeat:no-repeat}section.qq-video-gallery .qq-videos .qq-videos-wrapper.slick-initialized .qq-single-video{display:block}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video{height:auto}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video a.qq-video-thumb{display:block;width:100%;height:auto;overflow:hidden;transition:all .5s ease;position:relative}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video a.qq-video-thumb img{transition:all .5s ease;width:100%;height:auto;-o-object-fit:cover;object-fit:cover}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video a.qq-video-thumb img.qq-yt-square,section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video a.qq-video-thumb svg.qq-square{aspect-ratio:1}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video a.qq-video-thumb img.qq-yt-landscape,section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video a.qq-video-thumb svg.qq-landscape{aspect-ratio:1.5}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video a.qq-video-thumb img.qq-yt-portrait,section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video a.qq-video-thumb svg.qq-portrait{aspect-ratio:.66667}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video .qq-play-icon{transition:opacity .25s ease;position:absolute;left:0;right:0;margin-left:auto;margin-right:auto;display:flex;align-items:center;justify-content:center}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video .qq-play-icon.qq-small{width:40px;height:40px;top:calc(50% - 20px)}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video .qq-play-icon.qq-medium{width:60px;height:60px;top:calc(50% - 30px)}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video .qq-play-icon.qq-large{width:90px;height:90px;top:calc(50% - 45px)}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video .qq-video-subtitle,section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video .qq-video-title{margin-bottom:0}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video .qq-video-title a{display:block;text-decoration:none!important}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video .qq-button-wrapper{display:flex}section.qq-video-gallery .qq-videos .qq-videos-wrapper .qq-single-video .qq-button-wrapper .qq-btn{display:inline-block;text-decoration:none!important;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}section.qq-video-gallery .qq-videos:not(.qq-expanded) .qq-videos-wrapper:not(.slick-initialized){display:none!important}section.qq-video-gallery .qq-videos.qq-expanded{margin-bottom:30px}section.qq-video-gallery .qq-videos.qq-expanded .qq-carousel-arrows{display:none!important}section.qq-video-gallery .qq-videos.qq-expanded .qq-videos-wrapper{display:grid}section.qq-video-gallery .qq-videos.qq-expanded .qq-videos-wrapper .qq-single-video{display:flex;flex-direction:column}@media(max-width:798px){section.qq-video-gallery .qq-carousel-arrows{display:flex;justify-content:center;gap:20px;margin:20px auto}}section.qq-video-gallery .qq-carousel-arrows span.qq-carousel-arrow{position:relative;height:32px;width:32px;transition:all .5s ease;cursor:pointer;bottom:0;transform:none;border-radius:0}@media(min-width:799px){section.qq-video-gallery .qq-carousel-arrows span.qq-carousel-arrow{position:absolute;display:inline-block}}section.qq-video-gallery .qq-carousel-arrows span.qq-carousel-arrow svg path{transform:scale(2)}@media(min-width:799px){section.qq-video-gallery .qq-carousel-arrows span.qq-carousel-arrow:hover{opacity:.7}}@media(max-width:798px){section.qq-video-gallery .qq-carousel-arrows span.qq-carousel-arrow{top:inherit!important}}section.qq-video-gallery .qq-carousel-arrows span.qq-carousel-arrow.slick-disabled{opacity:.5;pointer-events:none}section.qq-video-gallery .qq-hidden{display:none!important}section.qq-video-gallery #qq-popup{position:fixed;z-index:999999;width:100%;height:100%;top:0;left:0;display:none;align-items:center;justify-content:center}section.qq-video-gallery #qq-popup.qq-open{display:flex;flex-direction:column}section.qq-video-gallery #qq-popup .qq-close{position:absolute;z-index:1000;right:20px;top:20px;width:30px;height:30px}section.qq-video-gallery #qq-popup .qq-close svg{width:100%;height:100%}section.qq-video-gallery #qq-popup .qq-holder{width:100%;height:auto;max-height:80%;overflow-y:auto}@media screen and (max-width:960px)and (orientation:landscape){section.qq-video-gallery #qq-popup .qq-holder .qq-popup-video .qq-popup-video-info{display:none!important}}section.qq-video-gallery #qq-popup .qq-holder .qq-popup-video .qq-popup-video-info .qq-popup-video-subtitle,section.qq-video-gallery #qq-popup .qq-holder .qq-popup-video .qq-popup-video-info .qq-popup-video-title{display:block;width:100%}section.qq-video-gallery #qq-popup .qq-holder .qq-popup-video .qq-popup-video-info .qq-popup-video-subtitle *,section.qq-video-gallery #qq-popup .qq-holder .qq-popup-video .qq-popup-video-info .qq-popup-video-title *{margin-top:0;margin-bottom:0}@media screen and (max-width:960px)and (orientation:landscape){section.qq-video-gallery #qq-popup .qq-holder .qq-popup-video{max-width:100vw!important;max-height:100vh!important;width:100vw;height:100vh}}@media screen and (max-width:960px)and (orientation:landscape){section.qq-video-gallery #qq-popup .qq-holder{max-width:100vw!important;max-height:100vh!important;width:100vw;height:100vh}}section.qq-video-gallery #qq-popup .qq-carousel-arrows{width:100%}@media(min-width:799px){section.qq-video-gallery #qq-popup .qq-carousel-arrows{position:absolute!important}}@media screen and (max-width:960px)and (orientation:landscape){section.qq-video-gallery #qq-popup .qq-carousel-arrows{display:none!important}}section.qq-video-gallery .qq-responsive-video-container{position:relative;width:100%;overflow:hidden;height:0}section.qq-video-gallery .qq-responsive-video-container:not(.qq-custom-height).qq-portrait{padding-bottom:177.77%}section.qq-video-gallery .qq-responsive-video-container:not(.qq-custom-height):not(.qq-portrait):not(.qq-square){padding-bottom:56.25%}section.qq-video-gallery .qq-responsive-video-container:not(.qq-custom-height).qq-square{padding-top:100%}section.qq-video-gallery .qq-responsive-video-container iframe,section.qq-video-gallery .qq-responsive-video-container video{position:absolute;top:0;left:0;width:100%;height:100%}section.qq-video-gallery .qq-responsive-video-container video{-o-object-fit:cover;object-fit:cover}section.qq-video-gallery .qq-single-video .qq-responsive-video-container iframe.vimeo{background:#000}</style>
+{% assign sectionID = 'shopify-section-' | append: section.id %}
+<style data='../VideoGallery-inline-css.min.css.liquid'>{% if sectionTitleCustomFont %} {{sectionTitleFont | font_face: font_display: 'swap' | strip_newlines }} {% endif %} {% if sectionTextblockCustomFont %} {{sectionTextblockFont | font_face: font_display: 'swap' | strip_newlines }} {% endif %} {% if carouselToggleCustomFont %} {{carouselToggleFont | font_face: font_display: 'swap' | strip_newlines }} {% endif %} {% if videoTitleCustomFont %} {{videoTitleFont | font_face: font_display: 'swap' | strip_newlines }} {% endif %} {% if videoSubtitleCustomFont %} {{videoSubtitleFont | font_face: font_display: 'swap' | strip_newlines }} {% endif %} {% if popupVideoTitleCustomFont %} {{popupVideoTitleFont | font_face: font_display: 'swap' | strip_newlines }} {% endif %} {% if popupVideoSubtitleCustomFont %} {{popupVideoSubtitleFont | font_face: font_display: 'swap' | strip_newlines }} {% endif %} #{{sectionID}} * { text-transform:none; } {% if sectionWidth == 'fullwidth' %} #{{sectionID}} { width: 100vw !important; position: relative !important; height: auto !important; background: {{sectionBackgroundColor}}; } html:not([dir="rtl"]) #{{sectionID}} { margin-left: -50vw !important; left: 50% !important; } html[dir="rtl"] #{{sectionID}} { margin-right: -50vw !important; right: 50% !important; } body { overflow-x:hidden; } {% if contentFullwidth != true %} #{{sectionID}} > div { max-width:{{contentMaxWidth}}px; } {% endif %} {% else %} #{{sectionID}} > div:not(.qq-video-gallery-header) { background:{{sectionBackgroundColor}}; } #{{sectionID}} > div{ max-width:{{contentMaxWidth}}px; } {% endif %} #{{sectionID}} .qq-title * { {% if sectionTitleCustomFont %} {% if sectionTitleFontName != blank %} font-family: {{sectionTitleFontName}}; {% else %} font-family:{{sectionTitleFont.family}}, {{sectionTitleFont.fallback_families}}; {% endif %} {%endif%} {% if sectionTitleFontWeight != "default" %}font-weight:{{sectionTitleFontWeight}} !important;{%endif%} {% if sectionTitleColor contains '#' %}color:{{sectionTitleColor}};{%endif%} } #{{sectionID}} .qq-textblock * { {% if sectionTextblockCustomFont %} {% if sectionTextblockFontName != blank %} font-family: {{sectionTextblockFontName}}; {% else %} font-family:{{sectionTextblockFont.family}}, {{sectionTextblockFont.fallback_families}}; {% endif %} {%endif%} {% if sectionTextblockFontWeight != "default" %}font-weight:{{sectionTextblockFontWeight}} !important;{%endif%} {% if sectionTextblockColor contains '#' %}color:{{sectionTextblockColor}};{%endif%} } #{{sectionID}} .qq-videos-toggle a { {% if carouselToggleCustomFont %} {% if carouselToggleFontName != blank %} font-family: {{carouselToggleFontName}}; {% else %} font-family:{{carouselToggleFont.family}}, {{carouselToggleFont.fallback_families}}; {% endif %} {%endif%} {% if carouselToggleFontWeight != "default" %}font-weight:{{carouselToggleFontWeight}} !important;{%endif%} {% if carouselToggleColor contains '#' %}color:{{carouselToggleColor}};{%endif%} {% if carouselToggleUnderline == true %} text-decoration:underline; {% else %} text-decoration:none !important; {% endif %} } #{{sectionID}} .qq-videos-toggle a:hover { {% if carouselToggleColorHover contains '#' %}color:{{carouselToggleColorHover}};{%endif%} } {% if carouselOverflow == true and makeCarousel == true %} {{sectionID}} .qq-videos-wrapper.slick-slider .slick-list { padding: 0 10%; } {% elsif makeCarousel == false %} #{{sectionID}} .qq-videos-wrapper.slick-slider .slick-list { padding:0!important; } {% comment %} #{{sectionID}} .qq-videos-toggle, #{{sectionID}} .qq-carousel-arrow { display:none!important; } {% endcomment %} {% endif %} #{{sectionID}} .qq-single-video a.qq-video-thumb img { border-radius:{{videoImageRadius}}px; } {% if playIconUrl != blank %} #{{sectionID}} .qq-play-icon:not(.default) { background-image:url('{{playIconUrl}}'); } {% endif %} #{{sectionID}} .qq-single-video .qq-video-title * { {% if videoTitleCustomFont %} {% if videoTitleFontName != blank %} font-family: {{videoTitleFontName}}; {% else %} font-family:{{videoTitleFont.family}}, {{videoTitleFont.fallback_families}}; {% endif %} {%endif%} {% if videoTitleFontWeight != "default" %}font-weight:{{videoTitleFontWeight}} !important;{%endif%} {% if videoTitleColor contains '#' %}color:{{videoTitleColor}};{%endif%} } #{{sectionID}} .qq-single-video .qq-video-subtitle * { {% if videoSubtitleCustomFont %} {% if videoSubtitleFontName != blank %} font-family: {{videoSubtitleFontName}}; {% else %} font-family:{{videoSubtitleFont.family}}, {{videoSubtitleFont.fallback_families}}; {% endif %} {%endif%} {% if videoSubtitleFontWeight != "default" %}font-weight:{{videoSubtitleFontWeight}} !important;{%endif%} {% if videoSubtitleColor contains '#' %}color:{{videoSubtitleColor}};{%endif%} } {% if carouselArrowsLineColor contains '#'%} #{{sectionID}} .qq-carousel-arrow svg polyline { stroke:{{carouselArrowsLineColor}} !important; } {%endif%} #{{sectionID}} .qq-carousel-arrow svg circle { {% if carouselArrowsBgColor contains '#'%} fill:{{carouselArrowsBgColor}} !important; {% else %} fill:none !important; {% endif %} } {% if playIconColor contains '#'%} #{{sectionID}} .qq-play-icon svg polygon { fill:{{playIconColor}} !important; } {%endif%} {% if playIconColorBg contains '#'%} #{{sectionID}} .qq-play-icon svg circle { fill:{{playIconColorBg}} !important; } {%endif%} #{{sectionID}} .qq-play-icon svg circle { opacity:{{playIconColorBgOpacity | divided_by: 100.0 }}; } #{{sectionID}} .qq-video-gallery-header { max-width:{{sectionHeaderMaxWidth}}%; } #{{sectionID}} #qq-popup { background-color:{{popupBackgroundColor}}; } #{{sectionID}} #qq-popup .qq-holder { background-color:{{popupHolderBackgroundColor}}; {% if popupHolderBorderWidth > 0 and popupHolderBorderColor contains '#'%} border:{{popupHolderBorderWidth}}px solid {{popupHolderBorderColor}}; {% endif %} border-radius:{{popupHolderBorderRadius}}px; } #{{sectionID}} #qq-popup .qq-close svg { stroke:{{popupCloseColor}}; } #{{sectionID}} #qq-popup .qq-popup-video-title { {% if popupVideoTitleCustomFont %} {% if popupVideoTitleFontName != blank %} font-family: {{popupVideoTitleFontName}}; {% else %} font-family:{{popupVideoTitleFont.family}}, {{popupVideoTitleFont.fallback_families}}; {% endif %} {%endif%} {% if popupVideoTitleFontWeight != "default" %}font-weight:{{popupVideoTitleFontWeight}} !important;{%endif%} {% if popupVideoTitleColor contains '#' %}color:{{popupVideoTitleColor}};{%endif%} } #{{sectionID}} #qq-popup .qq-popup-video-subtitle { {% if popupVideoSubtitleCustomFont %} {% if popupVideoSubtitleFontName != blank %} font-family: {{popupVideoSubtitleFontName}}; {% else %} font-family:{{popupVideoSubtitleFont.family}}, {{popupVideoSubtitleFont.fallback_families}}; {% endif %} {%endif%} {% if popupVideoSubtitleFontWeight != "default" %}font-weight:{{popupVideoSubtitleFontWeight}} !important;{%endif%} {% if popupVideoSubtitleColor contains '#' %}color:{{popupVideoSubtitleColor}};{%endif%} } @media only screen and (min-width: 799px) { #{{sectionID}} { margin-top:{{sectionMarginTop}}px; margin-bottom:{{sectionMarginBottom}}px; } {% if sectionWidth == 'fullwidth' %} #{{sectionID}} { padding:{{sectionPaddingTop}}px {{sectionPaddingHorizontal}}px {{sectionPaddingBottom}}px {{sectionPaddingHorizontal}}px; } {% else %} #{{sectionID}} > div:not(.qq-video-gallery-header) { padding:{{sectionPaddingTop}}px {{sectionPaddingHorizontal}}px {{sectionPaddingBottom}}px {{sectionPaddingHorizontal}}px; } {% endif %} #{{sectionID}} .qq-title { margin-top:{{sectionTitleMarginTop}}px; margin-bottom:{{sectionTitleMarginBottom}}px; } #{{sectionID}} .qq-title * { {% if sectionTitleFontSize != 0 %}font-size:{{sectionTitleFontSize}}px;{% endif %} {% if sectionTitleLineHeight != 0 %}line-height:{{sectionTitleLineHeight}}px;{% endif %} {% if sectionTitleLetterSpacing != 0 %}letter-spacing:{{sectionTitleLetterSpacing}}px !important;{% endif %} text-align:{{sectionTitleTextAlignment}}; } #{{sectionID}} .qq-textblock { margin-top:{{sectionTextblockMarginTop}}px; margin-bottom:{{sectionTextblockMarginBottom}}px; } #{{sectionID}} .qq-textblock * { {% if sectionTextblockFontSize != 0 %}font-size:{{sectionTextblockFontSize}}px;{% endif %} {% if sectionTextblockLineHeight != 0 %}line-height:{{sectionTextblockLineHeight}}px;{% endif %} {% if sectionTextblockLetterSpacing != 0 %}letter-spacing:{{sectionTextblockLetterSpacing}}px !important;{% endif %} text-align:{{sectionTextblockTextAlignment}}; } {% comment %} {% if sectionWidth == 'fullwidth' and contentFullwidth != false %} #{{sectionID}} .qq-videos-toggle { margin:0 {{ carouselToggleMarginHorizontal }}px; } {% endif %} {% endcomment %} #{{sectionID}} .qq-videos-toggle { text-align:{{carouselToggleTextAlignment}}; margin-top:{{carouselToggleMarginTop}}px; margin-bottom:{{carouselToggleMarginBottom}}px; margin-right: {{ carouselToggleMarginHorizontal }}px; margin-left: {{ carouselToggleMarginHorizontal }}px; } #{{sectionID}} .qq-videos-toggle a { {% if carouselToggleFontSize != 0 %}font-size:{{carouselToggleFontSize}}px;{% endif %} {% if carouselToggleLineHeight != 0 %}line-height:{{carouselToggleLineHeight}}px;{% endif %} {% if carouselToggleLetterSpacing != 0 %}letter-spacing:{{carouselToggleLetterSpacing}}px !important;{% endif %} {% if carouselTogglePaddingHorizontal != 0 %}padding:0 {{carouselTogglePaddingHorizontal}}px; {% endif %} } {% comment %} #{{sectionID}} #qq-popup .qq-holder { max-width:{{popupHolderMaxWidth}}%; } {% endcomment %} {% comment %} #{{sectionID}} .qq-videos.qq-expanded { padding-right:{{gridHorizontalGap | times:2}}px; padding-left:{{gridHorizontalGap | times:2}}px; } {% endcomment %} #{{sectionID}} .qq-expanded .qq-videos-wrapper { grid-template-columns: repeat({{gridColumns}}, 1fr); grid-gap:{{gridVerticalGap}}px {{gridHorizontalGap}}px; {% if sectionWidth == 'fullwidth' and contentFullwidth == true %} padding-left:{{gridHorizontalGap}}px; padding-right:{{gridHorizontalGap}}px; {% endif %} } #{{sectionID}} .qq-videos:not(.qq-expanded) .qq-single-video { padding:0 {{carouselSlidePadding | divided_by: 2 }}px; } #{{sectionID}} .qq-single-video .qq-video-title { margin-top:{{videoTitleMarginTop}}px; } #{{sectionID}} .qq-single-video .qq-video-title * { {% if videoTitleFontSize != 0 %}font-size:{{videoTitleFontSize}}px;{% endif %} {% if videoTitleLineHeight != 0 %}line-height:{{videoTitleLineHeight}}px;{% endif %} {% if videoTitleLetterSpacing != 0 %}letter-spacing:{{videoTitleLetterSpacing}}px !important;{% endif %} text-align:{{videoTextAlignment}}; } #{{sectionID}} .qq-single-video .qq-video-subtitle { margin-top:{{videoSubtitleMarginTop}}px; } #{{sectionID}} .qq-single-video .qq-video-subtitle * { {% if videoSubtitleFontSize != 0 %}font-size:{{videoSubtitleFontSize}}px;{% endif %} {% if videoSubtitleLineHeight != 0 %}line-height:{{videoSubtitleLineHeight}}px;{% endif %} {% if videoSubtitleLetterSpacing != 0 %}letter-spacing:{{videoSubtitleLetterSpacing}}px !important;{% endif %} text-align:{{videoTextAlignment}}; } {% if carouselArrowsEdgePosition == 'inside' %} #{{sectionID}} span.qq-carousel-next { right:{{carouselArrowsEdgeDistance}}px !important; } #{{sectionID}} span.qq-carousel-prev { left:{{carouselArrowsEdgeDistance}}px !important; } {% elsif carouselArrowsEdgePosition == 'outside' %} #{{sectionID}} .qq-videos span.qq-carousel-next { right:{{carouselArrowsEdgeDistance}}px !important; } #{{sectionID}} .qq-videos span.qq-carousel-prev { left:{{carouselArrowsEdgeDistance}}px !important; } #{{sectionID}} #qq-popup span.qq-carousel-next { right:{{carouselArrowsEdgeDistance | remove: '-' }}px !important; } #{{sectionID}} #qq-popup span.qq-carousel-prev { left:{{carouselArrowsEdgeDistance | remove: '-' }}px !important; } {% endif %} {% if videoImageCustomHeight == true %} {% if videoPlaying == 'inline'%} #{{sectionID}} .qq-videos-wrapper .qq-single-video .qq-responsive-video-container, #{{sectionID}} .qq-videos-wrapper .qq-single-video .qq-responsive-video-container *, {% endif %} #{{sectionID}} .qq-videos-wrapper .qq-single-video a.qq-video-thumb, #{{sectionID}} .qq-videos-wrapper .qq-single-video a.qq-video-thumb img, #{{sectionID}} .qq-videos-wrapper .qq-single-video a.qq-video-thumb svg { height:{{videoImageHeight}}px; max-height:{{videoImageHeight}}px !important; } {% endif %} {% if videoImageHover == true %} #{{sectionID}} .qq-videos-wrapper .qq-single-video a.qq-video-thumb:hover img { opacity:0.75; } {% endif %} #{{sectionID}} #qq-popup .qq-popup-video .qq-popup-video-info { padding:{{popupHolderPadding}}px; } #{{sectionID}} #qq-popup .qq-popup-video-title { {% if popupVideoTitleFontSize != 0 %}font-size:{{popupVideoTitleFontSize}}px;{% endif %} {% if popupVideoTitleLineHeight != 0 %}line-height:{{popupVideoTitleLineHeight}}px;{% endif %} {% if popupVideoTitleLetterSpacing != 0 %}letter-spacing:{{popupVideoTitleLetterSpacing}}px !important;{% endif %} text-align:{{popupVideoTextAlignment}}; margin-top:{{popupVideoTitleMarginTop}}px; } #{{sectionID}} #qq-popup .qq-popup-video-subtitle { {% if popupVideoSubtitleFontSize != 0 %}font-size:{{popupVideoSubtitleFontSize}}px;{% endif %} {% if popupVideoSubtitleLineHeight != 0 %}line-height:{{popupVideoSubtitleLineHeight}}px;{% endif %} {% if popupVideoSubtitleLetterSpacing != 0 %}letter-spacing:{{popupVideoSubtitleLetterSpacing}}px !important;{% endif %} text-align:{{popupVideoTextAlignment}}; margin-top:{{popupVideoSubtitleMarginTop}}px; } } @media only screen and (max-width: 798px) { #{{sectionID}} { margin-top:{{sectionMarginTopMobile}}px; margin-bottom:{{sectionMarginBottomMobile}}px; } {% if sectionWidth == 'fullwidth' %} #{{sectionID}} { padding:{{sectionPaddingTopMobile}}px {{sectionPaddingHorizontalMobile}}px {{sectionPaddingBottomMobile}}px {{sectionPaddingHorizontalMobile}}px; } {% else %} #{{sectionID}} > div:not(.qq-video-gallery-header) { padding:{{sectionPaddingTopMobile}}px {{sectionPaddingHorizontalMobile}}px {{sectionPaddingBottomMobile}}px {{sectionPaddingHorizontalMobile}}px; } {% endif %} #{{sectionID}} .qq-title * { margin-top:{{sectionTitleMarginTopMobile}}px; margin-bottom:{{sectionTitleMarginBottomMobile}}px; } #{{sectionID}} .qq-title * { {% if sectionTitleFontSizeMobile != 0 %}font-size:{{sectionTitleFontSizeMobile}}px;{% endif %} {% if sectionTitleLineHeightMobile != 0 %}line-height:{{sectionTitleLineHeightMobile}}px;{% endif %} {% if sectionTitleLetterSpacingMobile != 0 %}letter-spacing:{{sectionTitleLetterSpacingMobile}}px !important;{% endif %} text-align:{{sectionTitleTextAlignmentMobile}}; } #{{sectionID}} .qq-textblock { margin-top:{{sectionTextblockMarginTopMobile}}px; margin-bottom:{{sectionTextblockMarginBottomMobile}}px; } #{{sectionID}} .qq-textblock * { {% if sectionTextblockFontSizeMobile != 0 %}font-size:{{sectionTextblockFontSizeMobile}}px;{% endif %} {% if sectionTextblockLineHeightMobile != 0 %}line-height:{{sectionTextblockLineHeightMobile}}px;{% endif %} {% if sectionTextblockLetterSpacingMobile != 0 %}letter-spacing:{{sectionTextblockLetterSpacingMobile}}px !important;{% endif %} text-align:{{sectionTextblockTextAlignmentMobile}}; } {% comment %} #{{sectionID}} .qq-videos.qq-expanded { padding-right:{{gridHorizontalGapMobile | times:2}}px; padding-left:{{gridHorizontalGapMobile | times:2}}px; } {% endcomment %} #{{sectionID}} .qq-expanded .qq-videos-wrapper { grid-template-columns: repeat({{gridColumnsMobile}}, 1fr); grid-gap:{{gridVerticalGapMobile}}px {{gridHorizontalGapMobile}}px; {% if sectionWidth == 'fullwidth' and contentFullwidth == true %} padding-left:{{gridHorizontalGapMobile}}px; padding-right:{{gridHorizontalGapMobile}}px; {% endif %} } #{{sectionID}} .qq-videos-toggle { text-align:{{carouselToggleTextAlignmentMobile}}; margin-top:{{carouselToggleMarginTopMobile}}px; } #{{sectionID}} .qq-videos-toggle a { {% if carouselToggleFontSizeMobile != 0 %}font-size:{{carouselToggleFontSizeMobile}}px;{% endif %} {% if carouselToggleLineHeightMobile != 0 %}line-height:{{carouselToggleLineHeightMobile}}px;{% endif %} {% if carouselToggleLetterSpacingMobile != 0 %}letter-spacing:{{carouselToggleLetterSpacingMobile}}px !important;{% endif %} {% if carouselTogglePaddingHorizontalMobile != 0 %}padding:0 {{carouselTogglePaddingHorizontalMobile}}px; {% endif %} } #{{sectionID}} #qq-popup .qq-holder { max-width:{{popupHolderMaxWidthMobile}}%; } #{{sectionID}} #qq-popup .qq-holder.qq-portrait { max-width:{{popupHolderMaxWidthPortraitMobile}}%; } #{{sectionID}} .qq-videos:not(.qq-expanded) .qq-single-video { padding:0 {{carouselSlidePaddingMobile | divided_by: 2 }}px; } #{{sectionID}} .qq-single-video .qq-video-title { margin-top:{{videoTitleMarginTopMobile}}px; } #{{sectionID}} .qq-single-video .qq-video-title * { {% if videoTitleFontSizeMobile != 0 %}font-size:{{videoTitleFontSizeMobile}}px;{% endif %} {% if videoTitleLineHeightMobile != 0 %}line-height:{{videoTitleLineHeightMobile}}px;{% endif %} {% if videoTitleLetterSpacingMobile != 0 %}letter-spacing:{{videoTitleLetterSpacingMobile}}px !important;{% endif %} text-align:{{videoTextAlignmentMobile}}; } #{{sectionID}} .qq-single-video .qq-video-subtitle { margin-top:{{videoSubtitleMarginTopMobile}}px; } #{{sectionID}} .qq-single-video .qq-video-subtitle * { {% if videoSubtitleFontSizeMobile != 0 %}font-size:{{videoSubtitleFontSizeMobile}}px;{% endif %} {% if videoSubtitleLineHeightMobile != 0 %}line-height:{{videoSubtitleLineHeightMobile}}px;{% endif %} {% if videoSubtitleLetterSpacingMobile != 0 %}letter-spacing:{{videoSubtitleLetterSpacingMobile}}px !important;{% endif %} text-align:{{videoTextAlignmentMobile}}; } {% if videoImageCustomHeight == true %} {% if videoPlaying == 'inline'%} #{{sectionID}} .qq-videos-wrapper .qq-single-video .qq-responsive-video-container, #{{sectionID}} .qq-videos-wrapper .qq-single-video .qq-responsive-video-container *, {% endif %} #{{sectionID}} .qq-videos-wrapper .qq-single-video a.qq-video-thumb, #{{sectionID}} .qq-videos-wrapper .qq-single-video a.qq-video-thumb img, #{{sectionID}} .qq-videos-wrapper .qq-single-video a.qq-video-thumb svg { height:{{videoImageHeightMobile}}px; } {% endif %} #{{sectionID}} #qq-popup .qq-popup-video .qq-popup-video-info { padding:{{popupHolderPaddingMobile}}px; } #{{sectionID}} #qq-popup .qq-popup-video-title { {% if popupVideoTitleFontSizeMobile != 0 %}font-size:{{popupVideoTitleFontSizeMobile}}px;{% endif %} {% if popupVideoTitleLineHeightMobile != 0 %}line-height:{{popupVideoTitleLineHeightMobile}}px;{% endif %} {% if popupVideoTitleLetterSpacingMobile != 0 %}letter-spacing:{{popupVideoTitleLetterSpacingMobile}}px !important;{% endif %} text-align:{{popupVideoTextAlignmentMobile}}; margin-top:{{popupVideoTitleMarginTopMobile}}px; } #{{sectionID}} #qq-popup .qq-popup-video-subtitle { {% if popupVideoSubtitleFontSizeMobile != 0 %}font-size:{{popupVideoSubtitleFontSizeMobile}}px;{% endif %} {% if popupVideoSubtitleLineHeightMobile != 0 %}line-height:{{popupVideoSubtitleLineHeightMobile}}px;{% endif %} {% if popupVideoSubtitleLetterSpacingMobile != 0 %}letter-spacing:{{popupVideoSubtitleLetterSpacingMobile}}px !important;{% endif %} text-align:{{popupVideoTextAlignmentMobile}}; margin-top:{{popupVideoSubtitleMarginTopMobile}}px; } } {% if popupHolderMaxWidth > 50 %} @media only screen and (min-width: 1701px) { #{{sectionID}} #qq-popup .qq-holder { max-width:50% !important; } } @media (min-width:1401px) and (max-width:1700px) { #{{sectionID}} #qq-popup .qq-holder { max-width:60% !important; } } @media (min-width:799px) and (max-width:1400px) { #{{sectionID}} #qq-popup .qq-holder { max-width:{{popupHolderMaxWidth}}%; } } {% else %} @media only screen and (min-width: 799px) { #{{sectionID}} #qq-popup .qq-holder { max-width:{{popupHolderMaxWidth}}%; } } {% endif %} @media only screen and (min-width: 799px) { #{{sectionID}} #qq-popup .qq-holder.qq-portrait { max-width:{{popupHolderMaxWidthPortrait}}% !important; } } @media (min-width:1401px) { #{{sectionID}} #qq-popup .qq-holder.qq-portrait { max-width: 20% !important; } }</style>
+<!-- js:../VideoGallery.min.js --><script>{% raw %}"use strict";function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}!function(){function t(){var e=document.querySelectorAll(".qq-video-gallery .QQ-JS-init-msg");e&&e.forEach(function(e){e.remove()})}function i(){document.getElementsByClassName("qq-video-gallery").length&&function e(t){var i=document.createElement("script");i.id="qq-youtube";i.src="https://www.youtube.com/iframe_api";document.head.appendChild(i);{var a,n;null==("undefined"==typeof $?"undefined":_typeof($))||null==window.$?((i=document.createElement("script")).id="qq-jquery",document.head.appendChild(i),i.type="text/javascript",i.src="https://code.jquery.com/jquery-3.6.0.min.js",i.onload=function(){e()}):document.getElementById("qq-slick")&&document.getElementById("qq-slick-css")?a=setInterval(function(){$.fn.slick&&(clearInterval(a),o())},10):(document.getElementById("qq-slick")||((n=document.createElement("script")).id="qq-slick",document.head.appendChild(n),n.type="text/javascript",n.src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js",n.onload=function(){e()}),document.getElementById("qq-slick-css")||((n=document.createElement("link")).id="qq-slick-css",document.head.appendChild(n),n.type="text/css",n.rel="stylesheet",n.href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"))}}()}function o(){var e=document.getElementsByClassName("qq-video-gallery");if(e.length)for(var t=0;t<e.length;t++){var i="qq"+e[t].id.replace("template--","").replace("shopify-section-","").replace("__","");i=i,$("#"+i).length&&function(e){e=$("#"+e+" .qq-videos-wrapper");d(e),function(p){var u,v,e=p.find(".qq-video-thumb"),f=p.attr("data-video-playing");"popup"==f&&p.parent().parent().find("#qq-popup").find("a.qq-close").click(function(e){e.preventDefault(),m(p)});e.click(function(e){e.preventDefault();var t=$(this);h(t.parent()),t.parent().addClass("qq-active-inline"),"popup"==f?(function(e,i){var t=i.parent().parent().find("#qq-popup"),a=t.find(".qq-holder"),n=t.find(".qq-responsive-video-container"),o=t.find(".qq-popup-video-title"),d=t.find(".qq-popup-video-subtitle"),l=t.find(".qq-carousel-arrow"),r=(t.find(".qq-carousel-prev"),t.find(".qq-carousel-next"),e.parent().find(".qq-video-title")),s=e.parent().find(".qq-video-subtitle");n.removeClass("qq-portrait qq-landscape qq-square").addClass(e.attr("data-orientation")),a.removeClass("qq-portrait qq-landscape qq-square").addClass(e.attr("data-orientation")),i.find(".qq-active").removeClass("qq-active"),e.addClass("qq-active"),t.addClass("qq-open"),o.text(r.text()),d.text(s.text());var c=Number(i.attr("data-numOfSlides"));i.find(".slick-current").prev(),i.find(".slick-current").next();l.click(function(e){e.preventDefault();var t=i.find(".qq-active"),e=Number(t.attr("data-slide")),e=$(this).hasClass("qq-carousel-prev")?e-1:e+1;e<1?e=c:c<e&&(e=1),e=i.find(".qq-single-video:not(.slick-cloned) .qq-video-thumb[data-slide='"+e+"']"),t.removeClass("qq-active"),e.trigger("click")}),t.mouseup(function(e){"qq-popup"==e.target.id&&m(i)})}($(this),p),u=p.parent().parent().find("#qq-popup").find(".qq-responsive-video-container"),v="qq-popup-video"):(u=t.parent().find(".qq-responsive-video-container"),v="qq-block-video",(q=$(this)).parent().find(".qq-responsive-video-container").removeClass("qq-hidden"),q.addClass("qq-hidden"));var i,a=t.attr("data-local-video"),n=t.attr("data-local-video-mime"),o=t.attr("data-youtube-video"),d=t.attr("data-vimeo-video"),l=t.attr("data-autoplay"),r=t.attr("data-loop-video"),s=t.attr("data-show-controls"),c="",e="",q={};a.length?("true"==l&&(c+=" autoplay"),"true"==r&&(c+=" loop"),"true"==s&&(c+=" controls"),e="local",i='<video class="qq-local" '+c+'><source src="'+a+'" type="'+n+'"></video>'):o.length?("true"==l&&(q.autoplay=1,q.mute=1),"true"==r&&(q.loop=1,q.playlist=o),q.controls="true"==s?1:0,q.modestbranding=1,q.iv_load_policy=1,q.rel=0,q.showsearch=0,q.showinfo=0,e="youtube",i='<div id="'+v+'"data-autoplay="'+l+'" class="qq-video-wrapper"></div>'):d.length&&("true"==l&&(c+="&autoplay=1&muted=1"),"true"==r&&(c+="&loop=1&autopause=0"),e="vimeo",i='<iframe class="vimeo" src="//player.vimeo.com/video/'+d+"?"+(c+="true"==s?"&controls=1":"&controls=0")+'" width="500" height="232" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen loading="lazy"></iframe>'),u.html(i),"youtube"==e&&new YT.Player(v,{width:"100%",videoId:o,playerVars:q,events:{onReady:function(e){e=e,"true"==t.attr("data-autoplay")&&(e.target.playVideo(),e.target.unMute())}}})})}(e),function(t){var i=t.parent(),e=i.prev().find("a"),a=e.attr("data-expand"),n=e.attr("data-collapse");e.click(function(e){e.preventDefault(),$(this).hasClass("qq-active")?($(this).removeClass("qq-active"),$(this).text(a),d(t),i.removeClass("qq-expanded")):($(this).addClass("qq-active"),$(this).text(n),t.slick("unslick"),i.addClass("qq-expanded")),"inline"==t.attr("data-video-playing")&&((e=t.find(".qq-active-inline")).removeClass("qq-active-inline"),h(e))}),"grid"==t.attr("data-default")&&(e.length?e.trigger("click"):t.slick("unslick"))}(e)}(i)}}function d(a){var e=Boolean(a.attr("data-enableSlider")),t=Number(a.attr("data-slidesToShow")),i=/true/i.test(a.attr("data-carouselSlideAll")),n=/true/i.test(a.attr("data-carouselAutoplay")),o=a.attr("data-carouselCentermode"),d=1e3*Number(a.attr("data-carouselSpeed")),l=(a.attr("data-imageDimensions"),"false"!=(l=a.attr("data-carouselInfinite"))||!(o="false"));"true"==o?r=!0:"false"==o&&(r=!1);var r,s,c,q=!1,p=$("html").attr("dir"),o=$("html").css("direction");(null!=p&&"rtl"==p||null!=_typeof(o)&&"rtl"==o)&&(q=!0,null==p&&$("html").attr("dir","rtl")),1==i?(s=t,r=c=!1):(s=1,c=!0);var u,o=a.parent().prev().find("a"),v=a.parent().find("span.qq-carousel-prev"),f=a.parent().find("span.qq-carousel-next"),p=v.parent(),i=a.find(".qq-single-video").length;768<$(window).width()?p.hasClass("qq-hidden")&&t<i&&p.add(o).removeClass("qq-hidden"):p.hasClass("qq-hidden")&&1<i&&p.add(o).removeClass("qq-hidden"),1==e&&a.not(".slick-initialized").on("init reInit",function(){clearInterval(u),u=setTimeout(function(){var e=a.find(".qq-single-video.slick-active").find(".qq-video-image"),t=e.outerHeight(),e=(e.width(),v.add(f));798<$(window).width()?e.css("top",t/2-e.height()/2):e.css("top","inherit"),e.css("bottom","inherit")},200)}).on("beforeChange",function(e,t,i){i=a.find('.slick-slide[data-slick-index="'+i+'"]');i.removeClass("qq-active-inline"),h(i)}).slick({infinite:l,loop:!0,slidesToShow:t,slidesToScroll:s,swipeToSlide:c,arrows:!0,rtl:q,prevArrow:v,nextArrow:f,autoplay:n,autoplaySpeed:n?d:void 0,centerMode:r,centerPadding:"5%",focusOnSelect:!1,responsive:[{breakpoint:768,settings:{centerPadding:"15%",slidesToShow:1,slidesToScroll:1,swipeToSlide:!0}}]})}function m(e){e=e.parent().parent().find("#qq-popup");e.hasClass("qq-open")&&e.removeClass("qq-open"),e.find(".qq-responsive-video-container").html(""),e.find(".qq-popup-video-title, .qq-popup-video-subtitle").text(""),e.off("mouseup")}function h(e){var t,i=e.parent(),e=i.find(".qq-single-video.qq-active-inline");e.length&&e.removeClass("qq-active-inline"),i.find(".qq-single-video").not(".qq-active-inline").find(".qq-responsive-video-container").each(function(){0<$(this).children().length&&($(this).html(""),(t=$(this).parent().find("a.qq-video-thumb")).hasClass("qq-hidden")&&(t.removeClass("qq-hidden"),$(this).addClass("qq-hidden")))})}window.addEventListener("shopify:section:load",function(e){t()}),t(),"loading"!==document.readyState?i():document.addEventListener("DOMContentLoaded",function(){i()}),window.addEventListener("shopify:section:load",function(e){i()})}();{% endraw %}</script><!-- endjs -->
+{% schema %}
+{
+	"name": "QQ - Video Gallery",
+	"tag": "section",
+	"class": "qq-video-gallery",
+	"settings": [
+		{
+			"type": "text",
+			"id": "section_class",
+			"label": "Section Class",
+			"info": "Add section class (without .). Use spaces to add multiple classes"
+		},
+		{
+			"type": "richtext",
+			"id": "section_title",
+			"label": "Section Title",
+			"default": "<h2>Section Title</h2>"
+		},		
+		{
+			"type": "richtext",
+			"id": "section_textblock",
+			"label": "Section Text Block",
+			"info": "Optional"
+		},		
+		{
+			"type": "header",
+			"content": "Carousel Settings"
+		},
+		{
+			"type": "range",
+			"id": "carousel_slides_to_show",
+			"min": 2,
+			"max": 6,
+			"step": 1,
+			"label": "Slides to Show",
+			"default": 4
+		},
+		{
+			"type": "checkbox",
+			"id": "carousel_slide_all",
+			"label": "Advance entire row on arrow click instead of 1-by-1",
+			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "carousel_autoplay",
+			"label": "Autoplay Carousel Slides",
+			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "carousel_overflow",
+			"label": "Show overflow of items",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "carousel_infinite",
+			"label": "Infinite Scroll",
+			"default": true
+		},
+		{
+			"type": "range",
+			"id": "carousel_speed",
+			"min": 1,
+			"max": 15,
+			"step": 1,
+			"label": "Carousel Speed",
+			"info": "Speed in seconds",
+			"default": 4
+		},
+		{
+			"type": "range",
+			"id": "carousel_slide_padding",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Space between slides",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "carousel_slide_padding_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Space between slides - Mobile",
+			"default": 20
+		},
+		{
+			"type": "color",
+			"id": "carousel_arrows_color_line",
+			"label": "Carousel Arrows Line Color"
+		},
+		{
+			"type": "color",
+			"id": "carousel_arrows_color_bg",
+			"label": "Carousel Arrows Background Color",
+			"default": "#ffffff"
+		},
+		{
+			"type": "range",
+			"id": "carousel_arrows_edge_distance",
+			"min": 0,
+			"max": 200,
+			"step": 2,
+			"unit": "px",
+			"label": "Carousel Arrows Distance from Edge",
+			"default": 20
+		},
+		{
+			"type": "select",
+			"id": "carousel_arrows_position",
+			"options": [
+				{
+					"value": "inside",
+					"label": "Inside of Wrapper"
+				},
+				{
+					"value": "outside",
+					"label": "Outside of Wrapper"
+				}
+			],
+			"default": "inside",
+			"label": "Position of Arrows"
+		},
+		{
+			"type": "image_picker",
+			"id": "arrow_left",
+			"label": "Custom Left Arrow (Optional)",
+			"info": "Recommended size 32px X 32px"
+		},
+		{
+			"type": "image_picker",
+			"id": "arrow_right",
+			"label": "Custom Right Arrow (Optional)",
+			"info": "Recommended size 32px X 32px"
+		},
+		{
+			"type": "header",
+			"content": "Carousel/Grid Toggle"
+		},
+		{
+			"type": "select",
+			"id": "carousel_default",
+			"options": [
+				{
+					"value": "carousel",
+					"label": "Carousel"
+				},
+				{
+					"value": "grid",
+					"label": "Grid"
+				}
+			],
+			"default": "carousel",
+			"label": "Default State"
+		},
+		{
+			"type": "text",
+			"id": "carousel_expand",
+			"label": "Expand as Grid Title",
+			"default": "Expand Videos"
+		},
+		{
+			"type": "text",
+			"id": "carousel_collapse",
+			"label": "Minimize as Carousel Title",
+			"default": "Minimize Videos"
+		},
+		{
+            "type": "header",
+            "content": "Grid Settings"
+        },
+		{
+			"type": "select",
+			"id": "grid_columns",
+			"options": [
+				{
+					"value": "2",
+					"label": "2"
+				},
+				{
+					"value": "3",
+					"label": "3"
+				},
+				{
+					"value": "4",
+					"label": "4"
+				}
+			],
+			"default": "3",
+			"label": "Grid Columns",
+			"info": "Amount of Columns for expanded videos"
+		},
+		{
+			"type": "range",
+			"id": "grid_horizontal_gap",
+			"min": 0,
+			"max": 200,
+			"step": 2,
+			"unit": "px",
+			"label": "Grid Horizontal Gap",
+			"default": 40
+		},
+		{
+			"type": "range",
+			"id": "grid_vertical_gap",
+			"min": 0,
+			"max": 200,
+			"step": 2,
+			"unit": "px",
+			"label": "Grid Vertical Gap",
+			"default": 40
+		},
+		{
+			"type": "header",
+			"content": "Carousel/Grid Toggle - Mobile"
+		},
+		{
+			"type": "select",
+			"id": "grid_columns_mobile",
+			"options": [
+				{
+					"value": "1",
+					"label": "1"
+				},
+				{
+					"value": "2",
+					"label": "2"
+				}
+			],
+			"default": "1",
+			"label": "Grid Columns - Mobile"
+		},
+		{
+			"type": "range",
+			"id": "grid_horizontal_gap_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Grid Horizontal Gap - Mobile",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "grid_vertical_gap_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Grid Vertical Gap - Mobile",
+			"default": 20
+		},
+		{
+			"type": "header",
+			"content": "Section Styling"
+		},
+		{
+			"type": "select",
+			"id": "section_width",
+			"options": [
+				{
+					"value": "regular",
+					"label": "Regular"
+				},
+				{
+					"value": "fullwidth",
+					"label": "Fullwidth"
+				}
+			],
+			"default": "regular",
+			"label": "Section Width"
+		},
+		{
+			"type": "range",
+			"id": "content_max_width",
+			"min": 500,
+			"max": 1500,
+			"step": 20,
+			"unit": "px",
+			"label": "Content Max Width",
+			"default": 1280
+		},
+		{
+			"type": "checkbox",
+			"id": "content_fullwidth",
+			"label": "Real Fullwidth",
+			"info": "Enable to ignore 'Content Max Width'",
+			"default": false
+		},
+		{
+			"type": "color",
+			"id": "section_background_color",
+			"label": "Section Background Color"
+		},
+		{
+			"type": "select",
+			"id": "header_position",
+			"options": [
+			{
+				"value": "inside",
+				"label": "Inside of Wrapper"
+			},
+			{
+				"value": "outside",
+				"label": "Outside of Wrapper"
+			}
+			],
+			"default": "inside",
+			"label": "Section Header Position"
+		},
+		{
+			"type": "range",
+			"id": "section_margin_top",
+			"min": 0,
+			"max": 200,
+			"step": 2,
+			"unit": "px",
+			"label": "Section Top Margin",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "section_margin_bottom",
+			"min": 0,
+			"max": 200,
+			"step": 2,
+			"unit": "px",
+			"label": "Section Bottom Margin",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "section_padding_top",
+			"min": 0,
+			"max": 100,
+			"step": 5,
+			"unit": "px",
+			"label": "Section Padding Top",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "section_padding_bottom",
+			"min": 0,
+			"max": 100,
+			"step": 5,
+			"unit": "px",
+			"label": "Section Padding Bottom",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "section_padding_horizontal",
+			"min": 0,
+			"max": 100,
+			"step": 5,
+			"unit": "px",
+			"label": "Section Horizontal Padding",
+			"default": 20
+		},
+		{
+			"type": "header",
+			"content": "Section Styling - Mobile"
+		},
+		{
+			"type": "range",
+			"id": "section_margin_top_mobile",
+			"min": 0,
+			"max": 200,
+			"step": 2,
+			"unit": "px",
+			"label": "Section Top Margin - Mobile",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "section_margin_bottom_mobile",
+			"min": 0,
+			"max": 200,
+			"step": 2,
+			"unit": "px",
+			"label": "Section Bottom Margin - Mobile",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "section_padding_top_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 5,
+			"unit": "px",
+			"label": "Section Padding Top - Mobile",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "section_padding_bottom_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 5,
+			"unit": "px",
+			"label": "Section Padding Bottom - Mobile",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "section_padding_horizontal_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 5,
+			"unit": "px",
+			"label": "Section Horizontal Padding - Mobile",
+			"default": 20
+		},
+		{
+			"type": "header",
+			"content": "Section Header Styling"
+		},
+		{
+			"type": "range",
+			"id": "section_header_max_width",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Section Header Max Width",
+			"default": 100
+		},
+		{
+			"type": "header",
+			"content": "Section Title Styling"
+		},
+		{
+			"type": "select",
+			"id": "section_title_text_alignment",
+			"options": [{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "center",
+			"label": "Section Title Alignment"
+		},
+		{
+			"type": "color",
+			"id": "section_title_color",
+			"label": "Section Title Color"
+		},
+		{
+			"type": "checkbox",
+			"id": "section_title_custom_font",
+			"label": "Use Custom Font",
+			"default": false
+		},
+		{
+			"type": "font_picker",
+			"id": "section_title_font",
+			"label": "Title Font",
+			"default": "mono"
+		},
+		{
+			"type": "text",
+			"id": "section_title_font_name",
+			"label": "Custom Font Family Name",
+			"info": "Add your custom font. Example: ‘Helvetica’, sans-serif."
+		},
+		{
+			"type": "select",
+			"id": "section_title_font_weight",
+			"options": [
+			{
+				"value": "default",
+				"label": "Default"
+			},
+			{
+				"value": "100",
+				"label": "100"
+			},
+			{
+				"value": "200",
+				"label": "200"
+			},
+			{
+				"value": "300",
+				"label": "300"
+			},
+			{
+				"value": "400",
+				"label": "400 (Regular)"
+			},
+			{
+				"value": "500",
+				"label": "500"
+			},
+			{
+				"value": "600",
+				"label": "600"
+			},
+			{
+				"value": "700",
+				"label": "700 (Bold)"
+			},
+			{
+				"value": "800",
+				"label": "800"
+			},
+			{
+				"value": "900",
+				"label": "900"
+			}
+			],
+			"default": "default",
+			"label": "Font Weight"
+		},
+		{
+			"type": "paragraph",
+			"content": "Set value to 0 to use your theme's default values:"
+		},
+		{
+			"type": "range",
+			"id": "section_title_margin_top",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Title Top Margin",
+			"default": 10
+		},
+		{
+			"type": "range",
+			"id": "section_title_margin_bottom",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Title Bottom Margin",
+			"default": 30
+		},
+		{
+			"type": "range",
+			"id": "section_title_font_size",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Title Font Size",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "section_title_line_height",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Title Line Height",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "section_title_letter_spacing",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Title Letter Spacing",
+			"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Section Title Styling - Mobile"
+		},
+		{
+			"type": "select",
+			"id": "section_title_text_alignment_mobile",
+			"options": [{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "center",
+			"label": "Section Title Alignment - Mobile"
+		},
+		{
+			"type": "range",
+			"id": "section_title_margin_top_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Title Top Margin - Mobile",
+			"default": 10
+		},
+		{
+			"type": "range",
+			"id": "section_title_margin_bottom_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Title Bottom Margin - Mobile",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "section_title_font_size_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Title Font Size - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "section_title_line_height_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Title Line Height - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "section_title_letter_spacing_mobile",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Title Letter Spacing - Mobile",
+			"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Section Textblock Styling"
+		},
+		{
+			"type": "select",
+			"id": "section_textblock_text_alignment",
+			"options": [{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "center",
+			"label": "Section Textblock Alignment"
+		},
+		{
+			"type": "color",
+			"id": "section_textblock_color",
+			"label": "Section Textblock Color"
+		},
+		{
+			"type": "checkbox",
+			"id": "section_textblock_custom_font",
+			"label": "Use Custom Font",
+			"default": false
+		},
+		{
+			"type": "font_picker",
+			"id": "section_textblock_font",
+			"label": "Textblock Font",
+			"default": "mono"
+		},
+		{
+			"type": "text",
+			"id": "section_textblock_font_name",
+			"label": "Custom Font Family Name",
+			"info": "Add your custom font. Example: ‘Helvetica’, sans-serif."
+		},
+		{
+			"type": "select",
+			"id": "section_textblock_font_weight",
+			"options": [
+			{
+				"value": "default",
+				"label": "Default"
+			},
+			{
+				"value": "100",
+				"label": "100"
+			},
+			{
+				"value": "200",
+				"label": "200"
+			},
+			{
+				"value": "300",
+				"label": "300"
+			},
+			{
+				"value": "400",
+				"label": "400 (Regular)"
+			},
+			{
+				"value": "500",
+				"label": "500"
+			},
+			{
+				"value": "600",
+				"label": "600"
+			},
+			{
+				"value": "700",
+				"label": "700 (Bold)"
+			},
+			{
+				"value": "800",
+				"label": "800"
+			},
+			{
+				"value": "900",
+				"label": "900"
+			}
+			],
+			"default": "default",
+			"label": "Font Weight"
+		},
+		{
+			"type": "paragraph",
+			"content": "Set value to 0 to use your theme's default values:"
+		},
+		{
+			"type": "range",
+			"id": "section_textblock_margin_top",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Textblock Top Margin",
+			"default": 10
+		},
+		{
+			"type": "range",
+			"id": "section_textblock_margin_bottom",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Textblock Bottom Margin",
+			"default": 30
+		},
+		{
+			"type": "range",
+			"id": "section_textblock_font_size",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Textblock Font Size",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "section_textblock_line_height",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Textblock Line Height",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "section_textblock_letter_spacing",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Textblock Letter Spacing",
+			"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Section Textblock Styling - Mobile"
+		},
+		{
+			"type": "select",
+			"id": "section_textblock_text_alignment_mobile",
+			"options": [{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "center",
+			"label": "Section Title Alignment - Mobile"
+		},
+		{
+			"type": "range",
+			"id": "section_textblock_margin_top_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Textblock Top Margin - Mobile",
+			"default": 10
+		},
+		{
+			"type": "range",
+			"id": "section_textblock_margin_bottom_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Textblock Bottom Margin - Mobile",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "section_textblock_font_size_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Textblock Font Size - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "section_textblock_line_height_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Textblock Line Height - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "section_textblock_letter_spacing_mobile",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Section Textblock Letter Spacing - Mobile",
+			"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Video Image Styling"
+		},
+		{
+			"type": "select",
+			"id": "video_image_size",
+			"options": [
+				{
+					"value": "original",
+					"label": "Original"
+				},
+				{
+					"value": "portrait",
+					"label": "Portrait"
+				},
+				{
+					"value": "square",
+					"label": "Square"
+				},
+				{
+					"value": "landscape",
+					"label": "Landscape"
+				}
+			],
+			"default": "square",
+			"label": "Video Image Dimensions"
+		},
+		{
+			"type": "checkbox",
+			"id": "video_image_custom_height",
+			"label": "Add custom height to image",
+			"default": false
+		},
+		{
+				"type": "range",
+				"id": "video_image_height",
+				"min": 0,
+				"max": 600,
+				"step": 10,
+				"unit": "px",
+				"label": "Video Image Custom Height",
+				"default": 260
+		},
+		{
+				"type": "range",
+				"id": "video_image_height_mobile",
+				"min": 0,
+				"max": 400,
+				"step": 10,
+				"unit": "px",
+				"label": "Video Image Custom Height - Mobile",
+				"default": 230
+		},
+		{
+				"type": "range",
+				"id": "video_image_radius",
+				"min": 0,
+				"max": 200,
+				"step": 2,
+				"unit": "px",
+				"label": "Video Image Border Radius",
+				"default": 0
+		},
+		{
+			"type": "checkbox",
+			"id": "video_image_hover",
+			"label": "Image opacity on Hover",
+			"default": false
+		},
+		{
+			"type": "header",
+			"content": "Play Icon"
+		},
+		{
+			"type": "color",
+			"id": "play_icon_color",
+			"label": "Play Icon Color"
+		},
+		{
+			"type": "color",
+			"id": "play_icon_color_bg",
+			"label": "Play Icon Background Color"
+		},
+		{
+			"type": "range",
+			"id": "play_icon_color_bg_opacity",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"label": "Play Icon Background Opacity",
+			"default": 100
+		},
+		{
+			"type": "image_picker",
+			"id": "video_icon",
+			"label": "Play Icon",
+			"info": "Optional"
+		},
+		{
+            "type": "select",
+            "id": "video_icon_size",
+            "label": "Play icon Size",
+            "options": [
+              {
+                "value": "small",
+                "label": "Small"
+              },
+              {
+                "value": "medium",
+                "label": "Medium"
+              },
+              {
+                "value": "large",
+                "label": "Large"
+              }
+            ],
+            "default": "medium"
+		},
+		{
+			"type": "header",
+			"content": "Carousel Toggle Styling"
+		},
+		{
+			"type": "color",
+			"id": "carousel_toggle_color",
+			"label": "Carousel Toggle Color"
+		},
+		{
+			"type": "color",
+			"id": "carousel_toggle_color_hover",
+			"label": "Hover - Carousel Toggle Color"
+		},
+		{
+			"type": "checkbox",
+			"id": "carousel_toggle_underline",
+			"label": "Show Underline",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "carousel_toggle_custom_font",
+			"label": "Use Custom Font",
+			"default": false
+		},
+		{
+			"type": "font_picker",
+			"id": "carousel_toggle_font",
+			"label": "Carousel Toggle Font",
+			"default": "mono"
+		},
+		{
+			"type": "text",
+			"id": "carousel_toggle_font_name",
+			"label": "Custom Font Family Name",
+			"info": "Add your custom font. Example: ‘Helvetica’, sans-serif."
+		},
+		{
+			"type": "select",
+			"id": "carousel_toggle_font_weight",
+			"options": [
+			{
+				"value": "default",
+				"label": "Default"
+			},
+			{
+				"value": "100",
+				"label": "100"
+			},
+			{
+				"value": "200",
+				"label": "200"
+			},
+			{
+				"value": "300",
+				"label": "300"
+			},
+			{
+				"value": "400",
+				"label": "400 (Regular)"
+			},
+			{
+				"value": "500",
+				"label": "500"
+			},
+			{
+				"value": "600",
+				"label": "600"
+			},
+			{
+				"value": "700",
+				"label": "700 (Bold)"
+			},
+			{
+				"value": "800",
+				"label": "800"
+			},
+			{
+				"value": "900",
+				"label": "900"
+			}
+			],
+			"default": "default",
+			"label": "Font Weight"
+		},
+		{
+			"type": "select",
+			"id": "carousel_toggle_text_alignment",
+			"options": [{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "right",
+			"label": "Carousel Toggle Alignment"
+		},
+		{
+			"type": "paragraph",
+			"content": "Set value to 0 to use your theme's default values:"
+		},
+		{
+            "type": "range",
+            "id": "carousel_toggle_padding_horizontal",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Carousel Toggle Horizontal Padding",
+            "default": 0
+        },
+		{
+			"type": "range",
+			"id": "carousel_toggle_font_size",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Carousel Toggle Font Size",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "carousel_toggle_line_height",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Carousel Toggle Line Height",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "carousel_toggle_letter_spacing",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Carousel Toggle Letter Spacing",
+			"default": 0
+		},
+		{
+				"type": "range",
+				"id": "carousel_toggle_margin_top",
+				"min": -50,
+				"max": 50,
+				"step": 1,
+				"unit": "px",
+				"label": "Carousel Toggle Margin Top",
+				"default": 20
+		},
+		{
+				"type": "range",
+				"id": "carousel_toggle_margin_bottom",
+				"min": 0,
+				"max": 100,
+				"step": 1,
+				"unit": "px",
+				"label": "Carousel Toggle Margin Bottom",
+				"default": 10
+		}, 
+		{
+				"type": "range",
+				"id": "carousel_toggle_margin_horizontal",
+				"min": 0,
+				"max": 100,
+				"step": 1,
+				"unit": "px",
+				"label": "Carousel Toggle Horizontal Margin",
+				"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Carousel Toggle Styling - Mobile"
+		},
+		{
+			"type": "select",
+			"id": "carousel_toggle_text_alignment_mobile",
+			"options": [{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "center",
+			"label": "Carousel Toggle Alignment - Mobile"
+		},
+		{
+            "type": "range",
+            "id": "carousel_toggle_padding_horizontal_mobile",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Carousel Toggle Horizontal Padding - Mobile",
+            "default": 0
+        },
+		{
+			"type": "range",
+			"id": "carousel_toggle_font_size_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Carousel Toggle Font Size - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "carousel_toggle_line_height_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Carousel Toggle Line Height - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "carousel_toggle_letter_spacing_mobile",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Carousel Toggle Letter Spacing - Mobile",
+			"default": 0
+		},
+		{
+				"type": "range",
+				"id": "carousel_toggle_margin_top_mobile",
+				"min": 0,
+				"max": 100,
+				"step": 1,
+				"unit": "px",
+				"label": "Carousel Toggle Margin Top",
+				"default": 20
+		},
+		{
+			"type": "header",
+			"content": "Video Text Styling"
+		},
+		{
+			"type": "checkbox",
+			"id": "video_text_display",
+			"label": "Show Video Title",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "video_subtitle_text_display",
+			"label": "Show Video Subtitle",
+			"default": true
+		},
+		{
+			"type": "select",
+			"id": "video_text_alignment",
+			"options": [{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "center",
+			"label": "Video Text Alignment"
+		},
+		{
+			"type": "select",
+			"id": "video_text_alignment_mobile",
+			"options": [{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "center",
+			"label": "Video Title Alignment - Mobile"
+		},
+		{
+			"type": "header",
+			"content": "Video Title Styling"
+		},
+		{
+			"type": "select",
+        	"id": "video_title_type",
+        	"options": [
+			{
+            	"value": "h1",
+            	"label": "H1"
+			},
+			{
+				"value": "h2",
+				"label": "H2"
+			},
+			{
+				"value": "h3",
+				"label": "H3"
+			},
+			{
+				"value": "h4",
+				"label": "H4"
+			},
+			{
+				"value": "h5",
+				"label": "H5"
+			},
+			{
+				"value": "h6",
+				"label": "H6"
+			}
+			],
+			"default": "h4",
+			"label": "HTML Element",
+			"info": "For better SEO"
+		},
+		{
+			"type": "color",
+			"id": "video_title_color",
+			"label": "Video Title Color"
+		},
+		{
+			"type": "checkbox",
+			"id": "video_title_custom_font",
+			"label": "Use Custom Font",
+			"default": false
+		},
+		{
+			"type": "font_picker",
+			"id": "video_title_font",
+			"label": "Title Font",
+			"default": "mono"
+		},
+		{
+			"type": "text",
+			"id": "video_title_font_name",
+			"label": "Custom Font Family Name",
+			"info": "Add your custom font. Example: ‘Helvetica’, sans-serif."
+		},
+		{
+			"type": "select",
+			"id": "video_title_font_weight",
+			"options": [
+			{
+				"value": "default",
+				"label": "Default"
+			},
+			{
+				"value": "100",
+				"label": "100"
+			},
+			{
+				"value": "200",
+				"label": "200"
+			},
+			{
+				"value": "300",
+				"label": "300"
+			},
+			{
+				"value": "400",
+				"label": "400 (Regular)"
+			},
+			{
+				"value": "500",
+				"label": "500"
+			},
+			{
+				"value": "600",
+				"label": "600"
+			},
+			{
+				"value": "700",
+				"label": "700 (Bold)"
+			},
+			{
+				"value": "800",
+				"label": "800"
+			},
+			{
+				"value": "900",
+				"label": "900"
+			}
+			],
+			"default": "default",
+			"label": "Font Weight"
+		},
+		{
+			"type": "paragraph",
+			"content": "Set value to 0 to use your theme's default values:"
+		},
+		{
+			"type": "range",
+			"id": "video_title_margin_top",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Title Top Margin",
+			"default": 10
+		},
+		{
+			"type": "range",
+			"id": "video_title_font_size",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Title Font Size",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "video_title_line_height",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Title Line Height",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "video_title_letter_spacing",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Title Letter Spacing",
+			"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Video Title Styling - Mobile"
+		},
+		{
+			"type": "range",
+			"id": "video_title_margin_top_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Title Top Margin - Mobile",
+			"default": 10
+		},
+		{
+			"type": "range",
+			"id": "video_title_font_size_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Title Font Size - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "video_title_line_height_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Title Line Height - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "video_title_letter_spacing_mobile",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Title Letter Spacing - Mobile",
+			"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Video Subtitle Styling"
+		},		
+		{
+			"type": "color",
+			"id": "video_subtitle_color",
+			"label": "Video Subtitle Color"
+		},
+		{
+			"type": "checkbox",
+			"id": "video_subtitle_custom_font",
+			"label": "Use Custom Font",
+			"default": false
+		},
+		{
+			"type": "font_picker",
+			"id": "video_subtitle_font",
+			"label": "Title Font",
+			"default": "mono"
+		},
+		{
+			"type": "text",
+			"id": "video_subtitle_font_name",
+			"label": "Custom Font Family Name",
+			"info": "Add your custom font. Example: ‘Helvetica’, sans-serif."
+		},
+		{
+			"type": "select",
+			"id": "video_subtitle_font_weight",
+			"options": [
+			{
+				"value": "default",
+				"label": "Default"
+			},
+			{
+				"value": "100",
+				"label": "100"
+			},
+			{
+				"value": "200",
+				"label": "200"
+			},
+			{
+				"value": "300",
+				"label": "300"
+			},
+			{
+				"value": "400",
+				"label": "400 (Regular)"
+			},
+			{
+				"value": "500",
+				"label": "500"
+			},
+			{
+				"value": "600",
+				"label": "600"
+			},
+			{
+				"value": "700",
+				"label": "700 (Bold)"
+			},
+			{
+				"value": "800",
+				"label": "800"
+			},
+			{
+				"value": "900",
+				"label": "900"
+			}
+			],
+			"default": "default",
+			"label": "Font Weight"
+		},
+		{
+			"type": "paragraph",
+			"content": "Set value to 0 to use your theme's default values:"
+		},
+		{
+			"type": "range",
+			"id": "video_subtitle_margin_top",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Subtitle Top Margin",
+			"default": 10
+		},
+		{
+			"type": "range",
+			"id": "video_subtitle_font_size",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Subtitle Font Size",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "video_subtitle_line_height",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Subtitle Line Height",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "video_subtitle_letter_spacing",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Subtitle Letter Spacing",
+			"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Video Subtitle Styling - Mobile"
+		},
+		{
+			"type": "range",
+			"id": "video_subtitle_margin_top_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Subtitle Top Margin - Mobile",
+			"default": 10
+		},
+		{
+			"type": "range",
+			"id": "video_subtitle_font_size_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Subtitle Font Size - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "video_subtitle_line_height_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Subtitle Line Height - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "video_subtitle_letter_spacing_mobile",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Video Subtitle Letter Spacing - Mobile",
+			"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Video Settings"
+		},
+		{
+			"type": "select",
+			"id": "video_playing",
+			"options": [
+				{
+					"value": "popup",
+					"label": "In a popup"
+				},
+				{
+					"value": "inline",
+					"label": "Inline"
+				}				
+			],
+			"default": "popup",
+			"label": "Play videos..."
+		},
+		{
+			"type": "checkbox",
+			"id": "video_autoplay",
+			"label": "Autoplay Video",			
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "video_loop",
+			"label": "Loop Video",
+			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "video_controls",
+			"label": "Show Controls on Video",
+			"default": true
+		},
+		{
+			"type": "header",
+			"content": "Popup Settings"
+		},
+		{
+			"type": "checkbox",
+			"id": "popup_preview",
+			"label": "Preview Popup",
+			"info": "Enable for showing up the popup while editing",
+			"default": false
+		},
+		{
+			"type": "color",
+			"id": "popup_background_color",
+			"label": "Popup Background Color",
+			"default": "#000000"
+		},
+		{
+			"type": "range",
+			"id": "popup_background_opacity",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"label": "Popup Background Opacity",
+			"default": 65
+		},
+		{
+			"type": "color",
+			"id": "popup_close_color",
+			"label": "Popup Close Button Color",
+			"default": "#ffffff"
+		},
+		{
+			"type": "checkbox",
+			"id": "popup_show_arrows",
+			"label": "Show navigation arrows in popup",
+			"info": "Enable for showing the arrows to easily view the next/previous videos in the carousel.",
+			"default": true
+		},
+		{
+			"type": "header",
+			"content": "Popup Holder Settings"
+		},
+		{
+			"type": "range",
+			"id": "popup_holder_max_width",
+			"min": 10,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Popup Holder Max Width",
+			"default": 75
+		},
+		{
+			"type": "range",
+			"id": "popup_holder_max_width_portrait",
+			"min": 10,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Popup Holder Max Width (for portrait videos)",
+			"default": 50
+		},
+		{
+			"type": "range",
+			"id": "popup_holder_max_width_mobile",
+			"min": 10,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Popup Holder Max Width - Mobile",
+			"default": 75
+		},
+		{
+			"type": "range",
+			"id": "popup_holder_max_width_portrait_mobile",
+			"min": 10,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Popup Holder Max Width (for portrait videos) - Mobile",
+			"default": 75
+		},
+		{
+			"type": "color",
+			"id": "popup_holder_background_color",
+			"label": "Popup Holder Background Color",
+			"default": "#000000"
+		},
+		{
+			"type": "color",
+			"id": "popup_holder_border_color",
+			"label": "Popup Holder Border Color",
+			"default": "#ffffff"
+		},
+		{
+			"type": "range",
+			"id": "popup_holder_border_width",
+			"min": 0,
+			"max": 20,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Holder Border Width",
+			"default": 4
+		},
+		{
+			"type": "range",
+			"id": "popup_holder_border_radius",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Holder Border Radius",
+			"default": 4
+		},		
+		{
+			"type": "header",
+			"content": "Popup Text Styling"
+		},
+		{
+			"type": "checkbox",
+			"id": "popup_video_text_display",
+			"label": "Show Video Text on Popup",
+			"default": true
+		},
+		{
+			"type": "range",
+			"id": "popup_holder_padding",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Holder Padding",
+			"default": 20
+		},
+		{
+			"type": "range",
+			"id": "popup_holder_padding_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Holder Padding - Mobile",
+			"default": 20
+		},
+		{
+			"type": "select",
+			"id": "popup_video_text_alignment",
+			"options": [{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "center",
+			"label": "Popup Video Text Alignment"
+		},
+		{
+			"type": "select",
+			"id": "popup_video_text_alignment_mobile",
+			"options": [{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "center",
+			"label": "Popup Video Title Alignment - Mobile"
+		},
+		{
+			"type": "header",
+			"content": "Popup Video Title Styling"
+		},
+		{
+			"type": "select",
+        	"id": "popup_video_title_type",
+        	"options": [
+			{
+            	"value": "h1",
+            	"label": "H1"
+			},
+			{
+				"value": "h2",
+				"label": "H2"
+			},
+			{
+				"value": "h3",
+				"label": "H3"
+			},
+			{
+				"value": "h4",
+				"label": "H4"
+			},
+			{
+				"value": "h5",
+				"label": "H5"
+			},
+			{
+				"value": "h6",
+				"label": "H6"
+			}
+			],
+			"default": "h3",
+			"label": "HTML Element",
+			"info": "For better SEO"
+		},
+		{
+			"type": "color",
+			"id": "popup_video_title_color",
+			"label": "Popup Video Title Color"
+		},
+		{
+			"type": "checkbox",
+			"id": "popup_video_title_custom_font",
+			"label": "Use Custom Font",
+			"default": false
+		},
+		{
+			"type": "font_picker",
+			"id": "popup_video_title_font",
+			"label": "Title Font",
+			"default": "mono"
+		},
+		{
+			"type": "text",
+			"id": "popup_video_title_font_name",
+			"label": "Custom Font Family Name",
+			"info": "Add your custom font. Example: ‘Helvetica’, sans-serif."
+		},
+		{
+			"type": "select",
+			"id": "popup_video_title_font_weight",
+			"options": [
+			{
+				"value": "default",
+				"label": "Default"
+			},
+			{
+				"value": "100",
+				"label": "100"
+			},
+			{
+				"value": "200",
+				"label": "200"
+			},
+			{
+				"value": "300",
+				"label": "300"
+			},
+			{
+				"value": "400",
+				"label": "400 (Regular)"
+			},
+			{
+				"value": "500",
+				"label": "500"
+			},
+			{
+				"value": "600",
+				"label": "600"
+			},
+			{
+				"value": "700",
+				"label": "700 (Bold)"
+			},
+			{
+				"value": "800",
+				"label": "800"
+			},
+			{
+				"value": "900",
+				"label": "900"
+			}
+			],
+			"default": "default",
+			"label": "Font Weight"
+		},
+		{
+			"type": "paragraph",
+			"content": "Set value to 0 to use your theme's default values:"
+		},
+		{
+			"type": "range",
+			"id": "popup_video_title_margin_top",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Title Top Margin",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "popup_video_title_font_size",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Title Font Size",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "popup_video_title_line_height",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Title Line Height",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "popup_video_title_letter_spacing",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Title Letter Spacing",
+			"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Popup Video Title Styling - Mobile"
+		},
+		{
+			"type": "range",
+			"id": "popup_video_title_margin_top_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Title Top Margin - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "popup_video_title_font_size_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Title Font Size - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "popup_video_title_line_height_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Title Line Height - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "popup_video_title_letter_spacing_mobile",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Title Letter Spacing - Mobile",
+			"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Popup Video Subtitle Styling"
+		},
+		{
+			"type": "select",
+        	"id": "popup_video_subtitle_type",
+        	"options": [
+			{
+            	"value": "h1",
+            	"label": "H1"
+			},
+			{
+				"value": "h2",
+				"label": "H2"
+			},
+			{
+				"value": "h3",
+				"label": "H3"
+			},
+			{
+				"value": "h4",
+				"label": "H4"
+			},
+			{
+				"value": "h5",
+				"label": "H5"
+			},
+			{
+				"value": "h6",
+				"label": "H6"
+			},
+			{
+				"value": "p",
+				"label": "P"
+			}
+			],
+			"default": "h6",
+			"label": "HTML Element",
+			"info": "For better SEO"
+		},
+		{
+			"type": "color",
+			"id": "popup_video_subtitle_color",
+			"label": "Popup Video Subtitle Color"
+		},
+		{
+			"type": "checkbox",
+			"id": "popup_video_subtitle_custom_font",
+			"label": "Use Custom Font",
+			"default": false
+		},
+		{
+			"type": "font_picker",
+			"id": "popup_video_subtitle_font",
+			"label": "Title Font",
+			"default": "mono"
+		},
+		{
+			"type": "text",
+			"id": "popup_video_subtitle_font_name",
+			"label": "Custom Font Family Name",
+			"info": "Add your custom font. Example: ‘Helvetica’, sans-serif."
+		},
+		{
+			"type": "select",
+			"id": "popup_video_subtitle_font_weight",
+			"options": [
+			{
+				"value": "default",
+				"label": "Default"
+			},
+			{
+				"value": "100",
+				"label": "100"
+			},
+			{
+				"value": "200",
+				"label": "200"
+			},
+			{
+				"value": "300",
+				"label": "300"
+			},
+			{
+				"value": "400",
+				"label": "400 (Regular)"
+			},
+			{
+				"value": "500",
+				"label": "500"
+			},
+			{
+				"value": "600",
+				"label": "600"
+			},
+			{
+				"value": "700",
+				"label": "700 (Bold)"
+			},
+			{
+				"value": "800",
+				"label": "800"
+			},
+			{
+				"value": "900",
+				"label": "900"
+			}
+			],
+			"default": "default",
+			"label": "Font Weight"
+		},
+		{
+			"type": "paragraph",
+			"content": "Set value to 0 to use your theme's default values:"
+		},
+		{
+			"type": "range",
+			"id": "popup_video_subtitle_margin_top",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Subtitle Top Margin",
+			"default": 10
+		},
+		{
+			"type": "range",
+			"id": "popup_video_subtitle_font_size",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Subtitle Font Size",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "popup_video_subtitle_line_height",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Subtitle Line Height",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "popup_video_subtitle_letter_spacing",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Subtitle Letter Spacing",
+			"default": 0
+		},
+		{
+			"type": "header",
+			"content": "Popup Video Subtitle Styling - Mobile"
+		},
+		{
+			"type": "range",
+			"id": "popup_video_subtitle_margin_top_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Subtitle Top Margin - Mobile",
+			"default": 10
+		},
+		{
+			"type": "range",
+			"id": "popup_video_subtitle_font_size_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Subtitle Font Size - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "popup_video_subtitle_line_height_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Subtitle Line Height - Mobile",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "popup_video_subtitle_letter_spacing_mobile",
+			"min": 0,
+			"max": 10,
+			"step": 1,
+			"unit": "px",
+			"label": "Popup Video Subtitle Letter Spacing - Mobile",
+			"default": 0
+		}
+	],
+	"blocks": [
+		{
+			"type": "video",
+			"name": "Video",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "video_image",
+					"label": "Video Image"
+				},
+				{
+					"type": "checkbox",
+					"id": "video_getvid_thumb",
+					"label": "Use default cover image from video",
+					"info": "If you want to use the default cover image from YouTube, Vimeo or local video, instead of uploading your own.",
+					"default": false
+				},
+				{
+					"id": "video_url",
+					"type": "video_url",
+					"label": "Video URL",
+					"placeholder": "Enter Video URL here",
+					"accept": ["youtube", "vimeo"],
+					"default":"https://www.youtube.com/watch?v=_9VUPq3SxOc",
+					"info": "Leave blank if you don't want to use a Youtube or Vimeo video"
+				},
+				{
+          "type": "video",
+          "id": "local_video",
+          "label": "A Shopify-hosted video",
+          "info": "This will override the image."
+        },
+				{
+					"type": "select",
+					"id": "video_dimensions",
+					"options": [
+						{
+							"value": "landscape",
+							"label": "Landscape"
+						},
+						{
+							"value": "portrait",
+							"label": "Portrait"
+						},
+						{
+							"value": "square",
+							"label": "Square"
+						}
+					],
+					"default": "landscape",
+					"label": "Dimensions of Video",
+					"info": "Only available when selecting using 'Play video in a popup' (section settings). When using 'Inline' the videos will be the size of 'Video Image Dimensions'."
+				},				
+				{
+					"type": "richtext",
+					"id": "title",
+					"label": "Video Title",
+					"default": "<h4>Video Title</h4>"
+				},
+				{
+					"type": "richtext",
+					"id": "video_subtitle",
+					"label": "Video Subtitle",
+					"default": "<p>Video Subtitle</p>"
+				}
+			]
+		}		
+	],
+	"presets": [{
+		"name": "QQ - Video Gallery",
+		"blocks": [
+			{
+				"type": "video"
+			},
+			{
+				"type": "video"
+			},
+			{
+				"type": "video"
+			},
+			{
+				"type": "video"
+			},
+			{
+				"type": "video"
+			}
+		]
+	}]
+}
+{% endschema %}

@@ -1,0 +1,123 @@
+<div class="stealth-financing color-{{ section.settings.color_scheme }} gradient">
+  <div class="stealth-financing__inner page-width">
+    <div class="stealth-financing__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="5" width="20" height="14" rx="2"/>
+        <line x1="2" y1="10" x2="22" y2="10"/>
+      </svg>
+    </div>
+    <div class="stealth-financing__content">
+      <h3 class="stealth-financing__heading">{{ section.settings.heading }}</h3>
+      <p class="stealth-financing__text">{{ section.settings.text }}</p>
+    </div>
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link }}" class="stealth-financing__cta button button--primary">
+        {{ section.settings.button_label }}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+  .stealth-financing {
+    padding: 1.5rem 0;
+  }
+
+  .stealth-financing__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+
+  .stealth-financing__icon {
+    color: var(--color-button);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .stealth-financing__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stealth-financing__heading {
+    font-family: var(--font-heading-family);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+  }
+
+  .stealth-financing__text {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    margin: 0;
+  }
+
+  .stealth-financing__cta {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    padding: 0.6rem 1.5rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .stealth-financing__inner {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Stealth Financing Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Flexible Payment Options Available"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Subtext",
+      "default": "Split your purchase into easy monthly payments with Shop Pay Installments."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stealth Financing Banner"
+    }
+  ]
+}
+{% endschema %}
