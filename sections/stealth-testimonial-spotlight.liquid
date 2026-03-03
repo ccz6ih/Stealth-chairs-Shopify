@@ -1,0 +1,219 @@
+<div class="stealth-spotlight color-{{ section.settings.color_scheme }} gradient">
+  <div class="stealth-spotlight__inner page-width">
+    <div class="stealth-spotlight__image-col">
+      {%- if section.settings.image != blank -%}
+        <div class="stealth-spotlight__image-wrapper">
+          <img
+            src="{{ section.settings.image | image_url: width: 800 }}"
+            alt="{{ section.settings.image.alt | default: section.settings.name }}"
+            loading="lazy"
+            width="800"
+            height="{{ 800 | divided_by: section.settings.image.aspect_ratio | round }}"
+            class="stealth-spotlight__image"
+          >
+          <div class="stealth-spotlight__image-accent"></div>
+        </div>
+      {%- else -%}
+        <div class="stealth-spotlight__image-placeholder"></div>
+      {%- endif -%}
+    </div>
+
+    <div class="stealth-spotlight__content-col">
+      <div class="stealth-spotlight__quote-mark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+      </div>
+
+      <blockquote class="stealth-spotlight__quote">
+        {{ section.settings.quote }}
+      </blockquote>
+
+      <div class="stealth-spotlight__attribution">
+        <span class="stealth-spotlight__name">{{ section.settings.name }}</span>
+        {%- if section.settings.title != blank -%}
+          <span class="stealth-spotlight__title">{{ section.settings.title }}</span>
+        {%- endif -%}
+        {%- if section.settings.credits != blank -%}
+          <span class="stealth-spotlight__credits">{{ section.settings.credits }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="stealth-spotlight__cta button button--secondary">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .stealth-spotlight {
+    padding: 4rem 0;
+  }
+
+  .stealth-spotlight__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .stealth-spotlight__image-wrapper {
+    position: relative;
+  }
+
+  .stealth-spotlight__image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stealth-spotlight__image-accent {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: -12px;
+    bottom: -12px;
+    border: 2px solid var(--color-button);
+    border-radius: 4px;
+    z-index: 0;
+  }
+
+  .stealth-spotlight__image-placeholder {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .stealth-spotlight__content-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .stealth-spotlight__quote-mark {
+    color: var(--color-button);
+    opacity: 0.4;
+    line-height: 1;
+  }
+
+  .stealth-spotlight__quote {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.6;
+    font-style: italic;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .stealth-spotlight__attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .stealth-spotlight__name {
+    font-family: var(--font-heading-family);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .stealth-spotlight__title {
+    font-size: 0.85rem;
+    color: var(--color-button);
+    font-weight: 600;
+  }
+
+  .stealth-spotlight__credits {
+    font-size: 0.8rem;
+    opacity: 0.6;
+  }
+
+  .stealth-spotlight__cta {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .stealth-spotlight {
+      padding: 3rem 0;
+    }
+
+    .stealth-spotlight__inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .stealth-spotlight__image-accent {
+      top: 8px;
+      left: 8px;
+      right: -8px;
+      bottom: -8px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Stealth Testimonial Spotlight",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Engineer photo"
+    },
+    {
+      "type": "richtext",
+      "id": "quote",
+      "label": "Quote",
+      "default": "<p>The Stealth Chair completely changed my studio sessions. I used to deal with constant back pain after long mixes — now I can work 12+ hours and feel great. It's the most important piece of gear in my room.</p>"
+    },
+    {
+      "type": "text",
+      "id": "name",
+      "label": "Name",
+      "default": "Andrew Masters"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title / Role",
+      "default": "Recording & Mix Engineer"
+    },
+    {
+      "type": "text",
+      "id": "credits",
+      "label": "Notable credits",
+      "default": "Grammy-nominated | 500+ sessions"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Read More Stories"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stealth Testimonial Spotlight"
+    }
+  ]
+}
+{% endschema %}

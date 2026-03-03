@@ -1,0 +1,226 @@
+<div class="stealth-quiz-cta color-{{ section.settings.color_scheme }} gradient">
+  <div class="stealth-quiz-cta__inner page-width">
+    <div class="stealth-quiz-cta__content">
+      <div class="stealth-quiz-cta__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+
+      <div class="stealth-quiz-cta__text">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="stealth-quiz-cta__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <p class="stealth-quiz-cta__description">{{ section.settings.text }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="stealth-quiz-cta__button button button--primary">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_steps -%}
+      <div class="stealth-quiz-cta__steps">
+        <div class="stealth-quiz-cta__step">
+          <span class="stealth-quiz-cta__step-num">1</span>
+          <span class="stealth-quiz-cta__step-text">Tell us your role</span>
+        </div>
+        <div class="stealth-quiz-cta__step-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <div class="stealth-quiz-cta__step">
+          <span class="stealth-quiz-cta__step-num">2</span>
+          <span class="stealth-quiz-cta__step-text">Share your build</span>
+        </div>
+        <div class="stealth-quiz-cta__step-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <div class="stealth-quiz-cta__step">
+          <span class="stealth-quiz-cta__step-num">3</span>
+          <span class="stealth-quiz-cta__step-text">Get your match</span>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+  .stealth-quiz-cta {
+    padding: 3rem 0;
+  }
+
+  .stealth-quiz-cta__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.04) 100%);
+    text-align: center;
+  }
+
+  .stealth-quiz-cta__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .stealth-quiz-cta__icon {
+    color: var(--color-button);
+  }
+
+  .stealth-quiz-cta__heading {
+    font-family: var(--font-heading-family);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .stealth-quiz-cta__description {
+    max-width: 500px;
+    font-size: 0.95rem;
+    opacity: 0.75;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .stealth-quiz-cta__button {
+    margin-top: 0.5rem;
+    min-width: 220px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .stealth-quiz-cta__steps {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stealth-quiz-cta__step {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stealth-quiz-cta__step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-button);
+    color: var(--color-button-label);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading-family);
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .stealth-quiz-cta__step-text {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+    white-space: nowrap;
+  }
+
+  .stealth-quiz-cta__step-arrow {
+    opacity: 0.3;
+    flex-shrink: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .stealth-quiz-cta__inner {
+      padding: 2rem 1.25rem;
+    }
+
+    .stealth-quiz-cta__steps {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .stealth-quiz-cta__step-arrow {
+      transform: rotate(90deg);
+    }
+
+    .stealth-quiz-cta__icon svg {
+      width: 36px;
+      height: 36px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Stealth Quiz CTA",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "NOT SURE WHICH STEALTH IS RIGHT FOR YOU?"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h1", "label": "Large" },
+        { "value": "h2", "label": "Medium" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Description",
+      "default": "Answer 3 quick questions about your role, body type, and workspace — we'll recommend the perfect Stealth for you."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "TAKE THE 60-SECOND QUIZ"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_steps",
+      "label": "Show step indicators",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stealth Quiz CTA"
+    }
+  ]
+}
+{% endschema %}
