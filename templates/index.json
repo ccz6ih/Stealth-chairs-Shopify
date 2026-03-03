@@ -27,6 +27,117 @@
         "color_scheme": "scheme-32f31201-6f37-4bc1-a278-f9e09bdf684d"
       }
     },
+    "stealth_stats_bar_78tgXc": {
+      "type": "stealth-stats-bar",
+      "blocks": {
+        "stat_3VM9xC": {
+          "type": "stat",
+          "settings": {
+            "number": 10000,
+            "suffix": "+",
+            "label": "Engineers Worldwide"
+          }
+        },
+        "stat_eq8ETp": {
+          "type": "stat",
+          "settings": {
+            "number": 900,
+            "suffix": "+",
+            "label": "Tours & Shows"
+          }
+        },
+        "stat_kWkRNR": {
+          "type": "stat",
+          "settings": {
+            "number": 657,
+            "suffix": "+",
+            "label": "Studios Equipped"
+          }
+        },
+        "stat_hLqNwh": {
+          "type": "stat",
+          "settings": {
+            "number": 5,
+            "suffix": "-Year",
+            "label": "Warranty"
+          }
+        }
+      },
+      "block_order": [
+        "stat_3VM9xC",
+        "stat_eq8ETp",
+        "stat_kWkRNR",
+        "stat_hLqNwh"
+      ],
+      "name": "Stealth Stats Bar",
+      "settings": {
+        "color_scheme": ""
+      }
+    },
+    "stealth_industry_cards_fXeB94": {
+      "type": "stealth-industry-cards",
+      "blocks": {
+        "card_ic3GQF": {
+          "type": "card",
+          "settings": {
+            "icon": "studio",
+            "title": "Recording Studios",
+            "text": "Mix, master, and produce in comfort — built for the forward lean at the console.",
+            "link": ""
+          }
+        },
+        "card_fdyzp8": {
+          "type": "card",
+          "settings": {
+            "icon": "live_sound",
+            "title": "Live Sound & FOH",
+            "text": "From soundcheck to encore — Stage Glide casters and tour-tested durability.",
+            "link": ""
+          }
+        },
+        "card_TiFHUY": {
+          "type": "card",
+          "settings": {
+            "icon": "broadcast",
+            "title": "Video & Broadcast",
+            "text": "Control room precision meets all-day comfort for broadcast and post-production.",
+            "link": ""
+          }
+        },
+        "card_4dtgBp": {
+          "type": "card",
+          "settings": {
+            "icon": "lighting",
+            "title": "Lighting & Stage",
+            "text": "Programming marathons and tech tables — designed for elevated platforms.",
+            "link": ""
+          }
+        },
+        "card_R7gC4X": {
+          "type": "card",
+          "settings": {
+            "icon": "performer",
+            "title": "Performers",
+            "text": "Play longer, sit better — a performance seat that supports your craft.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_ic3GQF",
+        "card_fdyzp8",
+        "card_TiFHUY",
+        "card_4dtgBp",
+        "card_R7gC4X"
+      ],
+      "name": "Stealth Industry Cards",
+      "settings": {
+        "subheading": "WHO WE SERVE",
+        "heading": "BUILT FOR YOUR WORLD",
+        "heading_size": "h1",
+        "color_scheme": ""
+      }
+    },
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
@@ -411,6 +522,8 @@
   },
   "order": [
     "stealth_hero_video_CqaT3F",
+    "stealth_stats_bar_78tgXc",
+    "stealth_industry_cards_fXeB94",
     "image-with-text",
     "image-with-text-1",
     "featured_collection",
