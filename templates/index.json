@@ -204,6 +204,19 @@
         "color_scheme": ""
       }
     },
+    "stealth_quiz_cta_ziMbNm": {
+      "type": "stealth-quiz-cta",
+      "name": "Stealth Quiz CTA",
+      "settings": {
+        "heading": "NOT SURE WHICH STEALTH IS RIGHT FOR YOU?",
+        "heading_size": "h2",
+        "text": "Answer 3 quick questions about your role, body type, and workspace — we'll recommend the perfect Stealth for you.",
+        "button_label": "TAKE THE 60-SECOND QUIZ",
+        "button_link": "shopify://pages/stealth-quiz",
+        "show_steps": true,
+        "color_scheme": ""
+      }
+    },
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
@@ -356,7 +369,7 @@
         "button"
       ],
       "settings": {
-        "image": "shopify://shop_images/Jon_Fogerty_Monitors_FOH_d15b6b48-19fc-4c33-8240-ea61cb8c7385.jpg",
+        "image": "shopify://shop_images/envato-labs-image-edit_-_2025-10-06T214330.545.png",
         "height": "large",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -592,6 +605,7 @@
     "stealth_industry_cards_fXeB94",
     "stealth_testimonial_spotlight_EMJxKL",
     "stealth_as_seen_in_gJmr67",
+    "stealth_quiz_cta_ziMbNm",
     "image-with-text",
     "image-with-text-1",
     "featured_collection",
