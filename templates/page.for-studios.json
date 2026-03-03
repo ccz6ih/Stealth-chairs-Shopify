@@ -12,43 +12,88 @@
     "hero": {
       "type": "stealth-page-hero",
       "settings": {
+        "overlay_opacity": 70,
+        "min_height": 450,
         "subheading": "FOR RECORDING STUDIOS",
         "heading": "YOUR NEXT GOLD RECORD STARTS WITH HOW YOU SIT",
         "heading_size": "h0",
         "text": "12-hour mix sessions. 16-hour tracking days. The constant forward lean to reach the faders. Your chair is either helping you or hurting you — there's no in between.",
         "button_label": "FIND YOUR STEALTH",
-        "button_link": "shopify:\/\/collections\/stealth-chairs",
+        "button_link": "shopify://collections/stealth-chairs",
         "text_alignment": "center",
-        "overlay_opacity": 70,
-        "min_height": 450,
         "color_scheme": "background-1"
       }
     },
     "stats": {
       "type": "stealth-stats-bar",
       "blocks": {
-        "stat_1": { "type": "stat", "settings": { "number": 250, "suffix": "+", "label": "Studios Equipped" } },
-        "stat_2": { "type": "stat", "settings": { "number": 12, "suffix": "+", "label": "Hour Sessions" } },
-        "stat_3": { "type": "stat", "settings": { "number": 40, "suffix": "%", "label": "Less Disc Pressure" } },
-        "stat_4": { "type": "stat", "settings": { "number": 5, "suffix": "-Year", "label": "Warranty" } }
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "number": 250,
+            "suffix": "+",
+            "label": "Studios Equipped"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "number": 12,
+            "suffix": "+",
+            "label": "Hour Sessions"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "number": 40,
+            "suffix": "%",
+            "label": "Less Disc Pressure"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "number": 5,
+            "suffix": "-Year",
+            "label": "Warranty"
+          }
+        }
       },
-      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"],
-      "settings": { "color_scheme": "background-1" }
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ],
+      "settings": {
+        "color_scheme": "background-1"
+      }
     },
     "problem": {
       "type": "image-with-text",
       "blocks": {
-        "heading": { "type": "heading", "settings": { "heading": "THE STUDIO CHAIR PROBLEM", "heading_size": "h1" } },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "THE STUDIO CHAIR PROBLEM",
+            "heading_size": "h1"
+          }
+        },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>As a recording or mix engineer, you spend more time leaning forward than almost any other professional. Reaching for EQ knobs, riding faders, adjusting aux sends — your body is constantly in the forward-lean position.<\/p><p>Traditional ergonomic chairs are designed for people who sit upright at a keyboard. The moment you lean forward, they create harmful pressure on your intervertebral discs, hips, and tailbone. That's why your back hurts after a long session. That's why you're fatigued before the mix is done.<\/p><p><strong>Stealth was designed specifically for this problem.<\/strong><\/p>",
+            "text": "<p>As a recording or mix engineer, you spend more time leaning forward than almost any other professional. Reaching for EQ knobs, riding faders, adjusting aux sends — your body is constantly in the forward-lean position.</p><p>Traditional ergonomic chairs are designed for people who sit upright at a keyboard. The moment you lean forward, they create harmful pressure on your intervertebral discs, hips, and tailbone. That's why your back hurts after a long session. That's why you're fatigued before the mix is done.</p><p><strong>Stealth was designed specifically for this problem.</strong></p>",
             "text_style": "body"
           }
         }
       },
-      "block_order": ["heading", "text"],
+      "block_order": [
+        "heading",
+        "text"
+      ],
       "settings": {
+        "image": "shopify://shop_images/envato-labs-image-edit_-_2025-10-06T214749.809.png",
         "height": "large",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -66,12 +111,45 @@
     "features": {
       "type": "stealth-feature-grid",
       "blocks": {
-        "f1": { "type": "feature", "settings": { "icon": "wave", "title": "ZenWave Forward-Lean Support", "text": "The patented seat shell pivots as you lean into the console, maintaining your spine's natural curve. No other chair does this." } },
-        "f2": { "type": "feature", "settings": { "icon": "spine", "title": "Free-Float Backrest", "text": "Lean into the mix or recline to listen back — the backrest follows your movement, providing continuous lumbar support in every position." } },
-        "f3": { "type": "feature", "settings": { "icon": "ruler", "title": "Console-Height Adjustment", "text": "Custom cylinder height matched to your body and desk. Your elbows stay at console height, your feet stay flat — all session long." } },
-        "f4": { "type": "feature", "settings": { "icon": "shield", "title": "Marathon Session Durability", "text": "Commercial-grade mesh and frame built for daily professional use. 5-year warranty because we know it'll last longer than your lease." } }
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "wave",
+            "title": "ZenWave Forward-Lean Support",
+            "text": "The patented seat shell pivots as you lean into the console, maintaining your spine's natural curve. No other chair does this."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "spine",
+            "title": "Free-Float Backrest",
+            "text": "Lean into the mix or recline to listen back — the backrest follows your movement, providing continuous lumbar support in every position."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "ruler",
+            "title": "Console-Height Adjustment",
+            "text": "Custom cylinder height matched to your body and desk. Your elbows stay at console height, your feet stay flat — all session long."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "shield",
+            "title": "Marathon Session Durability",
+            "text": "Commercial-grade mesh and frame built for daily professional use. 5-year warranty because we know it'll last longer than your lease."
+          }
+        }
       },
-      "block_order": ["f1", "f2", "f3", "f4"],
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
       "settings": {
         "subheading": "BUILT FOR THE CONSOLE",
         "heading": "WHY ENGINEERS CHOOSE STEALTH",
@@ -84,11 +162,17 @@
     "solution": {
       "type": "image-with-text",
       "blocks": {
-        "heading": { "type": "heading", "settings": { "heading": "CUSTOM-FIT TO YOUR BODY. BUILT FOR YOUR SESSION.", "heading_size": "h1" } },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "CUSTOM-FIT TO YOUR BODY. BUILT FOR YOUR SESSION.",
+            "heading_size": "h1"
+          }
+        },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Every Stealth Chair is built to your specific height and weight in Centennial, Colorado. We match:<\/p><p><strong>Seat size<\/strong> — Standard or Pro based on your frame<br><strong>Cylinder height<\/strong> — Matched to your console setup<br><strong>Mesh tension<\/strong> — Calibrated for your weight<br><strong>Casters<\/strong> — Office carpet or studio hardwood options<\/p><p>Because your body isn't one-size-fits-all, and neither should your chair be.<\/p>",
+            "text": "<p>Every Stealth Chair is built to your specific height and weight in Centennial, Colorado. We match:</p><p><strong>Seat size</strong> — Standard or Pro based on your frame<br><strong>Cylinder height</strong> — Matched to your console setup<br><strong>Mesh tension</strong> — Calibrated for your weight<br><strong>Casters</strong> — Office carpet or studio hardwood options</p><p>Because your body isn't one-size-fits-all, and neither should your chair be.</p>",
             "text_style": "body"
           }
         },
@@ -96,13 +180,18 @@
           "type": "button",
           "settings": {
             "button_label": "BUILD YOUR CHAIR",
-            "button_link": "shopify:\/\/collections\/stealth-chairs",
+            "button_link": "shopify://collections/stealth-chairs",
             "button_style_secondary": false
           }
         }
       },
-      "block_order": ["heading", "text", "button"],
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
       "settings": {
+        "image": "shopify://shop_images/whatsincluded.png",
         "height": "large",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -120,18 +209,22 @@
     "testimonial": {
       "type": "stealth-testimonial-spotlight",
       "settings": {
-        "quote": "<p>The Stealth Chair completely changed my studio sessions. I used to deal with constant back pain after long mixes — now I can work 12+ hours and feel great. It's the most important piece of gear in my room.<\/p>",
+        "image": "shopify://shop_images/Stealth-ergolab.png",
+        "quote": "<p>The Stealth Chair completely changed my studio sessions. I used to deal with constant back pain after long mixes — now I can work 12+ hours and feel great. It's the most important piece of gear in my room.</p>",
         "name": "Andrew Masters",
         "title": "Recording & Mix Engineer",
         "credits": "YouTube Reviewer | Audio Professional",
         "button_label": "SEE MORE REVIEWS",
-        "button_link": "shopify:\/\/pages\/gallery",
+        "button_link": "shopify://pages/gallery",
         "color_scheme": "background-1"
       }
     },
     "trust_badges": {
       "type": "stealth-trust-badges",
-      "settings": { "layout": "full", "color_scheme": "background-1" }
+      "settings": {
+        "layout": "full",
+        "color_scheme": "background-1"
+      }
     },
     "products": {
       "type": "featured-collection",
@@ -168,6 +261,7 @@
         "heading_size": "h2",
         "text": "Answer 3 quick questions about your body type and workspace — we'll recommend the perfect chair for your sessions.",
         "button_label": "TAKE THE 60-SECOND QUIZ",
+        "button_link": "",
         "show_steps": true,
         "color_scheme": "background-1"
       }
@@ -175,13 +269,47 @@
     "newsletter": {
       "type": "newsletter",
       "blocks": {
-        "heading": { "type": "heading", "settings": { "heading": "JOIN THE STEALTH COMMUNITY", "heading_size": "h1" } },
-        "paragraph": { "type": "paragraph", "settings": { "text": "<p>Get $50 off your first Stealth Chair, plus exclusive access to new products and engineer spotlights.<\/p>" } },
-        "email-form": { "type": "email_form", "settings": {} }
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "JOIN THE STEALTH COMMUNITY",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Get $50 off your first Stealth Chair, plus exclusive access to new products and engineer spotlights.</p>"
+          }
+        },
+        "email-form": {
+          "type": "email_form",
+          "settings": {}
+        }
       },
-      "block_order": ["heading", "paragraph", "email-form"],
-      "settings": { "color_scheme": "accent-1", "full_width": true, "padding_top": 40, "padding_bottom": 40 }
+      "block_order": [
+        "heading",
+        "paragraph",
+        "email-form"
+      ],
+      "settings": {
+        "color_scheme": "accent-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
-  "order": ["hero", "stats", "problem", "features", "solution", "testimonial", "trust_badges", "products", "quiz_cta", "newsletter"]
+  "order": [
+    "hero",
+    "stats",
+    "problem",
+    "features",
+    "solution",
+    "testimonial",
+    "trust_badges",
+    "products",
+    "quiz_cta",
+    "newsletter"
+  ]
 }
