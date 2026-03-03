@@ -1,0 +1,334 @@
+<div class="stealth-fame color-{{ section.settings.color_scheme }} gradient">
+  <div class="stealth-fame__inner page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="stealth-fame__header">
+        {%- if section.settings.subheading != blank -%}
+          <span class="stealth-fame__subheading">{{ section.settings.subheading }}</span>
+        {%- endif -%}
+        <h2 class="stealth-fame__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    {%- assign categories = '' -%}
+    {%- for block in section.blocks -%}
+      {%- unless categories contains block.settings.category -%}
+        {%- if categories != '' -%}{%- assign categories = categories | append: ',' -%}{%- endif -%}
+        {%- assign categories = categories | append: block.settings.category -%}
+      {%- endunless -%}
+    {%- endfor -%}
+    {%- assign category_list = categories | split: ',' -%}
+
+    {%- if category_list.size > 1 -%}
+      <div class="stealth-fame__filters">
+        <button class="stealth-fame__filter stealth-fame__filter--active" data-filter="all">All</button>
+        {%- for cat in category_list -%}
+          <button class="stealth-fame__filter" data-filter="{{ cat | handleize }}">{{ cat }}</button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div class="stealth-fame__grid">
+      {%- for block in section.blocks -%}
+        <div class="stealth-fame__item" data-category="{{ block.settings.category | handleize }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <div class="stealth-fame__image-wrap">
+              <img
+                src="{{ block.settings.image | image_url: width: 600 }}"
+                alt="{{ block.settings.image.alt | default: block.settings.name }}"
+                loading="lazy"
+                width="600"
+                height="{{ 600 | divided_by: block.settings.image.aspect_ratio | round }}"
+                class="stealth-fame__image"
+              >
+              <div class="stealth-fame__overlay">
+                {%- if block.settings.name != blank -%}
+                  <span class="stealth-fame__name">{{ block.settings.name }}</span>
+                {%- endif -%}
+                {%- if block.settings.role != blank -%}
+                  <span class="stealth-fame__role">{{ block.settings.role }}</span>
+                {%- endif -%}
+                {%- if block.settings.venue != blank -%}
+                  <span class="stealth-fame__venue">{{ block.settings.venue }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- else -%}
+            <div class="stealth-fame__placeholder">
+              <span class="stealth-fame__name">{{ block.settings.name }}</span>
+              <span class="stealth-fame__role">{{ block.settings.role }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .stealth-fame {
+    padding: 4rem 0;
+  }
+
+  .stealth-fame__header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .stealth-fame__subheading {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-button);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .stealth-fame__heading {
+    font-family: var(--font-heading-family);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .stealth-fame__filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .stealth-fame__filter {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: inherit;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .stealth-fame__filter:hover,
+  .stealth-fame__filter--active {
+    background: var(--color-button);
+    color: var(--color-button-label);
+    border-color: var(--color-button);
+  }
+
+  .stealth-fame__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .stealth-fame__item {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .stealth-fame__item--hidden {
+    display: none;
+  }
+
+  .stealth-fame__image-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    aspect-ratio: 4/3;
+  }
+
+  .stealth-fame__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .stealth-fame__image-wrap:hover .stealth-fame__image {
+    transform: scale(1.05);
+  }
+
+  .stealth-fame__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1rem 1rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .stealth-fame__image-wrap:hover .stealth-fame__overlay {
+    transform: translateY(0);
+  }
+
+  .stealth-fame__name {
+    font-family: var(--font-heading-family);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .stealth-fame__role {
+    font-size: 0.8rem;
+    color: var(--color-button);
+    font-weight: 600;
+  }
+
+  .stealth-fame__venue {
+    font-size: 0.75rem;
+    opacity: 0.6;
+  }
+
+  .stealth-fame__placeholder {
+    aspect-ratio: 4/3;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .stealth-fame {
+      padding: 3rem 0;
+    }
+
+    .stealth-fame__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .stealth-fame__overlay {
+      transform: translateY(0);
+      padding: 0.75rem 0.5rem 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filters = document.querySelectorAll('.stealth-fame__filter');
+    const items = document.querySelectorAll('.stealth-fame__item');
+
+    filters.forEach(function(filter) {
+      filter.addEventListener('click', function() {
+        const filterValue = this.getAttribute('data-filter');
+
+        filters.forEach(function(f) { f.classList.remove('stealth-fame__filter--active'); });
+        this.classList.add('stealth-fame__filter--active');
+
+        items.forEach(function(item) {
+          if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+            item.classList.remove('stealth-fame__item--hidden');
+          } else {
+            item.classList.add('stealth-fame__item--hidden');
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Stealth Wall of Fame",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "WALL OF FAME"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h0", "label": "Extra large" },
+        { "value": "h1", "label": "Large" },
+        { "value": "h2", "label": "Medium" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "fame_item",
+      "name": "Gallery Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Engineer Name"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role / Title",
+          "default": "FOH Engineer"
+        },
+        {
+          "type": "text",
+          "id": "venue",
+          "label": "Venue / Tour / Studio"
+        },
+        {
+          "type": "select",
+          "id": "category",
+          "label": "Category",
+          "options": [
+            { "value": "Studio", "label": "Studio" },
+            { "value": "Live Sound", "label": "Live Sound" },
+            { "value": "Broadcast", "label": "Broadcast" },
+            { "value": "Lighting", "label": "Lighting" },
+            { "value": "Performer", "label": "Performer" }
+          ],
+          "default": "Studio"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stealth Wall of Fame",
+      "blocks": [
+        { "type": "fame_item", "settings": { "name": "John Fogerty FOH", "role": "FOH Engineer", "category": "Live Sound" } },
+        { "type": "fame_item", "settings": { "name": "Justin Beckstead", "role": "Monitor Engineer", "venue": "The Band Perry", "category": "Live Sound" } },
+        { "type": "fame_item", "settings": { "name": "Timbaland", "role": "Producer", "category": "Studio" } },
+        { "type": "fame_item", "settings": { "name": "Rascal Flatts Tour", "role": "FOH Engineer", "category": "Live Sound" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

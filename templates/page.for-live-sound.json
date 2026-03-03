@@ -1,0 +1,178 @@
+{
+  "sections": {
+    "hero": {
+      "type": "stealth-page-hero",
+      "settings": {
+        "subheading": "FOR LIVE SOUND & FOH",
+        "heading": "FROM SOUNDCHECK TO ENCORE — YOUR CHAIR SHOULD KEEP UP",
+        "heading_size": "h0",
+        "text": "Festival stages. Arena tours. 14-hour show days on uneven surfaces. The chair at FOH needs to be as road-tested as the rest of your rig.",
+        "button_label": "FIND YOUR STEALTH",
+        "button_link": "shopify:\/\/collections\/stealth-chairs",
+        "text_alignment": "center",
+        "overlay_opacity": 70,
+        "min_height": 450,
+        "color_scheme": "background-1"
+      }
+    },
+    "stats": {
+      "type": "stealth-stats-bar",
+      "blocks": {
+        "stat_1": { "type": "stat", "settings": { "number": 100, "suffix": "+", "label": "Tours & Shows" } },
+        "stat_2": { "type": "stat", "settings": { "number": 14, "suffix": "+", "label": "Hour Show Days" } },
+        "stat_3": { "type": "stat", "settings": { "number": 4, "suffix": "\"", "label": "Stage Glide Casters" } },
+        "stat_4": { "type": "stat", "settings": { "number": 5, "suffix": "-Year", "label": "Warranty" } }
+      },
+      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"],
+      "settings": { "color_scheme": "background-1" }
+    },
+    "problem": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": { "type": "heading", "settings": { "heading": "FOH ISN'T AN OFFICE", "heading_size": "h1" } },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Your FOH position isn't a cubicle. You're on plywood decking, cable ramps, grass, concrete, and surfaces that change every day. You're mixing on your feet and in your chair for 10-14 hours straight. From soundcheck through encore, your chair takes the same beating as your console.<\/p><p>Office chairs weren't built for this. Gaming chairs definitely weren't. But Stealth was. With 4-inch Stage Glide casters that roll over cable ramps and uneven surfaces, commercial-grade construction that survives the road, and ergonomic support built for the forward-lean mixing position — Stealth is the FOH chair.<\/p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": ["heading", "text"],
+      "settings": {
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "background-1",
+        "padding_top": 52,
+        "padding_bottom": 0
+      }
+    },
+    "features": {
+      "type": "stealth-feature-grid",
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "icon": "cog", "title": "Stage Glide Casters", "text": "4-inch touring casters rated for stage surfaces, cable ramps, plywood decking, and outdoor terrain. Roll where office chairs can't." } },
+        "f2": { "type": "feature", "settings": { "icon": "wave", "title": "ZenWave Forward-Lean", "text": "Lean into the console during the show without back strain. Patented seat shell pivots with your body to maintain spinal alignment." } },
+        "f3": { "type": "feature", "settings": { "icon": "shield", "title": "Tour-Tested Durability", "text": "Commercial-grade frame and mesh built to survive load-in, load-out, and everything in between. 5-year warranty on every chair." } },
+        "f4": { "type": "feature", "settings": { "icon": "ruler", "title": "Custom Height for Your Rig", "text": "Console height varies venue to venue. Custom cylinder options ensure your mixing position stays ergonomic regardless of the setup." } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"],
+      "settings": {
+        "subheading": "BUILT FOR THE ROAD",
+        "heading": "WHY FOH ENGINEERS CHOOSE STEALTH",
+        "heading_size": "h1",
+        "text": "Four features that make Stealth the touring standard.",
+        "columns": "2",
+        "color_scheme": "background-1"
+      }
+    },
+    "tours": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": { "type": "heading", "settings": { "heading": "TRUSTED ON THE BIGGEST TOURS", "heading_size": "h1" } },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Stealth Chairs aren't just studio furniture — they're touring gear. Our chairs have been at FOH and monitor world on tours for:<\/p><p><strong>John Fogerty<\/strong> — FOH position<br><strong>Rascal Flatts<\/strong> — National tour<br><strong>The Band Perry<\/strong> — Monitor engineer Justin Beckstead<br><strong>Hunter Hayes<\/strong> — FOH engineer<br><strong>LeAnn Rimes<\/strong> — Tour production<\/p><p>When the tour demands the best, engineers choose Stealth.<\/p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "VIEW WALL OF FAME",
+            "button_link": "shopify:\/\/pages\/wall-of-fame",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": ["heading", "text", "button"],
+      "settings": {
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "background-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "testimonial": {
+      "type": "stealth-testimonial-spotlight",
+      "settings": {
+        "quote": "<p>I've been using the Stealth at FOH for over 200 shows. From outdoor festivals to arena tours, this chair handles everything. The Stage Glide casters are a game changer on uneven surfaces. It's the one piece of gear I won't leave home without.<\/p>",
+        "name": "Justin Beckstead",
+        "title": "Monitor Engineer",
+        "credits": "The Band Perry | National Tours",
+        "button_label": "SEE MORE REVIEWS",
+        "button_link": "shopify:\/\/pages\/gallery",
+        "color_scheme": "background-1"
+      }
+    },
+    "trust_badges": {
+      "type": "stealth-trust-badges",
+      "settings": { "layout": "full", "color_scheme": "background-1" }
+    },
+    "products": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "stealth-chairs",
+        "products_to_show": 4,
+        "title": "SHOP STEALTH FOR TOURING",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": true,
+        "full_width": true,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "background-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "quiz_cta": {
+      "type": "stealth-quiz-cta",
+      "settings": {
+        "heading": "WHICH STEALTH IS RIGHT FOR YOUR RIG?",
+        "heading_size": "h2",
+        "text": "Answer 3 quick questions about your body type and touring setup — we'll recommend the perfect chair for your show days.",
+        "button_label": "TAKE THE 60-SECOND QUIZ",
+        "show_steps": true,
+        "color_scheme": "background-1"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": { "type": "heading", "settings": { "heading": "JOIN THE STEALTH COMMUNITY", "heading_size": "h1" } },
+        "paragraph": { "type": "paragraph", "settings": { "text": "<p>Get $50 off your first Stealth Chair, plus exclusive access to new products and engineer spotlights.<\/p>" } },
+        "email-form": { "type": "email_form", "settings": {} }
+      },
+      "block_order": ["heading", "paragraph", "email-form"],
+      "settings": { "color_scheme": "accent-1", "full_width": true, "padding_top": 40, "padding_bottom": 40 }
+    }
+  },
+  "order": ["hero", "stats", "problem", "features", "tours", "testimonial", "trust_badges", "products", "quiz_cta", "newsletter"]
+}
