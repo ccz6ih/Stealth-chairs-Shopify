@@ -12,29 +12,105 @@
     "hero": {
       "type": "stealth-page-hero",
       "settings": {
+        "overlay_opacity": 70,
+        "min_height": 350,
         "subheading": "STEALTH ON TOUR & IN THE STUDIO",
         "heading": "WALL OF FAME",
         "heading_size": "h0",
         "text": "From sold-out arenas to Grammy-winning studios — see where Stealth Chairs are working right now.",
+        "button_label": "",
+        "button_link": "",
         "text_alignment": "center",
-        "overlay_opacity": 70,
-        "min_height": 350,
         "color_scheme": "background-1"
       }
     },
     "gallery": {
       "type": "stealth-wall-of-fame",
       "blocks": {
-        "item_1": { "type": "fame_item", "settings": { "name": "John Fogerty FOH", "role": "FOH Engineer", "venue": "John Fogerty Tour", "category": "Live Sound" } },
-        "item_2": { "type": "fame_item", "settings": { "name": "Justin Beckstead", "role": "Monitor Engineer", "venue": "The Band Perry", "category": "Live Sound" } },
-        "item_3": { "type": "fame_item", "settings": { "name": "Timbaland", "role": "Producer \/ Artist", "venue": "Studio Session", "category": "Studio" } },
-        "item_4": { "type": "fame_item", "settings": { "name": "Rascal Flatts Tour", "role": "FOH \/ Monitor Team", "venue": "National Tour", "category": "Live Sound" } },
-        "item_5": { "type": "fame_item", "settings": { "name": "Hunter Hayes", "role": "FOH Engineer", "venue": "National Tour", "category": "Live Sound" } },
-        "item_6": { "type": "fame_item", "settings": { "name": "LeAnn Rimes", "role": "Tour Production", "venue": "Live Shows", "category": "Live Sound" } },
-        "item_7": { "type": "fame_item", "settings": { "name": "Christ Temple Church", "role": "Sound Operator", "venue": "Huntington, WV", "category": "Broadcast" } },
-        "item_8": { "type": "fame_item", "settings": { "name": "Home Studio Pro", "role": "Mix Engineer", "venue": "Private Studio", "category": "Studio" } }
+        "item_1": {
+          "type": "fame_item",
+          "settings": {
+            "image": "shopify://shop_images/John_Hiatt_Engineer_Jay_Wright_082912_b.jpg",
+            "name": "John Fogerty FOH",
+            "role": "FOH Engineer",
+            "venue": "John Fogerty Tour",
+            "category": "Live Sound"
+          }
+        },
+        "item_2": {
+          "type": "fame_item",
+          "settings": {
+            "name": "Justin Beckstead",
+            "role": "Monitor Engineer",
+            "venue": "The Band Perry",
+            "category": "Live Sound"
+          }
+        },
+        "item_3": {
+          "type": "fame_item",
+          "settings": {
+            "name": "Timbaland",
+            "role": "Producer / Artist",
+            "venue": "Studio Session",
+            "category": "Studio"
+          }
+        },
+        "item_4": {
+          "type": "fame_item",
+          "settings": {
+            "name": "Rascal Flatts Tour",
+            "role": "FOH / Monitor Team",
+            "venue": "National Tour",
+            "category": "Live Sound"
+          }
+        },
+        "item_5": {
+          "type": "fame_item",
+          "settings": {
+            "name": "Hunter Hayes",
+            "role": "FOH Engineer",
+            "venue": "National Tour",
+            "category": "Live Sound"
+          }
+        },
+        "item_6": {
+          "type": "fame_item",
+          "settings": {
+            "name": "LeAnn Rimes",
+            "role": "Tour Production",
+            "venue": "Live Shows",
+            "category": "Live Sound"
+          }
+        },
+        "item_7": {
+          "type": "fame_item",
+          "settings": {
+            "name": "Christ Temple Church",
+            "role": "Sound Operator",
+            "venue": "Huntington, WV",
+            "category": "Broadcast"
+          }
+        },
+        "item_8": {
+          "type": "fame_item",
+          "settings": {
+            "name": "Home Studio Pro",
+            "role": "Mix Engineer",
+            "venue": "Private Studio",
+            "category": "Studio"
+          }
+        }
       },
-      "block_order": ["item_1", "item_2", "item_3", "item_4", "item_5", "item_6", "item_7", "item_8"],
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4",
+        "item_5",
+        "item_6",
+        "item_7",
+        "item_8"
+      ],
       "settings": {
         "subheading": "THE PROFESSIONALS",
         "heading": "STEALTH IN ACTION",
@@ -45,24 +121,64 @@
     "press": {
       "type": "stealth-as-seen-in",
       "blocks": {
-        "logo_1": { "type": "logo", "settings": { "name": "Sweetwater" } },
-        "logo_2": { "type": "logo", "settings": { "name": "Sound on Sound" } },
-        "logo_3": { "type": "logo", "settings": { "name": "MusicRadar" } },
-        "logo_4": { "type": "logo", "settings": { "name": "Music Industry How To" } },
-        "logo_5": { "type": "logo", "settings": { "name": "Pro Audio Design" } }
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "name": "Sweetwater",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "name": "Sound on Sound",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "name": "MusicRadar",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "name": "Music Industry How To",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "name": "Pro Audio Design",
+            "link": ""
+          }
+        }
       },
-      "block_order": ["logo_1", "logo_2", "logo_3", "logo_4", "logo_5"],
-      "settings": { "heading": "As Featured In", "color_scheme": "background-1" }
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5"
+      ],
+      "settings": {
+        "heading": "As Featured In",
+        "color_scheme": "background-1"
+      }
     },
     "testimonial": {
       "type": "stealth-testimonial-spotlight",
       "settings": {
-        "quote": "<p>I've been using the Stealth at FOH for over 200 shows. From outdoor festivals to arena tours, this chair handles everything. The Stage Glide casters are a game changer on uneven surfaces. It's the one piece of gear I won't leave home without.<\/p>",
+        "image": "shopify://shop_images/John_Hiatt_Concert_082912.jpg",
+        "quote": "<p>I've been using the Stealth at FOH for over 200 shows. From outdoor festivals to arena tours, this chair handles everything. The Stage Glide casters are a game changer on uneven surfaces. It's the one piece of gear I won't leave home without.</p>",
         "name": "Justin Beckstead",
         "title": "Monitor Engineer",
         "credits": "The Band Perry | National Tours",
         "button_label": "FIND YOUR STEALTH",
-        "button_link": "shopify:\/\/collections\/stealth-chairs",
+        "button_link": "shopify://collections/stealth-chairs",
         "color_scheme": "background-1"
       }
     },
@@ -73,6 +189,7 @@
         "heading_size": "h2",
         "text": "Find the right Stealth for your role and body type. Take our quick quiz and join the professionals who trust Stealth.",
         "button_label": "TAKE THE 60-SECOND QUIZ",
+        "button_link": "",
         "show_steps": true,
         "color_scheme": "background-1"
       }
@@ -80,13 +197,43 @@
     "newsletter": {
       "type": "newsletter",
       "blocks": {
-        "heading": { "type": "heading", "settings": { "heading": "JOIN THE STEALTH COMMUNITY", "heading_size": "h1" } },
-        "paragraph": { "type": "paragraph", "settings": { "text": "<p>Get $50 off your first Stealth Chair, plus exclusive access to new products and engineer spotlights.<\/p>" } },
-        "email-form": { "type": "email_form", "settings": {} }
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "JOIN THE STEALTH COMMUNITY",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Get $50 off your first Stealth Chair, plus exclusive access to new products and engineer spotlights.</p>"
+          }
+        },
+        "email-form": {
+          "type": "email_form",
+          "settings": {}
+        }
       },
-      "block_order": ["heading", "paragraph", "email-form"],
-      "settings": { "color_scheme": "accent-1", "full_width": true, "padding_top": 40, "padding_bottom": 40 }
+      "block_order": [
+        "heading",
+        "paragraph",
+        "email-form"
+      ],
+      "settings": {
+        "color_scheme": "accent-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
-  "order": ["hero", "gallery", "press", "testimonial", "quiz_cta", "newsletter"]
+  "order": [
+    "hero",
+    "gallery",
+    "press",
+    "testimonial",
+    "quiz_cta",
+    "newsletter"
+  ]
 }
