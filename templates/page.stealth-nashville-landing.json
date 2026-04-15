@@ -368,7 +368,9 @@
         "judge_me_reviews_reviews_grid_widget_CJ64gd"
       ],
       "custom_css": [
-        "jm-text jm-text--align-center jm-grid-header__text {color: white !important;}"
+        "/* Judge.me grid header text */.jdgm-widget .jm-grid-header__text.jm-text.jm-text--align-center,.jdgm-widget .jm-grid-header__text {color: #ffffff !important;}",
+        "/* Average rating display */.jdgm-widget .jm-average-rating-display,.jdgm-widget .jm-average-rating-display * {color: #ffffff !important;}",
+        "/* Cast a wider net for Judge.me text elements */.jdgm-widget .jm-text {color: #ffffff !important;}"
       ],
       "settings": {
         "include_margins": true
