@@ -354,7 +354,7 @@
             "max_width": 1100,
             "corner_styling": "soft",
             "card_spacing": "medium",
-            "header_text_color": "#d32525",
+            "header_text_color": "#f9f9f9",
             "star_and_reviewer_name_color": "#f9f9f9",
             "drop_shadow_color": "#ffffff",
             "overlay_and_background_color": "#ffffff",
@@ -366,6 +366,9 @@
       },
       "block_order": [
         "judge_me_reviews_reviews_grid_widget_CJ64gd"
+      ],
+      "custom_css": [
+        "jm-text jm-text--align-center jm-grid-header__text {color: white !important;}"
       ],
       "settings": {
         "include_margins": true
