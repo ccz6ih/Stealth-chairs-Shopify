@@ -54,7 +54,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "color_scheme": "",
+        "color_scheme": "scheme-32f31201-6f37-4bc1-a278-f9e09bdf684d",
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 0
@@ -149,7 +149,7 @@
         "columns_desktop": 3,
         "column_alignment": "center",
         "background_style": "primary",
-        "color_scheme": "",
+        "color_scheme": "scheme-1",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -339,13 +339,13 @@
         "judge_me_reviews_reviews_grid_widget_CJ64gd": {
           "type": "shopify://apps/judge-me-reviews/blocks/reviews_grid_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
-            "show_sample_reviews": true,
+            "show_sample_reviews": false,
             "review_selection": "all",
             "products": [],
             "show_media_only": false,
             "display_order": "media_first",
-            "columns_desktop": 3,
-            "rows_desktop": 3,
+            "columns_desktop": 5,
+            "rows_desktop": 5,
             "columns_mobile": "2",
             "rows_mobile": 6,
             "show_stars": true,
@@ -355,10 +355,10 @@
             "corner_styling": "soft",
             "card_spacing": "medium",
             "header_text_color": "#d32525",
-            "star_and_reviewer_name_color": "#F9F9F9",
+            "star_and_reviewer_name_color": "#f9f9f9",
             "drop_shadow_color": "#ffffff",
             "overlay_and_background_color": "#ffffff",
-            "content_color": "#F9F9F9",
+            "content_color": "#f9f9f9",
             "header_text": "From our customers",
             "show_average_rating": true
           }
