@@ -479,6 +479,16 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "custom_liquid_bJ7Yid": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<script src=\"https://js.hsforms.net/forms/embed/39508280.js\" defer></script>\n<div class=\"hs-form-frame\" data-region=\"na1\" data-form-id=\"75716e24-d8ad-42a5-8d5a-e5a827ed5124\" data-portal-id=\"39508280\"></div>",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -491,6 +501,7 @@
     "1776267975b8e4e227",
     "featured_collection_L9aQpb",
     "newsletter",
-    "image_with_text_FnCzmm"
+    "image_with_text_FnCzmm",
+    "custom_liquid_bJ7Yid"
   ]
 }
