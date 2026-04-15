@@ -11,9 +11,364 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
+      }
+    },
+    "rich_text_RyaF6c": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_eFfYMV": {
+          "type": "heading",
+          "settings": {
+            "heading": "You Already Know How It Feels",
+            "heading_size": "h1"
+          }
+        },
+        "text_KzzEkJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Now find out why. Stealth Chairs by ErgoLab — the seating trusted by Nashville's top studios. Exclusive pricing for Rock Nashville clients.</p>"
+          }
+        },
+        "button_cnNPqH": {
+          "type": "button",
+          "settings": {
+            "button_label": "Explore the Lineup",
+            "button_link": "shopify://collections/stealth-chairs",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_eFfYMV",
+        "text_KzzEkJ",
+        "button_cnNPqH"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_agKm9M": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_XNYytt": {
+          "type": "heading",
+          "settings": {
+            "heading": "That Comfort Wasn't an Accident",
+            "heading_size": "h1"
+          }
+        },
+        "text_gDWdjW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Most chairs fight your body. Stealth works with it. Our patented seat technology eliminates the pressure points that traditional chairs create under your hips, tailbone, and legs — especially when you lean forward to work. The result is a chair that feels like it disappears underneath you so you can stay locked in for hours without the aches, the shifting, and the distractions.</p><p>If you noticed you didn't want to get up — that's the engineering doing its job.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_XNYytt",
+        "text_gDWdjW"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/MattDellwo081215.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_8qQYJb": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_7MmA8n": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/One_Republic_3.jpg",
+            "title": "Sized to Your Body",
+            "text": "<p>Every Stealth Chair is configured to your height, weight, and body type. No one-size-fits-all compromises.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_EPLhkf": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/virtu_office_chair_in_use.jpg",
+            "title": "Patented Ergonomic Technology",
+            "text": "<p>A pivoting seat shell and convex tensioned mesh surface maintain your spine's natural curve in both working and resting positions. No other chair in the world does this.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_wCJ9B9": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/envato-labs-image-edit_-_2025-10-06T214749.809.png",
+            "title": "<strong>Silent Operation</strong>",
+            "text": "<p>Zero noise. No creaking gears, no squeaking adjustments. Designed for studios where every sound matters.<br/></p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_7MmA8n",
+        "column_EPLhkf",
+        "column_wCJ9B9"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Built Different. Built for You.",
+        "heading_size": "h1",
+        "image_width": "half",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_Dd78BL": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_jqUhBD": {
+          "type": "heading",
+          "settings": {
+            "heading": "Trusted by the Best in Audio",
+            "heading_size": "h1"
+          }
+        },
+        "text_WG3dfg": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Stealth Chairs are in studios, on tours, and on stages around the world. From FOH engineers to Grammy-winning producers, professionals choose Stealth because it lets them do what they love, longer.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_jqUhBD",
+        "text_WG3dfg"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 16
+      }
+    },
+    "marquee_images_AT9E9D": {
+      "type": "marquee-images",
+      "blocks": {
+        "image_picker_gLEFmk": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/20171024_193136.jpg"
+          }
+        },
+        "image_picker_tAKYXn": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/IMG_20170325_195557887_424374dc-a62b-4737-85a7-9c9a6f5dc6f6.jpg"
+          }
+        },
+        "image_picker_3QdwWm": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/Jon-Fogerty-Monitors-FOH.jpg"
+          }
+        },
+        "image_picker_4YWBqG": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/292977028_178729444612104_8199590628973562900_n.jpg"
+          }
+        },
+        "image_picker_RVpkaE": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/rcj_6cf40813-25f7-4bda-addc-0e1126be7ade.png"
+          }
+        },
+        "image_picker_BMQGMV": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/unnamed_4.jpg"
+          }
+        },
+        "image_picker_4GpjA8": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/20171016_121418.jpg"
+          }
+        },
+        "image_picker_bUXBUJ": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/timbaland-mwtm-0620-176351C27-AA4C-F4B4-9AA3-6C87EB15790F.jpg"
+          }
+        },
+        "image_picker_dpiEnJ": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/IMG_20160627_134934591.jpg"
+          }
+        },
+        "image_picker_QjrCwV": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/Rascal-Flatts-090812-IMAG0193-scaled.jpg"
+          }
+        },
+        "image_picker_n8Y7KE": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/saveyourback.png"
+          }
+        },
+        "image_picker_xTkYyK": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/b-rotated.jpg"
+          }
+        },
+        "image_picker_r9Rhpk": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0402.jpg"
+          }
+        },
+        "image_picker_NAxbyR": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/stealth321_1.png"
+          }
+        },
+        "image_picker_Rc7UXQ": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/20160318_212500.jpg"
+          }
+        },
+        "image_picker_x3y8dX": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/296306761_173798158543248_6059231719397833643_n.jpg"
+          }
+        },
+        "image_picker_LEjgQ8": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/ACM-Delk-2105.jpg"
+          }
+        },
+        "image_picker_kDGeiW": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0128.jpg"
+          }
+        },
+        "image_picker_EcDLzN": {
+          "type": "image_picker",
+          "settings": {
+            "image": "shopify://shop_images/71582768_424274558271736_1117355994886837137_n.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_picker_gLEFmk",
+        "image_picker_tAKYXn",
+        "image_picker_3QdwWm",
+        "image_picker_4YWBqG",
+        "image_picker_RVpkaE",
+        "image_picker_BMQGMV",
+        "image_picker_4GpjA8",
+        "image_picker_bUXBUJ",
+        "image_picker_dpiEnJ",
+        "image_picker_QjrCwV",
+        "image_picker_n8Y7KE",
+        "image_picker_xTkYyK",
+        "image_picker_r9Rhpk",
+        "image_picker_NAxbyR",
+        "image_picker_Rc7UXQ",
+        "image_picker_x3y8dX",
+        "image_picker_LEjgQ8",
+        "image_picker_kDGeiW",
+        "image_picker_EcDLzN"
+      ],
+      "settings": {
+        "colorBackground": "#1f1f21",
+        "marquee_height": 200,
+        "marquee_padding": 0,
+        "image_width": 200
+      }
+    },
+    "1776267975b8e4e227": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_reviews_grid_widget_CJ64gd": {
+          "type": "shopify://apps/judge-me-reviews/blocks/reviews_grid_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": true,
+            "review_selection": "all",
+            "products": [],
+            "show_media_only": false,
+            "display_order": "media_first",
+            "columns_desktop": 3,
+            "rows_desktop": 3,
+            "columns_mobile": "2",
+            "rows_mobile": 6,
+            "show_stars": true,
+            "show_reviewer_name": true,
+            "show_review_title_on_hover_desktop": true,
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "card_spacing": "medium",
+            "header_text_color": "#000000",
+            "star_and_reviewer_name_color": "#F9F9F9",
+            "drop_shadow_color": "#000000",
+            "overlay_and_background_color": "#000000",
+            "content_color": "#F9F9F9",
+            "header_text": "From our customers",
+            "show_average_rating": true
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_reviews_grid_widget_CJ64gd"
+      ],
+      "settings": {
+        "include_margins": true
       }
     },
     "newsletter": {
@@ -52,6 +407,12 @@
   },
   "order": [
     "main",
+    "rich_text_RyaF6c",
+    "image_with_text_agKm9M",
+    "multicolumn_8qQYJb",
+    "rich_text_Dd78BL",
+    "marquee_images_AT9E9D",
+    "1776267975b8e4e227",
     "newsletter"
   ]
 }
