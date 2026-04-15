@@ -329,7 +329,7 @@
       "settings": {
         "colorBackground": "#1f1f21",
         "marquee_height": 200,
-        "marquee_padding": 0,
+        "marquee_padding": 56,
         "image_width": 200
       }
     },
