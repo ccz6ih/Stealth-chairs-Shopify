@@ -250,7 +250,7 @@
         "button"
       ],
       "settings": {
-        "image": "shopify://shop_images/stealthchair.JPG",
+        "image": "shopify://shop_images/Crystal_Gayle_Phantom_Focus_eChair_2.jpg",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -262,7 +262,7 @@
         "section_color_scheme": "",
         "color_scheme": "background-1",
         "padding_top": 40,
-        "padding_bottom": 0
+        "padding_bottom": 36
       }
     },
     "image-with-text-1": {
