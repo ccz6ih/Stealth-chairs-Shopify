@@ -1,0 +1,963 @@
+<div class="stealth-chair-quiz color-{{ section.settings.color_scheme }} gradient" data-stealth-quiz="{{ section.id }}">
+  <div class="stealth-chair-quiz__inner page-width">
+    <div class="stealth-chair-quiz__card">
+      <div class="stealth-chair-quiz__intro">
+        {%- if section.settings.subheading != blank -%}
+          <span class="stealth-chair-quiz__subheading">{{ section.settings.subheading }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="stealth-chair-quiz__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.intro_text != blank -%}
+          <p class="stealth-chair-quiz__lede">{{ section.settings.intro_text }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.highlight_text != blank -%}
+          <div class="stealth-chair-quiz__highlight">
+            <svg class="stealth-chair-quiz__highlight-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 12c0-3 2.5-6 6-6s4 3 4 6-2.5 6-4 6"/>
+              <path d="M22 12c0-3-2.5-6-6-6s-4 3-4 6 2.5 6 4 6"/>
+            </svg>
+            <span>{{ section.settings.highlight_text }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="stealth-chair-quiz__quiz" data-quiz-content>
+        <div class="stealth-chair-quiz__progress-wrap">
+          <div class="stealth-chair-quiz__progress">
+            <div class="stealth-chair-quiz__progress-bar" data-progress-bar style="width: 0%"></div>
+          </div>
+          <div class="stealth-chair-quiz__progress-text">
+            Question <span data-current-q>1</span> of <span data-total-q>9</span>
+          </div>
+        </div>
+
+        <div class="stealth-chair-quiz__question">
+          <h3 class="stealth-chair-quiz__question-text" data-question-text>&nbsp;</h3>
+          <div class="stealth-chair-quiz__educational" data-educational></div>
+        </div>
+
+        <div class="stealth-chair-quiz__options" data-options-container></div>
+      </div>
+
+      <div class="stealth-chair-quiz__result" data-result-content hidden></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .stealth-chair-quiz {
+    padding: 4rem 0;
+  }
+
+  .stealth-chair-quiz__inner {
+    max-width: 960px;
+  }
+
+  .stealth-chair-quiz__card {
+    padding: 3rem 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.05) 100%);
+  }
+
+  .stealth-chair-quiz__intro {
+    text-align: center;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--color-button);
+  }
+
+  .stealth-chair-quiz__subheading {
+    display: inline-block;
+    font-family: var(--font-heading-family);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-button);
+    margin-bottom: 1rem;
+  }
+
+  .stealth-chair-quiz__heading {
+    font-family: var(--font-heading-family);
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+    line-height: 1.1;
+  }
+
+  .stealth-chair-quiz__lede {
+    font-size: 1.05rem;
+    opacity: 0.85;
+    margin: 0 0 1.5rem;
+    line-height: 1.5;
+  }
+
+  .stealth-chair-quiz__highlight {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 3px solid var(--color-button);
+    padding: 0.875rem 1.25rem;
+    margin-top: 0.5rem;
+    text-align: left;
+    font-size: 0.95rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .stealth-chair-quiz__highlight-icon {
+    color: var(--color-button);
+    flex-shrink: 0;
+  }
+
+  .stealth-chair-quiz__progress-wrap {
+    margin-bottom: 2rem;
+  }
+
+  .stealth-chair-quiz__progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .stealth-chair-quiz__progress-bar {
+    height: 100%;
+    background: var(--color-button);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  .stealth-chair-quiz__progress-text {
+    text-align: center;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.6;
+    margin-top: 0.75rem;
+    font-family: var(--font-heading-family);
+  }
+
+  .stealth-chair-quiz__question-text {
+    font-family: var(--font-heading-family);
+    font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+    line-height: 1.25;
+    margin: 0 0 1.25rem;
+    font-weight: 700;
+  }
+
+  .stealth-chair-quiz__educational {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 1rem 1.125rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .stealth-chair-quiz__educational-icon {
+    color: var(--color-button);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .stealth-chair-quiz__options {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .stealth-chair-quiz__option {
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    color: inherit;
+    font-family: inherit;
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .stealth-chair-quiz__option:hover,
+  .stealth-chair-quiz__option:focus-visible {
+    border-color: var(--color-button);
+    background: rgba(255, 255, 255, 0.04);
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  .stealth-chair-quiz__result {
+    animation: stealthQuizFade 0.45s ease;
+  }
+
+  @keyframes stealthQuizFade {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stealth-chair-quiz__result-header {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .stealth-chair-quiz__result-eyebrow {
+    display: inline-block;
+    font-family: var(--font-heading-family);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-button);
+    margin-bottom: 0.5rem;
+  }
+
+  .stealth-chair-quiz__result-model {
+    display: block;
+    font-family: var(--font-heading-family);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0.25rem 0 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .stealth-chair-quiz__result-fit {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin: 0;
+  }
+
+  .stealth-chair-quiz__result-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .stealth-chair-quiz__info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .stealth-chair-quiz__info-title {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--font-heading-family);
+    color: var(--color-button);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0 0 1rem;
+  }
+
+  .stealth-chair-quiz__info-title svg {
+    flex-shrink: 0;
+  }
+
+  .stealth-chair-quiz__info-card p {
+    margin: 0 0 0.75rem;
+    line-height: 1.55;
+  }
+
+  .stealth-chair-quiz__info-card ul {
+    margin: 0.75rem 0 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .stealth-chair-quiz__info-card li {
+    margin-bottom: 0.5rem;
+  }
+
+  .stealth-chair-quiz__testimonial {
+    margin-top: 1.25rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid var(--color-button);
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+    line-height: 1.55;
+  }
+
+  .stealth-chair-quiz__testimonial-author {
+    display: block;
+    text-align: right;
+    margin-top: 0.5rem;
+    color: var(--color-button);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  .stealth-chair-quiz__compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .stealth-chair-quiz__compare th {
+    text-align: left;
+    padding: 0.75rem 0.875rem;
+    font-family: var(--font-heading-family);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-button);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .stealth-chair-quiz__compare td {
+    padding: 0.75rem 0.875rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    vertical-align: top;
+  }
+
+  .stealth-chair-quiz__compare-cell {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .stealth-chair-quiz__compare-cell--yes {
+    color: inherit;
+  }
+
+  .stealth-chair-quiz__compare-cell--yes svg {
+    color: var(--color-button);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .stealth-chair-quiz__compare-cell--no {
+    opacity: 0.5;
+  }
+
+  .stealth-chair-quiz__compare-cell--no svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .stealth-chair-quiz__compare-wrap {
+    overflow-x: auto;
+  }
+
+  .stealth-chair-quiz__specs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .stealth-chair-quiz__spec {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0.875rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .stealth-chair-quiz__spec-label {
+    display: block;
+    font-family: var(--font-heading-family);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+    margin-bottom: 0.25rem;
+  }
+
+  .stealth-chair-quiz__spec-value {
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .stealth-chair-quiz__roi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0 0.75rem;
+  }
+
+  .stealth-chair-quiz__roi-item {
+    text-align: center;
+  }
+
+  .stealth-chair-quiz__roi-value {
+    display: block;
+    font-family: var(--font-heading-family);
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 800;
+    color: var(--color-button);
+    line-height: 1;
+  }
+
+  .stealth-chair-quiz__roi-label {
+    display: block;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-top: 0.4rem;
+  }
+
+  .stealth-chair-quiz__buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stealth-chair-quiz__btn {
+    flex: 1;
+    min-width: 200px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .stealth-chair-quiz__guarantee {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stealth-chair-quiz__guarantee-title {
+    font-family: var(--font-heading-family);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin: 0 0 1rem;
+    opacity: 0.7;
+  }
+
+  .stealth-chair-quiz__guarantee-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .stealth-chair-quiz__guarantee-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+
+  .stealth-chair-quiz__guarantee-item svg {
+    color: var(--color-button);
+    flex-shrink: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .stealth-chair-quiz {
+      padding: 2.5rem 0;
+    }
+
+    .stealth-chair-quiz__card {
+      padding: 1.75rem 1.25rem;
+    }
+
+    .stealth-chair-quiz__buttons {
+      flex-direction: column;
+    }
+
+    .stealth-chair-quiz__btn {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-stealth-quiz="{{ section.id }}"]');
+    if (!root) return;
+
+    var ICONS = {
+      info: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+      check: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>',
+      x: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+      arrow: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>',
+      list: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>',
+      wave: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c0-3 2.5-6 6-6s4 3 4 6-2.5 6-4 6"/><path d="M22 12c0-3-2.5-6-6-6s-4 3-4 6 2.5 6 4 6"/></svg>',
+      grid: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+      ruler: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3H3v18h18V3z"/><path d="M3 9h4"/><path d="M3 15h4"/><path d="M9 3v4"/><path d="M15 3v4"/></svg>',
+      compare: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg>',
+      coin: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>'
+    };
+
+    var questions = [
+      {
+        text: "What's your primary use for the chair?",
+        educational: "Different professions require unique support. Audio engineers lean forward 23% more than typical office workers, requiring specialized lumbar support that moves with them.",
+        options: [
+          { text: "Music production / audio engineering", value: "audio" },
+          { text: "Live sound / FOH engineering", value: "live" },
+          { text: "Video / post production", value: "video" },
+          { text: "Lighting design / control", value: "lighting" },
+          { text: "Other studio / creative work", value: "other" }
+        ]
+      },
+      {
+        text: "How many hours do you typically spend sitting per day?",
+        educational: "After 4 hours of sitting, spinal disc pressure increases by 40%. ZenWave technology reduces this pressure by allowing natural movement.",
+        options: [
+          { text: "2-4 hours", value: "short" },
+          { text: "4-6 hours", value: "medium" },
+          { text: "6-8 hours", value: "long" },
+          { text: "8+ hours (marathon sessions)", value: "marathon" }
+        ]
+      },
+      {
+        text: "Do you currently experience any discomfort during work?",
+        educational: "85% of audio professionals report work-related pain. Early intervention with proper seating prevents career-threatening injuries.",
+        options: [
+          { text: "Lower back pain", value: "lower_back" },
+          { text: "Neck / shoulder tension", value: "neck" },
+          { text: "Hip or tailbone discomfort", value: "hips" },
+          { text: "General fatigue", value: "fatigue" },
+          { text: "No issues — looking to prevent them", value: "prevention" }
+        ]
+      },
+      {
+        text: "What chair are you using now?",
+        educational: "Most chairs last 2-3 years in professional use. Stealth chairs are built to last 10+ years with a warranty to match.",
+        options: [
+          { text: "Basic office / task chair", value: "basic" },
+          { text: "Gaming chair", value: "gaming" },
+          { text: "Herman Miller (Aeron / Embody)", value: "herman" },
+          { text: "Other ergonomic chair", value: "ergo" },
+          { text: "Whatever was available", value: "whatever" }
+        ]
+      },
+      {
+        text: "What's your height?",
+        educational: "Proper seat height is crucial. Your knees should be at 90° with feet flat on the floor. We customize cylinder height to your measurements.",
+        options: [
+          { text: "Under 5'6\"", value: "under56" },
+          { text: "5'6\" - 5'10\"", value: "average" },
+          { text: "5'10\" - 6'2\"", value: "tall" },
+          { text: "Over 6'2\"", value: "very_tall" }
+        ]
+      },
+      {
+        text: "What's your weight range?",
+        educational: "Weight distribution affects seat design. Our mesh dynamically adjusts tension to provide perfect support for any body type.",
+        options: [
+          { text: "Under 150 lbs", value: "under150" },
+          { text: "150-200 lbs", value: "average_weight" },
+          { text: "200-250 lbs", value: "above_average" },
+          { text: "Over 250 lbs", value: "heavy" }
+        ]
+      },
+      {
+        text: "How often do you lean forward to work at your console / desk?",
+        educational: "Traditional chairs create pressure when leaning forward. ZenWave technology tilts the seat with you, maintaining healthy spinal alignment.",
+        options: [
+          { text: "Constantly (mixing / detailed work)", value: "constant" },
+          { text: "Frequently (active sessions)", value: "frequent" },
+          { text: "Occasionally", value: "occasional" },
+          { text: "Rarely (mostly reclined)", value: "rarely" }
+        ]
+      },
+      {
+        text: "Do you need armrests for your work?",
+        educational: "Many musicians prefer no armrests for instrument access. Our optional 4D armrests can be removed or adjusted completely out of the way.",
+        options: [
+          { text: "Yes, essential for support", value: "essential" },
+          { text: "Nice to have, but removable", value: "optional" },
+          { text: "No, they get in the way", value: "no" },
+          { text: "Depends on the task", value: "flexible" }
+        ]
+      },
+      {
+        text: "Where will you primarily use this chair?",
+        educational: "Different environments need different features. Home studios benefit from style, while commercial facilities need maximum durability.",
+        options: [
+          { text: "Home studio", value: "home" },
+          { text: "Commercial studio", value: "commercial" },
+          { text: "Live venue / touring", value: "touring" },
+          { text: "Multiple locations", value: "multiple" }
+        ]
+      }
+    ];
+
+    var testimonials = {
+      audio: {
+        quote: "After putting up with gaming chairs for years, the Stealth has been incredible. The forward tilt when mixing is a game-changer. My back pain is gone.",
+        author: "James K., Audio Engineer"
+      },
+      live: {
+        quote: "I've used this chair at FOH for 200+ shows. The portability and comfort during 14-hour festival days is unmatched. Worth every penny.",
+        author: "Sarah M., FOH Engineer"
+      },
+      health: {
+        quote: "As a studio owner, I bought 6 Stealth chairs. My engineers' productivity is up, sick days are down. Best investment I've made.",
+        author: "Mike D., Studio Owner"
+      }
+    };
+
+    var products = {
+      stealthStandard: { url: "/products/stealth-standard-chair-midnight-black-standard-size-seat", price: 599 },
+      stealthPro: { url: "/products/stealth-pro-chair-midnight-black-large-size-seat", price: 799 },
+      stealthExecutive: { url: "/products/stealth-executive-audio-engineer-chair", price: 649 },
+      stealthProExecutive: { url: "/products/stealth-pro-executive-audio-engineer-chair", price: 749 }
+    };
+
+    var currentQuestion = 0;
+    var answers = {};
+
+    var quizContent = root.querySelector('[data-quiz-content]');
+    var resultContent = root.querySelector('[data-result-content]');
+    var questionText = root.querySelector('[data-question-text]');
+    var educational = root.querySelector('[data-educational]');
+    var optionsContainer = root.querySelector('[data-options-container]');
+    var progressBar = root.querySelector('[data-progress-bar]');
+    var currentQEl = root.querySelector('[data-current-q]');
+    var totalQEl = root.querySelector('[data-total-q]');
+
+    function updateProgress() {
+      var pct = ((currentQuestion + 1) / questions.length) * 100;
+      progressBar.style.width = pct + '%';
+      currentQEl.textContent = currentQuestion + 1;
+      totalQEl.textContent = questions.length;
+    }
+
+    function showQuestion() {
+      var q = questions[currentQuestion];
+      questionText.textContent = q.text;
+      educational.innerHTML =
+        '<span class="stealth-chair-quiz__educational-icon">' + ICONS.info + '</span>' +
+        '<span>' + q.educational + '</span>';
+
+      optionsContainer.innerHTML = '';
+      q.options.forEach(function (option, index) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'stealth-chair-quiz__option';
+        btn.textContent = option.text;
+        btn.addEventListener('click', function () { handleAnswer(option.value, option.text); });
+        btn.style.opacity = '0';
+        btn.style.transform = 'translateY(12px)';
+        setTimeout(function () {
+          btn.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          btn.style.opacity = '1';
+          btn.style.transform = 'translateY(0)';
+        }, index * 50);
+        optionsContainer.appendChild(btn);
+      });
+
+      updateProgress();
+    }
+
+    function handleAnswer(value, text) {
+      answers[currentQuestion] = { value: value, text: text };
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        showQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function calculateChairFit() {
+      var heightScore = {
+        under56: { standard: 10, pro: 7 },
+        average: { standard: 10, pro: 10 },
+        tall: { standard: 7, pro: 10 },
+        very_tall: { standard: 5, pro: 10 }
+      };
+      var weightScore = {
+        under150: { standard: 10, pro: 8 },
+        average_weight: { standard: 10, pro: 10 },
+        above_average: { standard: 7, pro: 10 },
+        heavy: { standard: 5, pro: 10 }
+      };
+      var height = answers[4].value;
+      var weight = answers[5].value;
+      return {
+        standardFit: (heightScore[height].standard + weightScore[weight].standard) / 2,
+        proFit: (heightScore[height].pro + weightScore[weight].pro) / 2
+      };
+    }
+
+    function getRecommendation() {
+      var fit = calculateChairFit();
+      var needsPro = fit.proFit > fit.standardFit && fit.standardFit < 8;
+      var leansForward = ['constant', 'frequent'].indexOf(answers[6].value) !== -1;
+      var longHours = ['long', 'marathon'].indexOf(answers[1].value) !== -1;
+      var hasBackPain = answers[2].value === 'lower_back';
+      var wantsExecutive = longHours || (hasBackPain && answers[1].value !== 'short');
+
+      var model, url, price, dimensions, seatSize;
+      if (needsPro) {
+        model = wantsExecutive ? 'Stealth Pro Executive' : 'Stealth Pro';
+        url = wantsExecutive ? products.stealthProExecutive.url : products.stealthPro.url;
+        price = wantsExecutive ? products.stealthProExecutive.price : products.stealthPro.price;
+        seatSize = 'Large';
+        dimensions = { width: '20.25"', depth: '19.5"', seatHeight: '22"-28" (short) or 25"-32" (tall cylinder)' };
+      } else {
+        model = wantsExecutive ? 'Stealth Executive' : 'Stealth Standard';
+        url = wantsExecutive ? products.stealthExecutive.url : products.stealthStandard.url;
+        price = wantsExecutive ? products.stealthExecutive.price : products.stealthStandard.price;
+        seatSize = 'Standard';
+        dimensions = { width: '18.5"', depth: '16.75"', seatHeight: '19.5" (standard) or 25" (extended cylinder)' };
+      }
+
+      var cylinderRec = {
+        under56: 'short / standard',
+        average: 'standard',
+        tall: 'tall / extended',
+        very_tall: 'tall / extended'
+      }[answers[4].value];
+
+      return {
+        model: model, url: url, price: price, seatSize: seatSize,
+        dimensions: dimensions, cylinderRec: cylinderRec,
+        leansForward: leansForward, wantsExecutive: wantsExecutive,
+        fitScore: needsPro ? fit.proFit : fit.standardFit,
+        userProfile: {
+          use: answers[0].text, hours: answers[1].text, pain: answers[2].text,
+          currentChair: answers[3].text, height: answers[4].text, weight: answers[5].text
+        }
+      };
+    }
+
+    function getComparison(currentChair) {
+      var rows = {
+        basic: [
+          ['Forward tilt support', 'Patented ZenWave', 'Fixed position'],
+          ['Lumbar support', 'Dynamic, follows movement', 'Static or none'],
+          ['Build quality', '10-year warranty', '1-2 year typical'],
+          ['Professional design', 'Studio-specific', 'Generic office']
+        ],
+        gaming: [
+          ['Breathability', 'Mesh seat & back', 'Leather / pleather'],
+          ['Ergonomic design', 'Research-based', 'Aesthetic-focused'],
+          ['Forward work position', 'Optimized support', 'Forces upright'],
+          ['Long-term comfort', '8+ hour sessions', '2-4 hours max']
+        ],
+        herman: [
+          ['Audio-specific design', 'Console work optimized', 'Office-focused'],
+          ['Forward tilt', 'Patented ZenWave', 'Limited or none'],
+          ['Value', '$599-799', '$1,400+'],
+          ['Musician-friendly', 'Armrest options', 'Fixed armrests']
+        ]
+      };
+      var key = (currentChair === 'ergo' || currentChair === 'whatever') ? 'basic' : currentChair;
+      return rows[key] || rows.basic;
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function showResult() {
+      var rec = getRecommendation();
+      var comparison = getComparison(answers[3].value);
+
+      var testimonial = testimonials.audio;
+      if (answers[0].value === 'live') testimonial = testimonials.live;
+      else if (answers[2].value !== 'prevention') testimonial = testimonials.health;
+
+      var dailyCost = (rec.price / (365 * 10)).toFixed(2);
+      var chiropractorSavings = answers[2].value !== 'prevention' ? 2400 : 1200;
+      var productivityGain = rec.leansForward ? '15%' : '10%';
+
+      var fitLabel = rec.fitScore >= 9 ? 'Excellent fit' : 'Great fit';
+
+      var compareRows = comparison.map(function (row) {
+        return '<tr>' +
+          '<td>' + escapeHtml(row[0]) + '</td>' +
+          '<td><span class="stealth-chair-quiz__compare-cell stealth-chair-quiz__compare-cell--yes">' + ICONS.check + '<span>' + escapeHtml(row[1]) + '</span></span></td>' +
+          '<td><span class="stealth-chair-quiz__compare-cell stealth-chair-quiz__compare-cell--no">' + ICONS.x + '<span>' + escapeHtml(row[2]) + '</span></span></td>' +
+          '</tr>';
+      }).join('');
+
+      var html =
+        '<div class="stealth-chair-quiz__result-header">' +
+          '<span class="stealth-chair-quiz__result-eyebrow">Your perfect match</span>' +
+          '<span class="stealth-chair-quiz__result-model">' + escapeHtml(rec.model) + '</span>' +
+          '<p class="stealth-chair-quiz__result-fit">' + fitLabel + ' for your body type and work style</p>' +
+        '</div>' +
+        '<div class="stealth-chair-quiz__result-grid">' +
+          '<div class="stealth-chair-quiz__info-card">' +
+            '<h4 class="stealth-chair-quiz__info-title">' + ICONS.list + '<span>Why this chair</span></h4>' +
+            '<p>Based on your ' + escapeHtml(rec.userProfile.hours.toLowerCase()) + ' of daily use in ' + escapeHtml(rec.userProfile.use.toLowerCase()) + ', ' +
+              (rec.leansForward ? 'frequent forward-leaning work position, ' : '') +
+              'and ' + escapeHtml(rec.userProfile.height.toLowerCase()) + ' height with ' + escapeHtml(rec.userProfile.weight.toLowerCase()) + ' build, the ' + escapeHtml(rec.model) + ' provides optimal support.</p>' +
+            '<p>' + (rec.wantsExecutive
+              ? '<strong>Executive backrest recommended:</strong> for your long sessions, the higher backrest provides crucial upper back and shoulder support, reducing fatigue during marathon work days.'
+              : '<strong>Standard backrest recommended:</strong> perfect for your work style, providing excellent support while maintaining freedom of movement.') + '</p>' +
+            '<blockquote class="stealth-chair-quiz__testimonial">' +
+              escapeHtml(testimonial.quote) +
+              '<span class="stealth-chair-quiz__testimonial-author">— ' + escapeHtml(testimonial.author) + '</span>' +
+            '</blockquote>' +
+          '</div>' +
+
+          '<div class="stealth-chair-quiz__info-card">' +
+            '<h4 class="stealth-chair-quiz__info-title">' + ICONS.wave + '<span>ZenWave technology benefits</span></h4>' +
+            '<p>The patented ZenWave motion provides unbinding, stress-free support as you lean forward. The seat pivots with your body to maintain proper spinal alignment while the mesh surface dynamically redistributes pressure.</p>' +
+            '<ul>' +
+              '<li>Reduces disc pressure by up to 40% when leaning forward</li>' +
+              '<li>Increases blood flow to prevent numbness</li>' +
+              '<li>Maintains lumbar curve in all positions</li>' +
+              '<li>Eliminates pressure points on tailbone and thighs</li>' +
+            '</ul>' +
+          '</div>' +
+
+          '<div class="stealth-chair-quiz__info-card">' +
+            '<h4 class="stealth-chair-quiz__info-title">' + ICONS.compare + '<span>' + escapeHtml(rec.model) + ' vs. your ' + escapeHtml(answers[3].text.toLowerCase()) + '</span></h4>' +
+            '<div class="stealth-chair-quiz__compare-wrap">' +
+              '<table class="stealth-chair-quiz__compare">' +
+                '<thead><tr><th>Feature</th><th>Stealth ' + escapeHtml(rec.seatSize) + '</th><th>Current chair</th></tr></thead>' +
+                '<tbody>' + compareRows + '</tbody>' +
+              '</table>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="stealth-chair-quiz__info-card">' +
+            '<h4 class="stealth-chair-quiz__info-title">' + ICONS.ruler + '<span>Your specifications</span></h4>' +
+            '<div class="stealth-chair-quiz__specs">' +
+              '<div class="stealth-chair-quiz__spec"><span class="stealth-chair-quiz__spec-label">Seat size</span><span class="stealth-chair-quiz__spec-value">' + escapeHtml(rec.seatSize) + '</span></div>' +
+              '<div class="stealth-chair-quiz__spec"><span class="stealth-chair-quiz__spec-label">Width</span><span class="stealth-chair-quiz__spec-value">' + escapeHtml(rec.dimensions.width) + '</span></div>' +
+              '<div class="stealth-chair-quiz__spec"><span class="stealth-chair-quiz__spec-label">Depth</span><span class="stealth-chair-quiz__spec-value">' + escapeHtml(rec.dimensions.depth) + '</span></div>' +
+              '<div class="stealth-chair-quiz__spec"><span class="stealth-chair-quiz__spec-label">Cylinder</span><span class="stealth-chair-quiz__spec-value">' + escapeHtml(rec.cylinderRec) + '</span></div>' +
+            '</div>' +
+            '<p style="margin-top: 1rem; opacity: 0.8;"><strong>Height range:</strong> ' + escapeHtml(rec.dimensions.seatHeight) + '<br><strong>Casters:</strong> both 2" office and 4" TourMax included</p>' +
+          '</div>' +
+
+          '<div class="stealth-chair-quiz__info-card">' +
+            '<h4 class="stealth-chair-quiz__info-title">' + ICONS.coin + '<span>Your investment analysis</span></h4>' +
+            '<div class="stealth-chair-quiz__roi">' +
+              '<div class="stealth-chair-quiz__roi-item"><span class="stealth-chair-quiz__roi-value">$' + dailyCost + '</span><span class="stealth-chair-quiz__roi-label">Per day over 10 years</span></div>' +
+              '<div class="stealth-chair-quiz__roi-item"><span class="stealth-chair-quiz__roi-value">$' + chiropractorSavings + '</span><span class="stealth-chair-quiz__roi-label">Annual health savings</span></div>' +
+              '<div class="stealth-chair-quiz__roi-item"><span class="stealth-chair-quiz__roi-value">' + productivityGain + '</span><span class="stealth-chair-quiz__roi-label">Productivity gain</span></div>' +
+            '</div>' +
+            '<p style="text-align: center; opacity: 0.75; margin: 0;">Most users report the chair pays for itself within 4-6 months through reduced pain and increased productivity.</p>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="stealth-chair-quiz__buttons">' +
+          '<a href="' + escapeHtml(rec.url) + '" class="button button--primary stealth-chair-quiz__btn">View ' + escapeHtml(rec.model) + ' ' + ICONS.arrow + '</a>' +
+          '<button type="button" class="button button--secondary stealth-chair-quiz__btn" data-restart>Start over</button>' +
+        '</div>' +
+
+        '<div class="stealth-chair-quiz__guarantee">' +
+          '<h4 class="stealth-chair-quiz__guarantee-title">Your purchase is protected</h4>' +
+          '<div class="stealth-chair-quiz__guarantee-list">' +
+            '<div class="stealth-chair-quiz__guarantee-item">' + ICONS.check + '<span>30-day money-back guarantee</span></div>' +
+            '<div class="stealth-chair-quiz__guarantee-item">' + ICONS.check + '<span>10-year warranty</span></div>' +
+            '<div class="stealth-chair-quiz__guarantee-item">' + ICONS.check + '<span>Free shipping</span></div>' +
+          '</div>' +
+        '</div>';
+
+      quizContent.hidden = true;
+      resultContent.hidden = false;
+      resultContent.innerHTML = html;
+
+      var restart = resultContent.querySelector('[data-restart]');
+      if (restart) restart.addEventListener('click', resetQuiz);
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'quiz_complete', {
+          event_category: 'engagement',
+          event_label: rec.model,
+          value: rec.price
+        });
+      }
+    }
+
+    function resetQuiz() {
+      currentQuestion = 0;
+      answers = {};
+      quizContent.hidden = false;
+      resultContent.hidden = true;
+      resultContent.innerHTML = '';
+      showQuestion();
+      root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    showQuestion();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Stealth Chair Quiz",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Eyebrow",
+      "default": "60-SECOND FIT FINDER"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "FIND YOUR PERFECT STEALTH"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h1", "label": "Large" },
+        { "value": "h2", "label": "Medium" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "text",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "Answer a few questions and we'll match you to the chair built for how you actually work."
+    },
+    {
+      "type": "text",
+      "id": "highlight_text",
+      "label": "Highlight callout",
+      "default": "Patented ZenWave technology — the only chair that moves with you."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stealth Chair Quiz"
+    }
+  ]
+}
+{% endschema %}
