@@ -24,7 +24,7 @@
       <div class="stealth-hero-video__placeholder"></div>
     {%- endif -%}
 
-    <div class="stealth-hero-video__overlay" style="--overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+    <div class="stealth-hero-video__overlay" style="background-color: rgba(15, 15, 17, {{ section.settings.overlay_opacity | times: 0.01 }});"></div>
   </div>
 
   <div class="stealth-hero-video__content page-width">
@@ -96,53 +96,61 @@
   .stealth-hero-video__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
+    background-color: rgba(15, 15, 17, 0.55);
+    background-image: linear-gradient(
       to bottom,
-      rgba(31, 31, 33, var(--overlay-opacity, 0.6)) 0%,
-      rgba(31, 31, 33, calc(var(--overlay-opacity, 0.6) * 1.2)) 100%
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.35) 100%
     );
+    z-index: 1;
   }
 
   .stealth-hero-video__content {
     position: relative;
     z-index: 2;
     text-align: center;
-    max-width: 800px;
+    max-width: 900px;
     padding: 4rem 1.5rem;
+    color: #ffffff;
   }
 
   .stealth-hero-video__subheading {
     display: inline-block;
     font-family: var(--font-heading-family);
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     color: var(--color-button);
-    margin-bottom: 1rem;
-    padding: 0.4rem 1rem;
-    border: 1px solid var(--color-button);
+    margin-bottom: 1.25rem;
+    padding: 0.55rem 1.15rem;
+    border: 1.5px solid var(--color-button);
     border-radius: 2px;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
   }
 
   .stealth-hero-video__heading {
     font-family: var(--font-heading-family);
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    line-height: 1.05;
-    margin: 0 0 1.25rem;
+    line-height: 1.02;
+    margin: 0 0 1.5rem;
     letter-spacing: -0.01em;
+    color: #ffffff;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
   }
 
-  .stealth-hero-video__heading.h0 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
-  .stealth-hero-video__heading.h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+  .stealth-hero-video__heading.h0 { font-size: clamp(2.75rem, 6.5vw, 5.25rem); }
+  .stealth-hero-video__heading.h1 { font-size: clamp(2.25rem, 5.25vw, 4rem); }
 
   .stealth-hero-video__text {
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    opacity: 0.85;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
+    font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+    color: #f5f5f5;
+    max-width: 640px;
+    margin: 0 auto 2.25rem;
+    line-height: 1.55;
+    font-weight: 400;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
   }
 
   .stealth-hero-video__actions {
@@ -182,11 +190,22 @@
 
   @media screen and (max-width: 749px) {
     .stealth-hero-video {
-      min-height: 500px;
+      min-height: 520px;
     }
 
     .stealth-hero-video__content {
       padding: 3rem 1.25rem;
+    }
+
+    .stealth-hero-video__subheading {
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      padding: 0.5rem 0.9rem;
+    }
+
+    .stealth-hero-video__text {
+      font-size: 1.1rem;
+      line-height: 1.5;
     }
 
     .stealth-hero-video__actions {
@@ -196,7 +215,7 @@
 
     .stealth-hero-video__btn {
       width: 100%;
-      max-width: 300px;
+      max-width: 320px;
     }
   }
 </style>
