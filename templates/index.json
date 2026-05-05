@@ -13,8 +13,8 @@
       "type": "stealth-hero-video",
       "name": "Stealth Hero Video",
       "settings": {
-        "subheading": "THE CHAIR BEHIND THE SOUND",
-        "heading": "ENGINEERED FOR THE PEOPLE WHO ENGINEER THE SOUND",
+        "subheading": "",
+        "heading": "Engineered For The People Behind The Production",
         "heading_size": "h0",
         "text": "From the studio to the stage — patented ZenWave technology and custom-fit ergonomic design trusted by the world's top engineers.",
         "button_label": "FIND YOUR STEALTH",
@@ -22,8 +22,8 @@
         "secondary_button_label": "WATCH THE STORY",
         "secondary_button_link": "shopify://pages/about-stealth-chairs",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/adedd874403340da9c2c54f1abdd6bba.mp4",
-        "overlay_opacity": 45,
-        "min_height": 650,
+        "overlay_opacity": 75,
+        "min_height": 750,
         "color_scheme": "scheme-32f31201-6f37-4bc1-a278-f9e09bdf684d"
       }
     },
