@@ -21,9 +21,9 @@
         "button_link": "shopify://collections/all",
         "secondary_button_label": "WATCH THE STORY",
         "secondary_button_link": "shopify://pages/about-stealth-chairs",
-        "video_url": "https://cdn.shopify.com/s/files/1/0492/8618/5109/files/STANDARDSTEALTH.png?v=1778015283",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/080ad3b134ec4526919c992e3b1b1aa0.mp4",
         "overlay_opacity": 35,
-        "min_height": 600,
+        "min_height": 700,
         "color_scheme": "scheme-d2698b55-5603-4fbe-b24e-355a80dbf769"
       }
     },
