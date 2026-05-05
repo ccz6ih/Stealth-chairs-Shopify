@@ -22,7 +22,7 @@
         "secondary_button_label": "WATCH THE STORY",
         "secondary_button_link": "shopify://pages/about-stealth-chairs",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/adedd874403340da9c2c54f1abdd6bba.mp4",
-        "overlay_opacity": 75,
+        "overlay_opacity": 65,
         "min_height": 750,
         "color_scheme": "scheme-32f31201-6f37-4bc1-a278-f9e09bdf684d"
       }
