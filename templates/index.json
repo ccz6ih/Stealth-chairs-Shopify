@@ -215,7 +215,7 @@
         "button_label": "TAKE THE 60-SECOND QUIZ",
         "button_link": "shopify://pages/stealth-quiz",
         "show_steps": true,
-        "color_scheme": ""
+        "color_scheme": "scheme-1"
       }
     },
     "image-with-text": {
